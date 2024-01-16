@@ -8,48 +8,61 @@ from pyscreeze import screenshot # Importação da biblioteca pyscreeze para cap
 from pytesseract import pytesseract # Importação da biblioteca pytesseract para conversão de imagens em strings
 caminho_tesseract = "C:\\Program Files\\Tesseract-OCR\\tesseract.exe" # Caminho para o executável do pytesseract
 pytesseract.tesseract_cmd = caminho_tesseract # Define o caminho para o pytesseract
+tempo_de_execucao = 40000 # Tempo de execução máximo da operação 
 
 # Carrega as listas caso existam arquivos salvos, caso contrário, cria listas predeterminadas
-try:  # Tenta abrir o arquivo de lista de latarias
+try:  # Tenta abrir o arquivo de lista de LATARIAS
     with open('lista_latarias.pkl', 'rb') as f: 
         lista_latarias = pickle.load(f)
 except FileNotFoundError: # Caso o arquivo não exista, cria uma lista padrão
-    lista_latarias = ["PONTEIRA", "ASSOALHO", "CHAPA", "CAPO", "CAIXA AR", "CAIXA DE AR", "LONGARINA", "ALMA", "PAINEL TRAS", "ALOJAMENTO FAROL"]
-try:  # Tenta abrir o arquivo de lista de alimentos
+    lista_latarias = ["PONTEIRA ESCAPAMENTO", "ASSOALHO", "CHAPA", "CAPO", "CAIXA AR", "CAIXA DE AR", "LONGARINA", "ALMA", "PAINEL TRAS", "ALOJAMENTO FAROL", "PORTA DIANT", "PORTA TRAS", "PORTINHOLA TANQUE", "SUPORTE ESTEPE" ]
+try:  # Tenta abrir o arquivo de lista de ALIMENTOS
     with open('lista_alimentos.pkl', 'rb') as f: 
         lista_alimentos = pickle.load(f)
 except FileNotFoundError: # Caso o arquivo não exista, cria uma lista padrão
     lista_alimentos = ["PICOLE", "CHICLETE", "SALGADINHO", "BOMBOM", "BALA FREEGELLS", "BARRA CHOCOLATE", "WAFER", "PIPOCA", "YOKITOS", "BATATA", "BALA DE GOMA", "AMENDOIM JAPONES", "PACOQUINHA", "SORVETE", "TRENTO", "PIRULITO", "BISCOITO", "TORTUGUITA", "COOKIES", "CEREAL BARRA", "BARRA CEREAL", "BIS LACTA", "AGUA MINERAL", "REFRIGERANTE", "SUCO"]
 
-try: # Tenta abrir o arquivo de lista de mecânica
+try: # Tenta abrir o arquivo de lista de MECANICA
     with open('lista_mecanica.pkl', 'rb') as f:
         lista_mecanica = pickle.load(f)
 except FileNotFoundError: # Caso o arquivo não exista, cria uma lista padrão
-    lista_mecanica = []
+    lista_mecanica = ["ACOPLAMENTO BARRA CAMB", "ADAPTADOR TAMPA TANQ", "BARRA AXIAL", "BOIA COMB", "HELICE", "JOGO JUNTA", "JUNTA ANEL", "JUNTA CABECOTE", "JUNTA CAMBIO", "JUNTA COLETOR", "JUNTA MOTOR", "JUNTA RETIFICA", "PIVO SUSPENSAO", "SUPORTE BRACO TENSOR", "TERMINAL CAIXA CAMB", "TERMINAL DIRECAO", "TUBO ABASTECIMENTO"]
 
-try: # Tenta abrir o arquivo de lista de plásticos
+try: # Tenta abrir o arquivo de lista de PLASTICOS
     with open('lista_plasticos.pkl', 'rb') as f:
         lista_plasticos = pickle.load(f)
 except FileNotFoundError: # Caso o arquivo não exista, cria uma lista padrão
-    lista_plasticos = ["MANIVELA VIDRO", "GRAMPO VERSAILLES", "ALCA TETO", "TAMPA RESERV", "TAMPA CAPA VENTIL", "BOLA CAMBIO", "TAMPA OLEO", "MANIVELA REGULADORA" "SUPORTE MACANETA", "CALCO MACANETA", "APOIA BRACO", "MOLDURA MACANETA"]
+    lista_plasticos = ["BASE MACANETA", "BORBOLETA CIL IGNIC", "GUIA MACANETA", "DESCANSA BRACO", "ENCOSTO TRINCO", "ENCOSTO BATENTE", "GUARNICAO(ACABAMENTO)", "GRAMPO PORTA LUVA", "GRAMPO TRAVA MANIVELA", "GRAMPO PRESILHA", "SUPORTE INTERNO PUXADOR", "MANIVELA VIDRO", "SAIDA AR PAINEL", "ESPELHO MACANETA", "TAMPA TANQUE", "CALCO BORRACHA", "BORRACHA", "LANTERNA DIANT", "LANTERNA TRAS", "CONTRACAPA TELECOMANDO", "GRAMPO VERSAILLES", "GUIA LAT VIDRO","ALCA TETO", "PUXADOR PORTA", "PUXAD INT", "PUXADOR VIDRO", "ESPELHO(MOLDURA)", "TAMPA RESERV", "TAMPA CAPA VENTIL", "BOLA CAMBIO", "TAMPA OLEO", "TAMPA PROTETORA AMORT", "MANIVELA REGULADORA", "MANOPLA FREIO MAO" "SUPORTE MACANETA", "CALCO MACANETA", "APOIA BRACO", "MOLDURA MACANETA", "MOLDURA ESPELHO"]
 
-try: # Tenta abrir o arquivo de lista de elétrica
+try: # Tenta abrir o arquivo de lista de ELÉTRICA
     with open('lista_eletrica.pkl', 'rb') as f:
         lista_eletrica = pickle.load(f)
 except FileNotFoundError: # Caso o arquivo não exista, cria uma lista padrão
-    lista_eletrica = ["CILINDRO IGNICAO", "COMUTADOR IGNICAO"]
+    lista_eletrica = ["ANTENA/MODULO", "BOTAO", "CABO ANTENA", "CILINDRO IGNICAO", "COMUTADOR IGNICAO", "INTERRUPTOR IGNICAO", "TRAVA ELETRICA"]
  
-try: # Tenta abrir o arquivo de lista de escapamentos
+try: # Tenta abrir o arquivo de lista de ESCAPAMENTOS
     with open('lista_escapamentos.pkl', 'rb') as f:
         lista_escapamentos = pickle.load(f)
 except FileNotFoundError: # Caso o arquivo não exista, cria uma lista padrão
     lista_escapamentos = ["PONTEIRA ESCAPAMENTO"]
 
-try: # Tenta abrir o arquivo de lista de ferragens
+try: # Tenta abrir o arquivo de lista de FERRAGENS
     with open('lista_ferragens.pkl', 'rb') as f:
         lista_ferragens = pickle.load(f)
 except FileNotFoundError: # Caso o arquivo não exista, cria uma lista padrão
-    lista_ferragens = ["AMORTECEDOR", "ARRUELA", "BATENTE", "CABO ACION", "CABO DESTRAVA PORTA", "CABO FECH", "COMANDO MACANETA", "CILINDRO PORTA", "DOBRADICA", "FECHADURA", "FECHO CILINDRO PORTA", "FECHO PORTA", "GATILHO MACANETA", "GRAMPO TRAVA MANIVELA", "KIT MACANETA", "LIMITADOR PORTA", "MACANETA DIANT", "MACANETA EXT", "MACANETA EXTERNA", "MACANETA INT", "MAQUINA DE VIDRO", "MAQUINA VIDRO", "MOTOR MAQUINA VIDRO", "PARAFUSO", "PINO SUPORTE", "PINO TRAVA", "PORCA", "PRESILHA FECHADURA", "ROLDANA MAQUINA DE VIDRO", "ROLDANA MAQUINA VIDRO", "SUPORTE VIDRO", "TAMPA RADIADOR", "TRAVA DIRECAO", "TRAVA IGNICAO", "TRAVA SEGURANCA PORTA", "TRINCO JANELA", "TRINCO QUEBRA VENTO", "TRINCO VIDRO", "VARETA TRAVA"]
+    lista_ferragens = ["ALAVANCA ABERTURA", "ALAVANCA CAPO", "AMORTECEDOR", "ARO VIDRO", "ARRUELA", "BATENTE", "BATENTE PORTA", "CABO ACION", "CABO CAPO", "CABO DESTRAVA PORTA", "CABO FECH", "CONJUNTO BATENTE", "CONJUNTO CILINDRO", "CONJUNTO MACANETA", "COMANDO MACANETA", "CILINDRO INTERNO BAU", "CILINDRO MALA", "CILINDRO PORTA", "CILINDRO TAMPA", "CILINDRO(BOTAO)", "DISPOSITIVO TRAVA BANCO", "DOBRADICA", "FECHADURA", "FECHO CILINDRO PORTA", "FECHO PORTA", "FECHO/TRINCO", "FIXADOR TRINCO", "GANCHO", "GATILHO MACANETA", "GUIA INT PORTA", "GUIA PORTA", "GUIA VIDRO", "HASTE FECHADURA", "JOGO CILINDRO MACANETA", "JG CILINDRO", "KIT ADAPTACAO MOTOR", "KIT CILINDRO", "KIT FIXADOR", "KIT MACANETA", "KIT PARAF", "LIMITADOR PORTA", "MACANETA DIANT", "MACANETA EXT", "MACANETA EXTERNA", "MACANETA INT", "MAQUINA DE VIDRO", "MAQUINA VIDRO", "MOTOR MAQ VIDRO", "MOTOR MAQUINA VIDRO", "PALHETA", "PARAFUSO", "PEDAL ACELERADOR", "PINO BATENTE", "PINO DO CAPO", "PINO SUPORTE", "PINO TRAVA", "PORCA", "PRESILHA FECH", "QUADRO PORTA", "ROLDANA MAQUINA DE VIDRO", "ROLDANA MAQUINA VIDRO", "SUPORTE CAPO", "SUPORTE LAT VIDRO", "SUPORTE VIDRO", "TAMPA RADIADOR", "TRAVA DIR", "TRAVA IGNICAO", "TRAVA SEGURANCA PORTA", "TRAVA TAMPA CACAMBA", "TRINCO BASC", "TRINCO BASE LAT", "TRINCO CROMADO", "TRINCO FIXADOR", "TRINCO JANELA", "TRINCO QUEBRA VENTO", "TRINCO VIDRO", "VARETA ACIONAMENTO", "VARETA TRAVA"]
+
+try: # Tenta abrir o arquivo de lista de VIDROS
+    with open('lista_vidros.pkl', 'rb') as f:
+        lista_vidros = pickle.load(f)
+except FileNotFoundError: # Caso o arquivo não exista, cria uma lista padrão
+    lista_vidros = ["VENTAROLA", "VIDRO PORTA", "VIDRO TRAS"]
+
+try:  # Tenta abrir o arquivo de lista de ACESSÓRIOS
+    with open('lista_acessorios.pkl', 'rb') as f: 
+        lista_acessorios = pickle.load(f)
+except FileNotFoundError: # Caso o arquivo não exista, cria uma lista padrão
+    lista_acessorios = ["KIT FIXADOR PARACHOQUE", "PARACHOQUE IMPULSAO", "TRAVA VOLANTE", "TRIANGULO SEGURANCA"]
 
 print("---------------------------------------------------------------------------------------")
 print("Bem-vindo ao UltraInat, o programa que inativa e classifica seções de itens no sistema.") # Mensagem de boas vindas
@@ -70,7 +83,6 @@ while option != "4":
         print("1 segundo...")
         time.sleep(1)
         print("Iniciando operação...") # Mensagem de início de operação
-        tempo_de_execucao = 40000 # Tempo de execução máximo da operação 
         tempo_inicial = time.time() # Regra para definir o período de tempo
         contadorinativos = 0 # Variável que receberá o número de itens inativados na operação
         contadorverificados = -1 # Variável que define a quantidade de itens verificados, começa com -1 pois o loop inicia adicionando 1 a contagem
@@ -250,6 +262,16 @@ while option != "4":
                 if item_encontrado: # Se o item for encontrado na lista de ferragens
                     if len(item_encontrado) > len(secaoescolhida):
                         secaoescolhida = "ferragens"
+                
+                item_encontrado = next((item for item in lista_vidros if item in textdesc), None) #Procura um item na lista de ferragens se o item for o descrito na variável textdesc, caso contrário, retorna None
+                if item_encontrado: # Se o item for encontrado na lista de ferragens
+                    if len(item_encontrado) > len(secaoescolhida):
+                        secaoescolhida = "vidros"
+                
+                item_encontrado = next((item for item in lista_acessorios if item in textdesc), None) #Procura um item na lista de ferragens se o item for o descrito na variável textdesc, caso contrário, retorna None
+                if item_encontrado: # Se o item for encontrado na lista de ferragens
+                    if len(item_encontrado) > len(secaoescolhida):
+                        secaoescolhida = "acessorios"
 
                 if secaoescolhida == "latarias": # Se a seção escolhida for latarias
                     pyautogui.typewrite('5039')
@@ -265,6 +287,10 @@ while option != "4":
                     pyautogui.typewrite('5062')
                 elif secaoescolhida == "ferragens": # Se a seção escolhida for ferragens 
                     pyautogui.typewrite('5066')
+                elif secaoescolhida == "vidros": # Se a seção escolhida for vidros 
+                    pyautogui.typewrite('5059')
+                elif secaoescolhida == "acessorios": # Se a seção escolhida for vidros 
+                    pyautogui.typewrite('5060')
                 time.sleep(0.3) # Intervalo de segurança
                 pyautogui.press("down") # Pressiona a tecla de seta para baixo passando para o próximo item de modificação
             else:
@@ -273,7 +299,7 @@ while option != "4":
         print("________________________________________________________________________________________")
         print("Você selecionou a opção de adicionar item regra.\n Primeiro, insira o nome do item.") # Mensagem de seleção de opção
         nome_item = input("Nome do item: ").upper() # Input para seleção de item a ser adicionado na lista de regras inserindo sempre com letras maiúsculas
-        print("Agora, insira a qual seção ele pertence: \n 1 - Latarias \n 2 - Alimentos \n 3 - Mecânica \n 4 - Plásticos \n 5 - Elétrica \n 6 - Escapamentos \n 7 - Ferragens") # Mensagem de seleção de opção
+        print("Agora, insira a qual seção ele pertence: \n 1 - Latarias \n 2 - Alimentos \n 3 - Mecânica \n 4 - Plásticos \n 5 - Elétrica \n 6 - Escapamentos \n 7 - Ferragens \n 8 - Vidros \n 9 - Acessórios") # Mensagem de seleção de opção
         secao_item = input("Seção do item: ") # Input para seleção de seção do item
         if int(secao_item) == 1: # Se a seção for 1, adiciona o item na lista de latarias
             lista_latarias.append(nome_item.upper)
@@ -295,6 +321,11 @@ while option != "4":
             print("Item adicionado com sucesso.")
         elif int(secao_item) == 7: # Se a seção for 7, adiciona o item na lista de ferragens
             lista_ferragens.append(nome_item)
+        elif int(secao_item) == 8: # Se a seção for 8, adiciona o item na lista de vidros
+            lista_vidros.append(nome_item)
+        elif int(secao_item) == 9: # Se a seção for 8, adiciona o item na lista de vidros
+            lista_acessorios.append(nome_item)
+
             print("Item adicionado com sucesso.")
         else:
             print("Opção inválida.")
@@ -302,7 +333,7 @@ while option != "4":
     elif option == "3": # Se a opção for 3, inicia a operação de remoção de item
         print("Você selecionou a opção de remover item regra.\n Primeiro, insira o nome do item.")
         nome_item = input("Nome do item: ").upper() # Input para seleção de item a ser removido da lista de regras buscando sempre com letras maiúsculas    
-        print("Agora, insira a qual seção ele pertence: \n 1 - Latarias \n 2 - Alimentos \n 3 - Mecânica \n 4 - Plásticos \n 5 - Elétrica \n 6 - Escapamentos \n 7 - Ferragens")
+        print("Agora, insira a qual seção ele pertence: \n 1 - Latarias \n 2 - Alimentos \n 3 - Mecânica \n 4 - Plásticos \n 5 - Elétrica \n 6 - Escapamentos \n 7 - Ferragens \n 8 - Vidros \n 9 - Acessórios")
         secao_item = input("Seção do item: ")
         if secao_item == 1:
             lista_latarias.remove(nome_item) # Remove o item da lista de latarias
@@ -318,6 +349,10 @@ while option != "4":
             lista_escapamentos.remove(nome_item) # Remove o item da lista de escapamentos 
         elif secao_item == 7:
             lista_ferragens.remove(nome_item) # Remove o item da lista de ferragens
+        elif secao_item == 8:
+            lista_vidros.remove(nome_item) # Remove o item da lista de ferragens
+        elif secao_item == 9:
+            lista_acessorios.remove(nome_item) # Remove o item da lista de ferragens
         else:
             print("Opção inválida.")
     
