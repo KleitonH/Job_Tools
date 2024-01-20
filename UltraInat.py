@@ -32,7 +32,7 @@ try: # Tenta abrir o arquivo de lista de PLASTICOS
     with open('lista_plasticos.pkl', 'rb') as f:
         lista_plasticos = pickle.load(f)
 except FileNotFoundError: # Caso o arquivo não exista, cria uma lista padrão
-    lista_plasticos = ["BASE MACANETA", "BORBOLETA CIL IGNIC", "GUIA MACANETA", "DESCANSA BRACO", "ENCOSTO TRINCO", "ENCOSTO BATENTE", "GUARNICAO(ACABAMENTO)", "GRAMPO", "FAROL", "SUPORTE INTERNO PUXADOR", "MANIVELA VIDRO", "SAIDA AR PAINEL", "ESPELHO MACANETA", "TAMPA TANQUE", "CALCO BORRACHA", "BORRACHA", "LANTERNA DIANT", "LANTERNA TRAS", "CONTRACAPA TELECOMANDO", "GUIA LAT VIDRO","ALCA TETO", "PUXADOR PORTA", "PUXAD INT", "PUXADOR VIDRO", "ESPELHO(MOLDURA)", "TAMPA RESERV", "TAMPA CAPA VENTIL", "BOLA CAMBIO", "TAMPA OLEO", "TAMPA PROTETORA AMORT", "MANIVELA REGULADORA", "MANOPLA FREIO MAO" "SUPORTE MACANETA", "PARACHOQUE", "PRESILHA CALHA", "CALCO MACANETA", "APOIA BRACO", "MOLDURA MACANETA", "MOLDURA ESPELHO"]
+    lista_plasticos = ["BASE MACANETA", "BORBOLETA CIL IGNIC", "GUIA MACANETA", "DESCANSA BRACO", "ENCOSTO TRINCO", "ENCOSTO BATENTE", "GUARNICAO(ACABAMENTO)", "GRAMPO", "FAROL", "SUPORTE INTERNO PUXADOR", "MANIVELA VIDRO", "SAIDA AR PAINEL", "ESPELHO MACANETA", "TAMPA TANQUE", "CALCO BORRACHA", "BORRACHA", "LANTERNA DIANT", "LANTERNA TRAS", "CONTRACAPA TELECOMANDO", "GUIA LAT VIDRO","ALCA TETO", "PUXADOR PORTA", "PUXAD INT", "PUXADOR VIDRO", "ESPELHO(MOLDURA)", "TAMPA RESERV", "TAMPA CAPA VENTIL", "BOLA CAMBIO", "TAMPA OLEO", "TAMPA PROTETORA AMORT", "MANIVELA REGULADORA", "MANOPLA FREIO MAO", "SUPORTE MACANETA", "PARACHOQUE", "PRESILHA CALHA", "CALCO MACANETA", "CALCO MACANETA PORTA", "APOIA BRACO", "MOLDURA MACANETA", "MOLDURA ESPELHO"]
 
 try: # Tenta abrir o arquivo de lista de ELÉTRICA
     with open('lista_eletrica.pkl', 'rb') as f:
@@ -50,7 +50,7 @@ try: # Tenta abrir o arquivo de lista de FERRAGENS
     with open('lista_ferragens.pkl', 'rb') as f:
         lista_ferragens = pickle.load(f)
 except FileNotFoundError: # Caso o arquivo não exista, cria uma lista padrão
-    lista_ferragens = ["ALAVANCA ABERTURA", "ALAVANCA CAPO", "AMORTECEDOR", "ARO VIDRO", "ARRUELA", "BATENTE", "BATENTE PORTA", "CABO ACION", "CABO CAPO", "CABO LIMITADOR", "CABO DESTRAVA PORTA", "CABO FECH", "CONJUNTO BATENTE", "CONJUNTO CILINDRO", "CONJUNTO MACANETA", "COMANDO MACANETA", "CILINDRO INTERNO BAU", "CILINDRO MALA", "CILINDRO PORTA", "CILINDRO TAMPA", "CILINDRO(BOTAO)", "DISPOSITIVO TRAVA BANCO", "FECHADURA", "FECHO CILINDRO PORTA", "FECHO CINTO", "FECHO PORTA", "FECHO/TRINCO", "FIXADOR TRINCO", "GANCHO", "GATILHO MACANETA", "GUIA INT PORTA", "GUIA PORTA", "GUIA VIDRO", "HASTE FECHADURA", "JOGO CILINDRO MACANETA", "JG CILINDRO", "KIT ADAPTACAO MOTOR", "KIT CILINDRO", "KIT FIXADOR", "KIT MACANETA", "KIT PARAF", "LIMITADOR PORTA", "MACANETA DIANT", "MACANETA EXT", "MACANETA EXTERNA", "MACANETA INT", "MAQUINA DE VIDRO", "MAQUINA VIDRO", "MOTOR MAQ VIDRO", "MOTOR MAQUINA VIDRO", "PALHETA", "PARAFUSO", "PEDAL ACELERADOR", "PINO BATENTE", "PINO DO CAPO", "PINO SUPORTE", "PINO TRAVA", "PORCA", "PRESILHA FECH", "QUADRO PORTA", "ROLDANA MAQUINA DE VIDRO", "ROLDANA MAQUINA VIDRO", "SUPORTE CAPO", "SUPORTE LAT VIDRO", "SUPORTE VIDRO", "TAMPA RADIADOR", "TIRANTE CORDA", "TIRANTE TAMPA", "TRAVA DIR", "TRAVA IGNICAO", "TRAVA SEGURANCA PORTA", "TRAVA TAMPA CACAMBA", "TRINCO BASC", "TRINCO BASE LAT", "TRINCO CROMADO", "TRINCO FIXADOR", "TRINCO JANELA", "TRINCO QUEBRA VENTO", "TRINCO VIDRO", "VARETA ACIONAMENTO", "VARETA TRAVA"]
+    lista_ferragens = ["ALAVANCA ABERTURA", "ALAVANCA CAPO", "AMORTECEDOR", "ARO VIDRO", "ARRUELA", "BATENTE", "BATENTE AMORTECEDOR", "BATENTE FECHADURA PORTA", "BATENTE FECHO TAMPA", "BATENTE INF", "BATENTE PORTA", "BATENTE GUIA DA PORTA", "BATENTE GUIA DA TAMPA", "BATENTE BARRA PRESSAO", "BATENTE BORRACHA CHUPETINHA", "BATENTE TAMPA", "BUCHA DOBRADICA", "BUCHA MACANETA", "BUCHA TRILHO", "CABO ACION", "CABO CAPO", "CABO LIMITADOR", "CABO DESTRAVA PORTA", "CABO MACANETA EXT", "CABO FECH", "CABO FECHADURA PORTA", "CABO TAMPA TRAS", "CABO TAMPA CACAMBA", "CHAPA BATENTE PORTA", "CONJUNTO BATENTE", "CONJUNTO CILINDRO", "CONJUNTO MACANETA", "COMANDO MACANETA", "CILINDRO INTERNO BAU", "CILINDRO MALA", "CILINDRO PORTA", "CILINDRO TAMPA", "CILINDRO (BOTAO)", "DISPOSITIVO TRAVA BANCO", "FECHADURA", "FECHO CILINDRO PORTA", "FECHO CINTO", "FECHO PORTA", "FECHO/TRINCO", "FIXADOR TRINCO", "GANCHO", "GATILHO MACANETA", "GUIA INT PORTA", "GUIA PORTA", "GUIA VIDRO", "HASTE FECHADURA", "JOGO CILINDRO MACANETA", "JG CILINDRO", "KIT ADAPTACAO MOTOR", "KIT CILINDRO", "KIT FIXADOR", "KIT MACANETA", "KIT PARAF", "LIMITADOR PORTA", "MACANETA DIANT", "MACANETA EXT", "MACANETA EXTERNA", "MACANETA INT", "MAQUINA DE VIDRO", "MAQUINA VIDRO", "MOTOR MAQ VIDRO", "MOTOR MAQUINA VIDRO", "PALHETA", "PARAFUSO", "PEDAL ACELERADOR", "PINO BATENTE", "PINO DO CAPO", "PINO SUPORTE", "PINO TRAVA", "PORCA", "PRESILHA FECH", "QUADRO PORTA", "ROLDANA MAQUINA DE VIDRO", "ROLDANA MAQUINA VIDRO", "SUPORTE CAPO", "SUPORTE LAT VIDRO", "SUPORTE VIDRO", "TAMPA RADIADOR", "TIRANTE CORDA", "TIRANTE TAMPA", "TRAVA DIR", "TRAVA IGNICAO", "TRAVA SEGURANCA PORTA", "TRAVA TAMPA CACAMBA", "TRINCO BASC", "TRINCO BASE LAT", "TRINCO CROMADO", "TRINCO FIXADOR", "TRINCO JANELA", "TRINCO QUEBRA VENTO", "TRINCO VIDRO", "VARETA ACIONAMENTO", "VARETA TRAVA"]
 
 try: # Tenta abrir o arquivo de lista de VIDROS
     with open('lista_vidros.pkl', 'rb') as f:
@@ -63,6 +63,9 @@ try:  # Tenta abrir o arquivo de lista de ACESSÓRIOS
         lista_acessorios = pickle.load(f)
 except FileNotFoundError: # Caso o arquivo não exista, cria uma lista padrão
     lista_acessorios = ["ESPACADOR", "KIT FIXADOR PARACHOQUE", "PARACHOQUE IMPULSAO", "TRAVA VOLANTE", "TRIANGULO SEGURANCA"]
+
+todas_secoes = [lista_latarias, lista_alimentos, lista_mecanica, lista_plasticos, lista_eletrica,
+                lista_escapamentos, lista_ferragens, lista_vidros, lista_acessorios]
 
 print("---------------------------------------------------------------------------------------")
 print("Bem-vindo ao UltraInat, o programa que inativa e classifica seções de itens no sistema.") # Mensagem de boas vindas
@@ -123,10 +126,10 @@ while option != "4":
                 screenshotwatcher2 = Image.open('screenshotwatcher2.png') # Recebimento da imagem
                 textwatcher2 = pytesseract.image_to_string(screenshotwatcher2) # Converte para texto
                 watch3 = "sistan" # Palavra-chave
-                time.sleep(0.3) # Intervalo de segurança
+                time.sleep(0.5) # Intervalo de segurança
 
                 if watch3 in textwatcher2: # Se a palavra-chave estiver no texto
-                    time.sleep(0.2) # Intervalo de segurança
+                    time.sleep(0.5) # Intervalo de segurança
                     pyautogui.press("f5") # Pressiona a tecla F5 para atualizar a tela
                     time.sleep(0.5) # Intervalo de segurança
                     pyautogui.typewrite(textcod) # Digita o código do item
@@ -149,6 +152,7 @@ while option != "4":
                     else: # Se não houver erro
                         time.sleep(1) # Intervalo de segurança
                         pyautogui.press("enter") # Clica no item encontrado
+                        time.sleep(0.2)
                         pyautogui.press("enter") # Clica no item na lista de similares, caso haja
                         time.sleep(0.8) # Intervalo de segurança
                         pyautogui.click(403, 190) # Clica na aba de Histórico de Movimentações
@@ -172,17 +176,20 @@ while option != "4":
                         
                         if any(numero >= 1 for numero in numeros_textdate) or any(numero >= 1 for numero in numeros_textdate2): # Se o número for maior ou igual a 1, houve movimentação, não sendo necessária a inativação
                             pyautogui.press("esc") # Visto que não houve inativação, pressiona a tecla ESC para fechar a aba do item
+                            time.sleep(0.2)
                             pyautogui.press("esc") # Pressiona a tecla ESC novamente para fechar a aba de procura
-                            time.sleep(0.2) # Intervalo de segurança
+                            time.sleep(0.5) # Intervalo de segurança
                         else:  # Se o número for menor que 1, não houve movimentação, sendo necessária a inativação
                             pyautogui.press("esc") # Pressiona a tecla ESC para fechar a aba do item
+                            time.sleep(0.2)
                             pyautogui.press("esc") # Pressiona a tecla ESC novamente para fechar a aba de procura
                             time.sleep(0.5) # Intervalo de segurança
                             pyautogui.press("f3") # Pressiona a tecla F3 para abrir a aba de procura de item com modificação de estoque
                             time.sleep(0.5) # Intervalo de segurança
                             pyautogui.typewrite(textcod) # Digita o código do item
-                            time.sleep(0.5) # Intervalo de segurança
+                            time.sleep(0.8) # Intervalo de segurança
                             pyautogui.press("enter") # Clica no item encontrado
+                            time.sleep(0.2) # Intervalo de segurança
                             pyautogui.press("enter") # Clica no item na lista de similares, caso haja
                             time.sleep(1) # Intervalo de segurança
                             pyautogui.click(945, 566) # Clica em inativar
@@ -228,69 +235,36 @@ while option != "4":
                 textdesc = pytesseract.image_to_string(screenshotdesc) # Converte para texto
 
                 secaoescolhida = "" # Variável que receberá a seção escolhida
-                item_encontrado = next((item for item in lista_latarias if item in textdesc), None) #Procura um item na lista de latarias se o item for o descrito na variável textdesc, caso contrário, retorna None
-                if item_encontrado: # Se o item for encontrado na lista de latarias
-                    if len(item_encontrado) > len(secaoescolhida):
-                        secaoescolhida = "latarias"
+                itemescolhido = 0 # Variável que receberá o tamanho escolhido
+                for secao_lista in todas_secoes:
+                    for item in secao_lista:
+                        if item in textdesc:
+                            if len(item) > itemescolhido:
+                                itemescolhido = len(item)
+                                # Obter o nome da seção com base na lista atual
+                                secaoescolhida = todas_secoes.index(secao_lista)
+                                secaoescolhida = ["latarias", "alimentos", "mecanica", "plasticos", "eletrica", "escapamentos",
+                                "ferragens", "vidros", "acessorios"][secaoescolhida]
 
-                item_encontrado = next((item for item in lista_alimentos if item in textdesc), None) #Procura um item na lista de alimentos se o item for o descrito na variável textdesc, caso contrário, retorna None
-                if item_encontrado: # Se o item for encontrado na lista de alimentos
-                    if len(item_encontrado) > len(secaoescolhida):
-                        secaoescolhida = "alimentos"
-
-                item_encontrado = next((item for item in lista_mecanica if item in textdesc), None) #Procura um item na lista de mecânica se o item for o descrito na variável textdesc, caso contrário, retorna None
-                if item_encontrado: # Se o item for encontrado na lista de mecânica
-                    if len(item_encontrado) > len(secaoescolhida):
-                        secaoescolhida = "mecanica"
-
-                item_encontrado = next((item for item in lista_plasticos if item in textdesc), None) #Procura um item na lista de plásticos se o item for o descrito na variável textdesc, caso contrário, retorna None
-                if item_encontrado: # Se o item for encontrado na lista de plásticos
-                    if len(item_encontrado) > len(secaoescolhida):
-                        secaoescolhida = "plasticos"
-
-                item_encontrado = next((item for item in lista_eletrica if item in textdesc), None) #Procura um item na lista de elétrica se o item for o descrito na variável textdesc, caso contrário, retorna None
-                if item_encontrado: # Se o item for encontrado na lista de elétrica
-                    if len(item_encontrado) > len(secaoescolhida):
-                        secaoescolhida = "eletrica"
-
-                item_encontrado = next((item for item in lista_escapamentos if item in textdesc), None) #Procura um item na lista de escapamentos se o item for o descrito na variável textdesc, caso contrário, retorna None
-                if item_encontrado: # Se o item for encontrado na lista de escapamentos
-                    if len(item_encontrado) > len(secaoescolhida):
-                        secaoescolhida = "escapamentos"
-
-                item_encontrado = next((item for item in lista_ferragens if item in textdesc), None) #Procura um item na lista de ferragens se o item for o descrito na variável textdesc, caso contrário, retorna None
-                if item_encontrado: # Se o item for encontrado na lista de ferragens
-                    if len(item_encontrado) > len(secaoescolhida):
-                        secaoescolhida = "ferragens"
-                
-                item_encontrado = next((item for item in lista_vidros if item in textdesc), None) #Procura um item na lista de ferragens se o item for o descrito na variável textdesc, caso contrário, retorna None
-                if item_encontrado: # Se o item for encontrado na lista de ferragens
-                    if len(item_encontrado) > len(secaoescolhida):
-                        secaoescolhida = "vidros"
-                
-                item_encontrado = next((item for item in lista_acessorios if item in textdesc), None) #Procura um item na lista de ferragens se o item for o descrito na variável textdesc, caso contrário, retorna None
-                if item_encontrado: # Se o item for encontrado na lista de ferragens
-                    if len(item_encontrado) > len(secaoescolhida):
-                        secaoescolhida = "acessorios"
-
-                if secaoescolhida == "latarias": # Se a seção escolhida for latarias
-                    pyautogui.typewrite('5039')
-                elif secaoescolhida == "alimentos": # Se a seção escolhida for alimentos 
-                    pyautogui.typewrite('5042')
-                elif secaoescolhida == "mecanica": # Se a seção escolhida for mecânica 
-                    pyautogui.typewrite('5048')
-                elif secaoescolhida == "plasticos": # Se a seção escolhida for plásticos
-                    pyautogui.typewrite('5049')
-                elif secaoescolhida == "eletrica": # Se a seção escolhida for elétrica
-                    pyautogui.typewrite('5058')
-                elif secaoescolhida == "escapamentos": # Se a seção escolhida for escapamentos 
-                    pyautogui.typewrite('5062')
-                elif secaoescolhida == "ferragens": # Se a seção escolhida for ferragens 
-                    pyautogui.typewrite('5066')
-                elif secaoescolhida == "vidros": # Se a seção escolhida for vidros 
-                    pyautogui.typewrite('5059')
-                elif secaoescolhida == "acessorios": # Se a seção escolhida for vidros 
-                    pyautogui.typewrite('5060')
+                if secaoescolhida:
+                    if secaoescolhida == "latarias": # Se a seção escolhida for latarias
+                        pyautogui.typewrite('5039')
+                    elif secaoescolhida == "alimentos": # Se a seção escolhida for alimentos 
+                        pyautogui.typewrite('5042')
+                    elif secaoescolhida == "mecanica": # Se a seção escolhida for mecânica 
+                        pyautogui.typewrite('5048')
+                    elif secaoescolhida == "plasticos": # Se a seção escolhida for plásticos
+                        pyautogui.typewrite('5049')
+                    elif secaoescolhida == "eletrica": # Se a seção escolhida for elétrica
+                        pyautogui.typewrite('5058')
+                    elif secaoescolhida == "escapamentos": # Se a seção escolhida for escapamentos 
+                        pyautogui.typewrite('5062')
+                    elif secaoescolhida == "ferragens": # Se a seção escolhida for ferragens 
+                        pyautogui.typewrite('5066')
+                    elif secaoescolhida == "vidros": # Se a seção escolhida for vidros 
+                        pyautogui.typewrite('5059')
+                    elif secaoescolhida == "acessorios": # Se a seção escolhida for vidros 
+                        pyautogui.typewrite('5060')
                 time.sleep(0.3) # Intervalo de segurança
                 pyautogui.press("down") # Pressiona a tecla de seta para baixo passando para o próximo item de modificação
             else:
