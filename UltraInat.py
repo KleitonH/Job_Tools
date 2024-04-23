@@ -135,7 +135,7 @@ while option != "4":
                     pyautogui.typewrite(textcod) # Digita o código do item
                     time.sleep(1) # Intervalo de segurança
                     
-                    screenshoterror = pyautogui.screenshot(region=(680, 402, 235, 60)) # Observa s ehouve um erro de identificação de registro
+                    screenshoterror = pyautogui.screenshot(region=(680, 402, 235, 60)) # Observa se houve um erro de identificação de registro
                     screenshoterror = screenshoterror.convert("L") # Converte para escala de cinza
                     screenshoterror.save('screenshoterror.png') # Salva a imagem
                     from PIL import Image # Interpretação de imagem 
@@ -155,15 +155,15 @@ while option != "4":
                         time.sleep(0.2)
                         pyautogui.press("enter") # Clica no item na lista de similares, caso haja
                         time.sleep(0.8) # Intervalo de segurança
-                        pyautogui.click(403, 190) # Clica na aba de Histórico de Movimentações
+                        pyautogui.click(310, 101) # Clica na aba de Histórico de Movimentações
                         time.sleep(1.3) # Intervalo de segurança
-                        screenshotdate = pyautogui.screenshot(region=(195, 510, 56, 17)) # Captura a data do total de modificações de entrada do item no último ano
+                        screenshotdate = pyautogui.screenshot(region=(118, 419, 56, 17)) # Captura a data do total de modificações de entrada do item no último ano
                         screenshotdate = screenshotdate.convert("L")  # Converte para escala de cinza
                         screenshotdate.save('screenshotdate.png') # Salva a imagem
                         from PIL import Image # Interpretação de imagem
                         screenshootdate = Image.open('screenshotdate.png') # Recebimento da imagem
                         textdate = pytesseract.image_to_string(screenshotdate) # Converte para texto
-                        screenshotdate2 = pyautogui.screenshot(region=(385, 510, 56, 17)) # Captura a data do total de modificações de entrada de devoluções do item no último ano
+                        screenshotdate2 = pyautogui.screenshot(region=(238, 419, 56, 17)) # Captura a data do total de modificações de entrada de devoluções do item no último ano
                         screenshotdate2 = screenshotdate2.convert("L")  # Converte para escala de cinza
                         screenshotdate2.save('screenshotdate2.png') # Salva a imagem
                         from PIL import Image # Interpretação de imagem
