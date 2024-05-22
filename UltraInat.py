@@ -269,67 +269,7 @@ while option != "4":
                 pyautogui.press("down") # Pressiona a tecla de seta para baixo passando para o próximo item de modificação
             else:
                 exit()
-    elif option == "2": # Se a opção for 2, inicia a operação de adição de item
-        print("________________________________________________________________________________________")
-        print("Você selecionou a opção de adicionar item regra.\n Primeiro, insira o nome do item.") # Mensagem de seleção de opção
-        nome_item = input("Nome do item: ").upper() # Input para seleção de item a ser adicionado na lista de regras inserindo sempre com letras maiúsculas
-        print("Agora, insira a qual seção ele pertence: \n 1 - Latarias \n 2 - Alimentos \n 3 - Mecânica \n 4 - Plásticos \n 5 - Elétrica \n 6 - Escapamentos \n 7 - Ferragens \n 8 - Vidros \n 9 - Acessórios") # Mensagem de seleção de opção
-        secao_item = input("Seção do item: ") # Input para seleção de seção do item
-        if int(secao_item) == 1: # Se a seção for 1, adiciona o item na lista de latarias
-            lista_latarias.append(nome_item.upper)
-            print("Item adicionado com sucesso.")
-        elif int(secao_item) == 2: # Se a seção for 2, adiciona o item na lista de alimentos
-            lista_alimentos.append(nome_item.upper)
-            print("Item adicionado com sucesso.")
-        elif int(secao_item) == 3: # Se a seção for 3, adiciona o item na lista de mecânica
-            lista_mecanica.append(nome_item)
-            print("Item adicionado com sucesso.")
-        elif int(secao_item) == 4: # Se a seção for 4, adiciona o item na lista de plásticos
-            lista_plasticos.append(nome_item)
-            print("Item adicionado com sucesso.")
-        elif int(secao_item) == 5: # Se a seção for 5, adiciona o item na lista de elétrica
-            lista_eletrica.append(nome_item)
-            print("Item adicionado com sucesso.")
-        elif int(secao_item) == 6: # Se a seção for 6, adiciona o item na lista de escapamentos 
-            lista_escapamentos.append(nome_item)
-            print("Item adicionado com sucesso.")
-        elif int(secao_item) == 7: # Se a seção for 7, adiciona o item na lista de ferragens
-            lista_ferragens.append(nome_item)
-        elif int(secao_item) == 8: # Se a seção for 8, adiciona o item na lista de vidros
-            lista_vidros.append(nome_item)
-        elif int(secao_item) == 9: # Se a seção for 8, adiciona o item na lista de vidros
-            lista_acessorios.append(nome_item)
-
-            print("Item adicionado com sucesso.")
-        else:
-            print("Opção inválida.")
-
-    elif option == "3": # Se a opção for 3, inicia a operação de remoção de item
-        print("Você selecionou a opção de remover item regra.\n Primeiro, insira o nome do item.")
-        nome_item = input("Nome do item: ").upper() # Input para seleção de item a ser removido da lista de regras buscando sempre com letras maiúsculas    
-        print("Agora, insira a qual seção ele pertence: \n 1 - Latarias \n 2 - Alimentos \n 3 - Mecânica \n 4 - Plásticos \n 5 - Elétrica \n 6 - Escapamentos \n 7 - Ferragens \n 8 - Vidros \n 9 - Acessórios")
-        secao_item = input("Seção do item: ")
-        if secao_item == 1:
-            lista_latarias.remove(nome_item) # Remove o item da lista de latarias
-        elif secao_item == 2:
-            lista_alimentos.remove(nome_item) # Remove o item da lista de alimentos
-        elif secao_item == 3:
-            lista_mecanica.remove(nome_item) # Remove o item da lista de mecânica 
-        elif secao_item == 4:
-            lista_plasticos.remove(nome_item) # Remove o item da lista de plásticos
-        elif secao_item == 5:
-            lista_eletrica.remove(nome_item) # Remove o item da lista de elétrica
-        elif secao_item == 6:
-            lista_escapamentos.remove(nome_item) # Remove o item da lista de escapamentos 
-        elif secao_item == 7:
-            lista_ferragens.remove(nome_item) # Remove o item da lista de ferragens
-        elif secao_item == 8:
-            lista_vidros.remove(nome_item) # Remove o item da lista de ferragens
-        elif secao_item == 9:
-            lista_acessorios.remove(nome_item) # Remove o item da lista de ferragens
-        else:
-            print("Opção inválida.")
-    
+                
     elif option == "4": # Se a opção for 4, sai do programa
         print("Saindo do programa...") # Mensagem de saída
         break # Quebra o loop
