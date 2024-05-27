@@ -200,6 +200,7 @@ grupos = {
             'juntas_coletor': {'codigo': '0041', 'itens': []},
             'juntas_carter': {'codigo': '0042', 'itens': []},
             'juntas_tampa_valvula': {'codigo': '0043', 'itens': []},
+            'juntas_tampa_distribuidor': {'codigo': '0044', 'itens': []}, 
             'retentores_eixo': {'codigo': '0045', 'itens': []},
             'retentores_virabrequim': {'codigo': '0046', 'itens': []},
             'retentores_comando_valvula': {'codigo': '0047', 'itens': []},
@@ -224,7 +225,55 @@ grupos = {
             'mangueiras_agua': {'codigo': '0054', 'itens': []},
         }
     },    
-
+    'motor': {
+        'codigo': '0030',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': []},
+            'cabecotes': {'codigo': '0055', 'itens': []},
+            'virabrequins': {'codigo': '0056', 'itens': []},
+            'carteres': {'codigo': '0057', 'itens': []},
+        }
+    },
+    'reparos': {
+        'codigo': '0031',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': []},
+            'kit_reparo_homocinetica': {'codigo': '0058', 'itens': []},
+            'kit reparo_trambulador': {'codigo': '0059', 'itens': []},
+            'kit_reparo_alavanca': {'codigo': '0060', 'itens': []},
+        }
+    },
+    'rolamentos_tensores_polias': {
+        'codigo': '0032',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': []},
+            'rolamentos_roda': {'codigo': '0061', 'itens': []},
+            'rolamentos_motor': {'codigo': '0062', 'itens': []},
+            'tensores': {'codigo': '0063', 'itens': []},
+            'polias': {'codigo': '0064', 'itens': []},
+        }
+    },
+    'suspensao': {
+        'codigo': '0033',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': []},
+            'buchas': {'codigo': '0065', 'itens': []},
+            'amortecedores': {'codigo': '0066', 'itens': []},
+            'pivos': {'codigo': '0067', 'itens': []},
+            'homocineticas': {'codigo': '0068', 'itens': []},
+        }
+    },
+    'terminais': {
+        'codigo': '0034',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': []},
+            'terminais_barra_axial': {'codigo': '0069', 'itens': []},
+            'terminais_cabo_comando': {'codigo': '0070', 'itens': []},
+            'terminais_cabo_engate': {'codigo': '0071', 'itens': []},
+            'terminais_direcao': {'codigo': '0072', 'itens': []},
+            'terminais_suspensao': {'codigo': '0073', 'itens': []},
+        }
+    },
 }
 
 
