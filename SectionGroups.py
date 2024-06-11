@@ -120,9 +120,9 @@ grupos = {
     'arrefecimento': {
         'codigo': '0020',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': []},
+            'default': {'codigo': '0001', 'itens': ['BRUCUTU', 'BUCHA BOMBA ESGUICHO']},
             'radiadores': {'codigo': '0008', 'itens': []},
-            'bombas_agua': {'codigo': '0009', 'itens': []},
+            'bombas_agua': {'codigo': '0009', 'itens': ['BOMBA AGUA', 'BOMBA D.HIDR', 'BOMBA DAGUA']},
             'ventiladores': {'codigo': '0010', 'itens': []},
 
         }
@@ -130,17 +130,17 @@ grupos = {
     'cabos': {
         'codigo': '0021',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': []},
-            'cabos_acelerador': {'codigo': '0011', 'itens': []},
-            'cabos_embreagem': {'codigo': '0012', 'itens': []},
-            'cabos_freio': {'codigo': '0013', 'itens': []},
-            'cabos_capo': {'codigo': '0014', 'itens': []},
-            'cabos_velocimetro': {'codigo': '0015', 'itens': []},
-            'cabos_tampa_traseira': {'codigo': '0016', 'itens': []},
-            'cabos_afogador': {'codigo': '0017', 'itens': []},
-            'cabos_cambio': {'codigo': '0018', 'itens': []},
+            'default': {'codigo': '0001', 'itens': ['CABO ACIONADOR PORTINHOLA', 'CABO AR FORCADO', 'CABO PORTA CORRER', 'CABO PORTA MOLA', 'CABO PORTINHOLA', 'CABO TEMPERATURA']},
+            'cabos_acelerador': {'codigo': '0011', 'itens': ['CABO ACEL', 'CABO ACELERADO', 'CABO DE ACELERADOR', 'CABO PARADA MOTOR']},
+            'cabos_embreagem': {'codigo': '0012', 'itens': ['CABO EMB', 'CABO EMBR', 'CABO EMBREAGE', 'CABO FLEX EMBR', 'CABO TRANSMISSAO']},
+            'cabos_freio': {'codigo': '0013', 'itens': ['CABO DE FREIO', 'CABO FREIO', 'CABO LIBERACAO FREIO']},
+            'cabos_capo': {'codigo': '0014', 'itens': ['CABO CAPO', 'CABO PUXADOR CAPO']},
+            'cabos_velocimetro': {'codigo': '0015', 'itens': ['CABO DE VELOCIMETRO', 'CABO TACOGRAFO', 'CABO TACOMETRO', 'CABO VELOCIMETRO', 'CABO VELOC']},
+            'cabos_tampa_traseira': {'codigo': '0016', 'itens': ['CABO LIMITADOR DA TAMPA TRAS', 'CABO PUXADOR TAMPA', 'CABO TAMPA TRAS']},
+            'cabos_afogador': {'codigo': '0017', 'itens': ['CABO AFOGADOR', 'CABO ESTRANGULADOR']},
+            'cabos_cambio': {'codigo': '0018', 'itens': ['CABO CAMBIO', 'CABO COMANDO', 'CABO COMANDO MARCHA', 'CABO ENGATE COMANDO', 'CABO ENGATE', 'CABO ENGATE MARCHA', 'CABO MARCHA', 'CABO REDUZIDA', 'CABO SELECAO CAMBIO', 'CABO SELECAO MARCHA', 'CABO SELECAO COMANDO']},
             'cabos_fechadura': {'codigo': '0019', 'itens': []},
-            'cabos_trava_banco': {'codigo': '0020', 'itens': []},
+            'cabos_trava_banco': {'codigo': '0020', 'itens': ['CABO ENCOSTO BANCO', 'CABO REGULAGEM BANCO', 'CABO TRAVA BANCO']},
         }
     },
     'carburacao': {
@@ -148,54 +148,67 @@ grupos = {
         'subgrupos': {
             'default': {'codigo': '0001', 'itens': []},
             'carburadores': {'codigo': '0021', 'itens': []},
-            'componentes_carburadores': {'codigo': '0022', 'itens': []},
+            'componentes_carburadores': {'codigo': '0022', 'itens': ["AGULHA CARBURADOR", 'BASE CARB', 'BASE CARBURADOR', 'BASE VEDACAO CARB', 'BENGALA CARB', 'BENGALA INJETOR CARBURAD', 'BORBOLETA CARBURADOR']},
+        }
+    },
+    'combustivel': {
+        'codigo': '0035',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ["ADAPTADOR TAMPA TANQUE", 'BORRACHA FLANGE COM']},
+            'flanges': {'codigo': '0089', 'itens': ["ADAPTADOR FLANGE CAIXA", "FLANGE"]},
         }
     },
     'correias': {
         'codigo': '0023',
         'subgrupos': {
             'default': {'codigo': '0001', 'itens': []},
-            'correias_alternador': {'codigo': '0023', 'itens': []},
-            'correias_comando': {'codigo': '0024', 'itens': []},
+            'correias_dentadas': {'codigo': '0023', 'itens': []},
+            'correias_polyv': {'codigo': '0024', 'itens': []},
         }
     },
     'direcao': {
         'codigo': '0024',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': []},
+            'default': {'codigo': '0001', 'itens': ["ADAPTADOR VOLANTE", 'BUCHA SETOR DIRECAO', 'BUCHA COLUNA DIRECAO', 'BUCHA BRACO', 'BUCHA INF BRACO',]},
             'caixas_direcao': {'codigo': '0025', 'itens': []},
-            'sistemas_direcao_mecanica': {'codigo': '0026', 'itens': []},
-            'sistemas_direcao_hidraulica': {'codigo': '0027', 'itens': []},
+            'setor_direcao': {'codigo': '0026', 'itens': []},
+            'barras_axiais': {'codigo': '0027', 'itens': ['BARRA AXIAL', 'BARRA DIRECAO', 'BARRA LATERAL', 'BRACO AUXILIAR', 'BRACO DIANT INF', 'BRACO OSCILANT', 'BRACO PITMAN', 'BRACO SETOR', 'BRACO SUSP', 'BRACO TENSOR']},
+            'pivos': {'codigo': '0067', 'itens': ['PIVO', 'PIVO INFERIOR', 'PIVO', 'PIVO SUSP']},
+            'terminal_direcao': {'codigo': '0093', 'itens': ['TERMINAL DIR', 'TERMINAL DIRECAO', 'TERMINAL SUSPENSAO']}
         }
     },
     'filtros': {
         'codigo': '0025',
         'subgrupos': {
             'default': {'codigo': '0001', 'itens': []},
-            'filtros_ar': {'codigo': '0028', 'itens': []},
+            'filtros_ar': {'codigo': '0028', 'itens': ['FILTRO AR']},
             'filtros_combustivel': {'codigo': '0029', 'itens': []},
             'filtros_de_oleo': {'codigo': '0030', 'itens': []},
+            'filtros_de_ar_condicionado': {'codigo': '0074', 'itens': []},
+            'filtros_de_cabine': {'codigo': '0075', 'itens': []},
         }
     },
     'freios': {
         'codigo': '0026',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': []},
-            'pastilhas_freio': {'codigo': '0031', 'itens': []},
-            'discos_freio': {'codigo': '0032', 'itens': []},
+            'default': {'codigo': '0001', 'itens': ["ACIONADOR FREIO", "ACIONADOR/GATILHO FREIO"]},
+            'pastilhas_freio': {'codigo': '0031', 'itens': ['PASTILHA FREIO']},
+            'discos_freio': {'codigo': '0032', 'itens': ['DISCO FREIO', "DISCO FREIO TRAS"]},
             'tambores_freio': {'codigo': '0033', 'itens': []},
-            'flexiveis_freio': {'codigo': '0034', 'itens': []},
+            'flexiveis_freio': {'codigo': '0034', 'itens': ['BIFURACACAO AO FLEXIVEL']},
             'pincas_freio': {'codigo': '0035', 'itens': []},
-            'cilindros_roda_freio': {'codigo': '0036', 'itens': []},
+            'cilindros_roda_freio': {'codigo': '0036', 'itens': ['CILINDRO RODA']},
             'cilindros_mestre_freio': {'codigo': '0037', 'itens': []},
             'lonas_freio': {'codigo': '0038', 'itens': []},
             'sapatas_freio': {'codigo': '0039', 'itens': []},
+            'servofreios': {'codigo': '0087', 'itens': ["ACIONADOR FREIO", "ALAVANCA ACIONAMENTO FREIO", "GATILHO FREIO"]},
         }
     },    
     'juntas_retentores': {
         'codigo': '0027',
         'subgrupos': {
             'default': {'codigo': '0001', 'itens': []},
+            'aneis': {'codigo': '0091', 'itens': ['ANEIS PISTAO', 'ANEL PISTAO', 'ANEL BUJAO', 'ANEL AJUSTE ROLAMENTO', 'ANEL ALAVANCA', 'ANEL AMORTECEDOR', 'ANEL ANTI RUIDO', 'ANEL BOCAL TANQUE', 'ANEL BORRACHA', 'ANEL BRACO SUSP', 'ANEL CARCACA', 'ANEL CEBOLAO', 'ANEL CILINDRO', 'ANEL COLETOR', 'ANEL VEDACAO', 'ANEL EIXO TRAS', 'ANEL IMPULSOR ARV', 'ANEL INFERIOR CARRO', 'ANEL INTERMEDIARIO', 'ANEL JUNTA', 'ANEL MALHA ACO', 'ANEL MOTOR', 'ANEL RADIADOR', 'ANEL RODA', 'ANEL SILENCIOSO', 'ANEL SINCRONIZ', 'ANEL TAMPA VALV', 'ANEL TIRANTE SUSP', 'ANEL TRASEIRO', 'ANEL TRAVA', 'ANEL VEDACAO', 'ANEL VEDADOR', 'ANEL JUNTA DISTRI', 'BORRACHA BOCAL ']},
             'juntas_cabecote': {'codigo': '0040', 'itens': []},
             'juntas_coletor': {'codigo': '0041', 'itens': []},
             'juntas_carter': {'codigo': '0042', 'itens': []},
@@ -210,8 +223,8 @@ grupos = {
     'lubrificacao': {
         'codigo': '0028',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': []},
-            'bombas_oleo': {'codigo': '0049', 'itens': []},
+            'default': {'codigo': '0001', 'itens': ['ALONGADOR VARETA']},
+            'bombas_oleo': {'codigo': '0049', 'itens': ['BOMBA OLEO']},
             'reservatorios_oleo': {'codigo': '0050', 'itens': []},
         }
     },
@@ -223,13 +236,15 @@ grupos = {
             'mangueiras_aquecimento': {'codigo': '0052', 'itens': []},
             'mangueiras_combustivel': {'codigo': '0053', 'itens': []},
             'mangueiras_agua': {'codigo': '0054', 'itens': []},
+            'mangueiras_ar_motor': {'codigo': '0085', 'itens': []},
+            'mangueiras_oleo': {'codigo': '0086', 'itens': []},
         }
     },    
     'motor': {
         'codigo': '0030',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': []},
-            'cabecotes': {'codigo': '0055', 'itens': []},
+            'default': {'codigo': '0001', 'itens': ['BUCHA ARRANQUE', ]},
+            'cabecotes': {'codigo': '0055', 'itens': ['CABECOTE', 'CABECOTE MOTOR']},
             'virabrequins': {'codigo': '0056', 'itens': []},
             'carteres': {'codigo': '0057', 'itens': []},
         }
@@ -237,44 +252,53 @@ grupos = {
     'reparos': {
         'codigo': '0031',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': []},
+            'default': {'codigo': '0001', 'itens': ["ACOPLAMENTO COLETOR ADMISSAO", "ACOPLAMENTO DIRECAO", "ACOPLAMENTO VISOCOSO", "ADAPTADOR COLETOR ADMISSAO", "REPARO COLETOR ADMISSAO", "REPARO DIRECAO", "ADAPTADOR MOTOR MAQ VIDRO"]},
             'kit_reparo_homocinetica': {'codigo': '0058', 'itens': []},
-            'kit reparo_trambulador': {'codigo': '0059', 'itens': []},
-            'kit_reparo_alavanca': {'codigo': '0060', 'itens': []},
+            'kit reparo_trambulador': {'codigo': '0059', 'itens': ['ACOPLAMENTO HASTE TRAMBULADOR', 'ACOPLAMENTO HASTE LIGACAO', 'BORRACHA/REPARO TRAMBULADOR', 'CACHORRINHO REPARO ANEIS']},
+            'kit_reparo_alavanca': {'codigo': '0060', 'itens': ["ACOPLAMENTO VARAO CAMBIO", "REPARO VARAO CAMBIO", 'BUCHA ALAVANCA CAMBIO', 'BUCHA REPARO ALAVANCA']},
+            'kit_reparo_pincas': {'codigo': '0077', 'itens': []},
+            'kit_reparo_setor': {'codigo': '0088', 'itens': ['ACOPLAMENTO SETOR']},
+            'alavancas': {'codigo': '0090', 'itens': ['ALAVANCA ACIONADORA', 'ALAVANCA CAMBIO', 'ALAVANCA EMB', 'ALAVANCA EMBREAGEM', 'ALAVANCA ENGATE', 'ALAVANCA ENGRENAGEM', 'ALAVANCA FREIO MAO', 'ALAVANCA FREIO TRAS', 'ALAVANCA INIBIDORA', 'ALAVANCA LIGACAO', 'ALAVANCA MARCHA', 'ALAVANCA PATIM', 'ALAVANCA REG', 'ALAVANCA REGULADO', 'ALAVANCA SELETORA', 'ALAVANCA TRAMBULADOR', ]},
         }
     },
     'rolamentos_tensores_polias': {
         'codigo': '0032',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': []},
-            'rolamentos_roda': {'codigo': '0061', 'itens': []},
+            'default': {'codigo': '0001', 'itens': ['ROLAMENTO CAMBIO']},
+            'rolamentos_roda': {'codigo': '0061', 'itens': ['BUCHA ROLAMENTO DIRECAO']},
             'rolamentos_motor': {'codigo': '0062', 'itens': []},
             'tensores': {'codigo': '0063', 'itens': []},
             'polias': {'codigo': '0064', 'itens': []},
+            'cubos_roda': {'codigo': '0076', 'itens': ['CUBO RODA', 'CUBO RODA DIANTEIR', 'CUBO RODA TRASEIR']},
         }
     },
     'suspensao': {
         'codigo': '0033',
         'subgrupos': {
             'default': {'codigo': '0001', 'itens': []},
-            'buchas': {'codigo': '0065', 'itens': []},
-            'amortecedores': {'codigo': '0066', 'itens': []},
-            'pivos': {'codigo': '0067', 'itens': []},
-            'homocineticas': {'codigo': '0068', 'itens': []},
+            'buchas': {'codigo': '0065', 'itens': ['BUCHA BAND SUSP', 'BUCHA BARRA ESTAB', 'BUCHA BANDEJA DIANT', 'BUCHA AGREGADO', 'BUCHA ALGEMA BARRA', 'BUCHA ALT SUP', 'BUCHA ALTERNADOR', 'BUCHA AMORT', 'BUCHA AMORT DIANT', 'BUCHA AMORTEC', 'BUCHA AMORTECEDOR', 'BUCHA AR COND', 'BUCHA ARTIC EIXO', 'BUCHA ARTICULACAO', 'BUCHA BAND', 'BUCHA BANDEJA', 'BUCHA BARR ESTAB', 'BUCHA BARRA ESTAB', 'BUCHA BARRA LIGACAO', 'BUCHA BARRA TENS SUSP', 'BUCHA BARRA TORCAO' 'BUCHA BIELA', 'BUCHA CALCO TRAVESSA', 'BUCHA CENTRAL BANDEJA', 'BUCHA COXIM', 'BUCHA EIXO', "BUCHA ESTAB", 'BUCHA ESTABILIZADORA', 'BUCHA FEIXE MOLA', 'BUCHA MANGA EIXO', 'BUCHA HAST BAND', 'BUCHA INF AMOR', 'BUCHA INFERIOR BANDE', 'BUCHA INFERIOR AMORT', 'BUCHA INFERIOR JUMELO', 'BUCHA JUMELO', 'BUCHA MAIOR', 'BUCHA MENOR', 'BUCHA MOLA', 'BUCHA OVAL EIXO', 'BUCHA TRAS BAND', 'BUCHA PONTA BANDEJA', 'BUCHA SUP ALGEMA', 'BUCHA SUP AMOR', 'BUCHA SUPERIOR BAND', 'BUCHA SUPERIOR JUMELO', 'BUCHA SUSP', 'BUCHA SUSPEN', 'BUCHA SUSPENSAO', 'BUCHA TENSO', 'BUCHA TENSOR SUS', 'BUCHA TERMINAL EIXO', 'BUCHA TIRANTE', 'BUCHA TARS BAND', 'BUCHA TRAS BRAC', 'BUCHA TRAS EIXO', 'BUCHA TRAS FEIXE MOLA', 'BUCHA TRAS SUSP', 'BUCHA TRAS BAND', 'BUCHA TRASEIRA BANDEJA', 'BUCHA TRAV EIXO']},
+            'amortecedores': {'codigo': '0066', 'itens': ["AMORT DIANT", "AMORTECEDOR DIANT", "AMORTECEDOR REMAN", "AMORTECEDOR TRAS", "AMORTECEDOR TRASEIRO", ]},
+            'coxins': {'codigo': '0078', 'itens': ['COXIM MOTOR']},
+            'bieletas': {'codigo': '0079', 'itens': ['BIELETA', 'BIELETA BARRA ESTAB', 'BIELETA BARRA ESTABILIZADORA', 'BIELETA DIANT', 'BIELETA ESTAB', 'BIELETA ESTABILIZADORA', 'BIELETA SUSP', 'BIELETA SUSPENSAO', 'BIELETA TRAS']},
+            'bandejas': {'codigo': '0080', 'itens': ['BAND SUSP SUP', 'BANDEJA', "BANDEJA DIANT", 'BANDEJA DIANTEIRA', 'BANDEJA INFERIOR', 'BANDEJA SUS', 'BANDEJA SUSPENSAO']},
+            'kit_amortecedor': {'codigo': '0081', 'itens': ['BATENTE AMORT', 'BATENTE AMORTECEDOR', 'BATENTE BANDEJA', 'BATENTE BRACO', 'BATENTE DE MOLA', 'BATENTE DIANT', 'BATENTE EIXO', 'BATENTE FEIXE MOLA', 'BATENTE INF', 'BATENTE INFERIOR', 'BATENTE MOLA', 'BATENTE SUP', 'BATENTE SUSP', 'BATENTE COIFA', 'BOLACHA SANTA FE', 'BORRACHA BARRA ESTA', 'BORRACHA HASTE VALVULA', 'BORRACHA LIGACAO BARRA EST']},
+
         }
     },
-    'terminais': {
+    'transmissao': {
         'codigo': '0034',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': []},
-            'terminais_barra_axial': {'codigo': '0069', 'itens': []},
-            'terminais_cabo_comando': {'codigo': '0070', 'itens': []},
-            'terminais_cabo_engate': {'codigo': '0071', 'itens': []},
-            'terminais_direcao': {'codigo': '0072', 'itens': []},
-            'terminais_suspensao': {'codigo': '0073', 'itens': []},
+            'default': {'codigo': '0001', 'itens': ['BALENCEIRO EMBREAGEM', 'BARRA DE LIGACAO']},
+            'embreagens': {'codigo': '0082', 'itens': []},
+            'cilindros_embreagem': {'codigo': '0083', 'itens': []},
+            'atuadores_embreagem': {'codigo': '0084', 'itens': ['ATUADOR EMBREAGE']},
+            'homocineticas': {'codigo': '0068', 'itens': ['HOMOCINETICA', 'HOMOCINETICA DESLIZANTE', 'HOMOCINETICA RODA', 'JUNTA HOMOCINETICA', 'KIT JUNTA HOMOCINETICA']},
+            'kit_coifa_homocinetica': {'codigo': '0092', 'itens': ['KIT COIFA HOMOCINETICA']},
+            'trizetas': {'codigo': '0094', 'itens': ['TRIZETA']}
         }
     },
 }
+
 
 
 # Função para verificar o código do grupo e subgrupo de um item
@@ -295,7 +319,7 @@ def verificar_item(item):
 
     return None, None  # Retorna None se nenhum subgrupo for encontrado no item
 
-def corrigir_descricao(item):
+def corrigir_descricao(item): # Função de situação específica, o objetivo era acrescentar à descrição a informação de silencioso
         if "ESCAPAMENTO" and "TRAS" not in item:
             exit()
         pyautogui.click(x=374, y=623)
@@ -331,7 +355,7 @@ while option != "4":
             contadorverificados += 1 # Adiciona uma verificação para o ciclo, aumentado o contador de itens verificados
             print(f"_______________________________")
             print(f"Número de verificações: {contadorverificados}") # Exibe a quantidade de verificações feitas
-            screenshotwatcher = pyautogui.screenshot(region=(0, 10, 150, 45)) # Primeira variável de segurança, captura a tela no tamanho e posição definidos (x, y, largura e altura)
+            screenshotwatcher = pyautogui.screenshot(region=(0, 16, 150, 45)) # Primeira variável de segurança, captura a tela no tamanho e posição definidos (x, y, largura e altura)
             screenshotwatcher = screenshotwatcher.convert("L") # Converte a captura para escala monocromática, permitindo uma melhor conversão de dados
             screenshotwatcher.save('screenshotwatcher.png') # Salva a captura com o nome do arquivo .png dado
             from PIL import Image # Importa a biblioteca PIL para interpretação de imagens
@@ -340,6 +364,7 @@ while option != "4":
             watch = 'Livre' # Define uma palavra-chave que deve ser encontrada no conjunto de textos convertidos
             watch2 = 'campos' # Define uma segunda palavra-chave
             time.sleep(0.8) # Tempo de operação para segurança
+            print(textwatcher)
 
             if watch in textwatcher or watch2 in textwatcher: # Se a palavra-chave 1 ou 2 estiverem no texto
                 time.sleep(0.2) # Intervalo de segurança                
