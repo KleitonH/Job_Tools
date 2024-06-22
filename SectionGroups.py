@@ -239,7 +239,7 @@ grupos = {
         'codigo': '0027',
         'subgrupos': {
             'default': {'codigo': '0001', 'itens': []},
-            'aneis': {'codigo': '0091', 'itens': ['ANEIS PISTAO', 'ANEL PISTAO', 'ANEL BUJAO', 'ANEL AJUSTE ROLAMENTO', 'ANEL ALAVANCA', 'ANEL AMORTECEDOR', 'ANEL ANTI RUIDO', 'ANEL BOCAL TANQUE', 'ANEL BORRACHA', 'ANEL BRACO SUSP', 'ANEL CARCACA', 'ANEL CEBOLAO', 'ANEL CILINDRO', 'ANEL COLETOR', 'ANEL VEDACAO', 'ANEL EIXO TRAS', 'ANEL IMPULSOR ARV', 'ANEL INFERIOR CARRO', 'ANEL INTERMEDIARIO', 'ANEL JUNTA', 'ANEL MALHA ACO', 'ANEL MOTOR', 'ANEL RADIADOR', 'ANEL RODA', 'ANEL SILENCIOSO', 'ANEL SINCRONIZ', 'ANEL TAMPA VALV', 'ANEL TIRANTE SUSP', 'ANEL TRASEIRO', 'ANEL TRAVA', 'ANEL VEDACAO', 'ANEL VEDADOR', 'ANEL JUNTA DISTRI', 'ANEL TOMADA FORCA', 'BORRACHA BOCAL ']},
+            'aneis': {'codigo': '0091', 'itens': ['ANEIS PISTAO', 'ANEL PISTAO', 'ANEL BUJAO', 'ANEL AJUSTE ROLAMENTO', 'ANEL ALAVANCA', 'ANEL AMORTECEDOR', 'ANEL ANTI RUIDO', 'ANEL BOCAL TANQUE', 'ANEL BORRACHA', 'ANEL BRACO SUSP', 'ANEL CARCACA', 'ANEL CEBOLAO', 'ANEL CILINDRO', 'ANEL COLETOR', 'ANEL VEDACAO', 'ANEL EIXO TRAS', 'ANEL IMPULSOR ARV', 'ANEL INFERIOR CARRO', 'ANEL INTERMEDIARIO', 'ANEL JUNTA', 'ANEL MALHA ACO', 'ANEL MOTOR', 'ANEL RADIADOR', 'ANEL RODA', 'ANEL SILENCIOSO', 'ANEL SINCRONIZ', 'ANEL TAMPA VALV', 'ANEL TIRANTE SUSP', 'ANEL TRASEIRO', 'ANEL TRAVA', 'ANEL VEDACAO', 'ANEL VEDADOR', 'ANEL JUNTA DISTRI', 'ANEL TOMADA FORCA', 'BORRACHA BOCAL', 'GARFO ANEL']},
             'diafragmas_tampa': {'codigo': '0127', 'itens': ['DIAFRAGMA TAMPA VALVU']},
             'juntas_cabecote': {'codigo': '0040', 'itens': []},
             'juntas_coletor': {'codigo': '0041', 'itens': []},
@@ -278,9 +278,9 @@ grupos = {
     'motor': {
         'codigo': '0030',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': ['BUCHA ARRANQUE', 'BALANCIM', 'DEFLETOR CARTER', 'CAPA TUCHO']},
+            'default': {'codigo': '0001', 'itens': ['BUCHA ARRANQUE', 'BALANCIM', 'DEFLETOR CARTER', 'CAPA TUCHO', 'GARFO PARTIDA']},
             'cabecotes': {'codigo': '0055', 'itens': ['CABECOTE', 'CABECOTE MOTOR']},
-            'comandos': {'codigo': '0118', 'itens': ['COMANDO', 'EIXO COMANDO']},
+            'comandos': {'codigo': '0118', 'itens': ['COMANDO', 'EIXO COMANDO', 'GAIOLA COMANDO']},
             'coxins': {'codigo': '0078', 'itens': ['COXIM MOTOR', 'COXIM DIANT MOTOR', 'COXIM CENTRAL MOTOR']},
             'engrenagem': {'codigo': '0129', 'itens': ['ENGRENAGEM VIRABREQUIM', 'ENGRENAGEM CORPO BORBOLETA']},
             'virabrequins': {'codigo': '0056', 'itens': []},
@@ -333,7 +333,7 @@ grupos = {
     'transmissao': {
         'codigo': '0036',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': ['BALENCEIRO EMBREAGEM', 'BARRA DE LIGACAO', 'CAIXA SATELITE', 'CANO EMBREAGEM', 'CAPA ROLAMENTO CARDAN', 'CANO GUIA CABO EMB', ]},
+            'default': {'codigo': '0001', 'itens': ['BALENCEIRO EMBREAGEM', 'BARRA DE LIGACAO', 'CAIXA SATELITE', 'CANO EMBREAGEM', 'CAPA ROLAMENTO CARDAN', 'CANO GUIA CABO EMB', 'GARFO EMBREAGEM']},
             'buchas_transmissao': {'codigo': '0101', 'itens': ['BUCHA CAMBIO', 'BUCHA OLEO', 'BUCHA GARFO EMBR', 'BUCHA ADAPTADOR COMANDO EMBREAG', 'BUCHA LATERAL CAMBIO', 'BUCHA REFIL SUPORTE CAMBIO AUTO']},
             'embreagens': {'codigo': '0082', 'itens': ['DISCO EMBREAGEM', 'EMBREAGEM']},
             'engrenagem': {'codigo': '0129', 'itens': ['ENGRENAGEM MARCHA', 'ENGRENAGEM PLANETARIA']},
