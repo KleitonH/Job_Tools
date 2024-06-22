@@ -35,7 +35,7 @@ while option != "4":
             contadorverificados += 1 # Adiciona uma verificação para o ciclo, aumentado o contador de itens verificados
             print(f"_______________________________")
             print(f"Número de verificações: {contadorverificados}") # Exibe a quantidade de verificações feitas
-            screenshotwatcher = pyautogui.screenshot(region=(0, 10, 150, 45)) # Primeira variável de segurança, captura a tela no tamanho e posição definidos (x, y, largura e altura)
+            screenshotwatcher = pyautogui.screenshot(region=(0, 20, 150, 15)) # Primeira variável de segurança, captura a tela no tamanho e posição definidos (x, y, largura e altura)
             screenshotwatcher = screenshotwatcher.convert("L") # Converte a captura para escala monocromática, permitindo uma melhor conversão de dados
             screenshotwatcher.save('screenshotwatcher.png') # Salva a captura com o nome do arquivo .png dado
             from PIL import Image # Importa a biblioteca PIL para interpretação de imagens
