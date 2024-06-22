@@ -138,7 +138,7 @@ grupos = {
         'subgrupos': {
             'default': {'codigo': '0001', 'itens': ['CABO ACIONADOR PORTINHOLA', 'CABO AR FORCADO', 'CABO PORTA CORRER', 'CABO PORTA MALA', 'CABO PORTINHOLA', 'CABO TEMPERATURA']},
             'cabos_acelerador': {'codigo': '0011', 'itens': ['CABO ACEL', 'CABO ACELERADO', 'CABO DE ACELERADOR', 'CABO PARADA MOTOR']},
-            'cabos_embreagem': {'codigo': '0012', 'itens': ['CABO EMB', 'CABO EMBR', 'CABO EMBREAGE', 'CABO FLEX EMBR', 'CABO TRANSMISSAO']},
+            'cabos_embreagem': {'codigo': '0012', 'itens': ['CABO EMB', 'CABO EMBR', 'CABO EMBREAGE', 'CABO FLEX EMBR', 'CABO TRANSMISSAO', 'FLEXIVEL EMBREAGEM']},
             'cabos_freio': {'codigo': '0013', 'itens': ['CABO DE FREIO', 'CABO FREIO', 'CABO LIBERACAO FREIO']},
             'cabos_capo': {'codigo': '0014', 'itens': ['CABO CAPO', 'CABO PUXADOR CAPO']},
             'cabos_velocimetro': {'codigo': '0015', 'itens': ['CABO DE VELOCIMETRO', 'CABO TACOGRAFO', 'CABO TACOMETRO', 'CABO VELOCIMETRO', 'CABO VELOC']},
@@ -226,7 +226,7 @@ grupos = {
             'canos_freio': {'codigo': '0116', 'itens': ['CANO DE FREIO', 'CANO FREIO']},
             'discos_freio': {'codigo': '0032', 'itens': ['DISCO FREIO', 'DISCO FREIO DIANT', "DISCO FREIO TRAS"]},
             'tambores_freio': {'codigo': '0033', 'itens': []},
-            'flexiveis_freio': {'codigo': '0034', 'itens': ['BIFURCACAO AO FLEXIVEL']},
+            'flexiveis_freio': {'codigo': '0034', 'itens': ['BIFURCACAO AO FLEXIVEL', 'FLEXIVEL', 'FLEXIVEL FREIO', 'FLEX DIANT', 'FLEXIVEL TRAS']},
             'pincas_freio': {'codigo': '0035', 'itens': []},
             'cilindros_roda_freio': {'codigo': '0036', 'itens': ['CILINDRO RODA']},
             'cilindros_mestre_freio': {'codigo': '0037', 'itens': ['CILINDRO MESTRE', 'CILINDRO MESTRE FREIO']},
@@ -316,7 +316,7 @@ grupos = {
         'codigo': '0033',
         'subgrupos': {
             'default': {'codigo': '0001', 'itens': ['EMBUCHAMENTO', 'CALCO AJUSTE', 'CALCO AMORT', 'CALCO BATENT']},
-            'buchas_suspensao': {'codigo': '0065', 'itens': ['BARRA TORCAO', 'BUCHA BAND SUSP', 'BUCHA BARRA ESTAB', 'BUCHA BANDEJA DIANT', 'BUCHA AGREGADO', 'BUCHA ALGEMA BARRA', 'BUCHA ALT SUP', 'BUCHA ALTERNADOR', 'BUCHA AMORT', 'BUCHA AMORT DIANT', 'BUCHA AMORTEC', 'BUCHA AMORTECEDOR', 'BUCHA AR COND', 'BUCHA ARTIC EIXO', 'BUCHA ARTICULACAO', 'BUCHA BAND', 'BUCHA BANDEJA', 'BUCHA BARR ESTAB', 'BUCHA BARRA ESTAB', 'BUCHA BARRA LIGACAO', 'BUCHA BARRA TENS SUSP', 'BUCHA BARRA TORCAO' 'BUCHA BIELA', 'BUCHA CALCO TRAVESSA', 'BUCHA CENTRAL BANDEJA', 'BUCHA COXIM', 'BUCHA EIXO', "BUCHA ESTAB", 'BUCHA ESTABILIZADORA', 'BUCHA FEIXE MOLA', 'BUCHA MANGA EIXO', 'BUCHA HAST BAND', 'BUCHA INF AMOR', 'BUCHA INFERIOR BANDE', 'BUCHA INFERIOR AMORT', 'BUCHA INFERIOR JUMELO', 'BUCHA JUMELO', 'BUCHA MAIOR', 'BUCHA MENOR', 'BUCHA MOLA', 'BUCHA OVAL EIXO', 'BUCHA TRAS BAND', 'BUCHA PONTA BANDEJA', 'BUCHA SUP ALGEMA', 'BUCHA SUP AMOR', 'BUCHA SUPERIOR BAND', 'BUCHA SUPERIOR JUMELO', 'BUCHA SUSP', 'BUCHA SUSPEN', 'BUCHA SUSPENSAO', 'BUCHA TENSO', 'BUCHA TENSOR SUS', 'BUCHA TERMINAL EIXO', 'BUCHA TIRANTE', 'BUCHA TARS BAND', 'BUCHA TRAS BRAC', 'BUCHA TRAS EIXO', 'BUCHA TRAS FEIXE MOLA', 'BUCHA TRAS SUSP', 'BUCHA TRAS BAND', 'BUCHA TRASEIRA BANDEJA', 'BUCHA TRAV EIXO', 'BUCHA QUADRO', 'BUCHA SUPERIOR QUADRO', 'BUCHA TRAS QUADRO', 'CAPA AMORTECE DIAN']},
+            'buchas_suspensao': {'codigo': '0065', 'itens': ['BARRA TORCAO', 'BUCHA BAND SUSP', 'BUCHA BARRA ESTAB', 'BUCHA BANDEJA DIANT', 'BUCHA AGREGADO', 'BUCHA ALGEMA BARRA', 'BUCHA ALT SUP', 'BUCHA ALTERNADOR', 'BUCHA AMORT', 'BUCHA AMORT DIANT', 'BUCHA AMORTEC', 'BUCHA AMORTECEDOR', 'BUCHA AR COND', 'BUCHA ARTIC EIXO', 'BUCHA ARTICULACAO', 'BUCHA BAND', 'BUCHA BANDEJA', 'BUCHA BARR ESTAB', 'BUCHA BARRA ESTAB', 'BUCHA BARRA LIGACAO', 'BUCHA BARRA TENS SUSP', 'BUCHA BARRA TORCAO' 'BUCHA BIELA', 'BUCHA CALCO TRAVESSA', 'BUCHA CENTRAL BANDEJA', 'BUCHA COXIM', 'BUCHA EIXO', "BUCHA ESTAB", 'BUCHA ESTABILIZADORA', 'BUCHA FEIXE MOLA', 'BUCHA MANGA EIXO', 'BUCHA HAST BAND', 'BUCHA INF AMOR', 'BUCHA INFERIOR BANDE', 'BUCHA INFERIOR AMORT', 'BUCHA INFERIOR JUMELO', 'BUCHA JUMELO', 'BUCHA MAIOR', 'BUCHA MENOR', 'BUCHA MOLA', 'BUCHA OVAL EIXO', 'BUCHA TRAS BAND', 'BUCHA PONTA BANDEJA', 'BUCHA SUP ALGEMA', 'BUCHA SUP AMOR', 'BUCHA SUPERIOR BAND', 'BUCHA SUPERIOR JUMELO', 'BUCHA SUSP', 'BUCHA SUSPEN', 'BUCHA SUSPENSAO', 'BUCHA TENSO', 'BUCHA TENSOR SUS', 'BUCHA TERMINAL EIXO', 'BUCHA TIRANTE', 'BUCHA TARS BAND', 'BUCHA TRAS BRAC', 'BUCHA TRAS EIXO', 'BUCHA TRAS FEIXE MOLA', 'BUCHA TRAS SUSP', 'BUCHA TRAS BAND', 'BUCHA TRASEIRA BANDEJA', 'BUCHA TRAV EIXO', 'BUCHA QUADRO', 'BUCHA SUPERIOR QUADRO', 'BUCHA TRAS QUADRO', 'CAPA AMORTECE DIAN', 'FLUTOBLOC']},
             'amortecedores': {'codigo': '0066', 'itens': ["AMORT DIANT", "AMORTECEDOR DIANT", "AMORTECEDOR REMAN", "AMORTECEDOR TRAS", "AMORTECEDOR TRASEIRO", 'COXIM COM ROLAMENTO AMORT']},
             'coifas': {'codigo': '0128', 'itens': ['COIFA AMORT']},
             'coxins': {'codigo': '0078', 'itens': ['CALCO AMORTECE', 'COXIM AMORT', 'COXIM AMORTECEDOR', 'COXIM BR OSCI', 'COXIM BRACO OSCIL', ' COXIM CABINE', 'COXIM LIMITADOR TORCAO', 'COXIM ESTABILIZADOR', 'COXIM SUSP', 'CAPA SUSPENSAO', 'COXIM CABINE']},
@@ -383,13 +383,13 @@ def corrigir_descricao(item): # Função de situação específica, o objetivo e
 print("---------------------------------------------------------------------------------------")
 print("Bem-vindo ao SectionDescripted, o programa que classifica grupos e subgrupos com base nas descrições de itens.") # Mensagem de boas vindas
 option = "" # Variável que receberá a opção selecionada
-while option != "4":
-    print("Para começar, analise a opção desejada: \n 1 - Iniciar classificação \n 4 - Sair do programa") # Mensagem de seleção de opções
-    option = input("Digite o número da opção desejada: ") # Input para seleção de opção
-    if option == "1": # Se a opção for 1, inicia a operação
+while option != "2":
+    print("Para começar, analise a opção desejada: \n 1 - Iniciar classificação \n 2 - Sair do programa") # Mensagem de seleção de opções
+    option = input("Digite o número da opção desejada: ") 
+    if option == "1":
         print("_____________________________________________________________________________")
-        print("Iniciando operação de classificação de itens em 5 segundos...") # Mensagem de início de operação
-        time.sleep(1) # Intervalo de 1 segundo
+        print("Iniciando operação de classificação de itens em 5 segundos...") 
+        time.sleep(1) #
         print("4 segundos...")
         time.sleep(1)
         print("3 segundos...")
@@ -398,37 +398,37 @@ while option != "4":
         time.sleep(1)
         print("1 segundo...")
         time.sleep(1)
-        print("Iniciando operação...") # Mensagem de início de operação
+        print("Iniciando operação...") 
         tempo_inicial = time.time() # Regra para definir o período de tempo
-        contadorverificados = -1 # Variável que define a quantidade de itens verificados, começa com -1 pois o loop inicia adicionando 1 a contagem
+        contadorverificados = -1 
         while(time.time() - tempo_inicial) < tempo_de_execucao: # Loop de execução enquanto o contador de tempo estiver ativo
             subgrupoconfirm = False # Define a seleção de código para subgrupo como indefinida até a possível necessidade
-            contadorverificados += 1 # Adiciona uma verificação para o ciclo, aumentado o contador de itens verificados
+            contadorverificados += 1
             print(f"_______________________________")
-            print(f"Número de verificações: {contadorverificados}") # Exibe a quantidade de verificações feitas
+            print(f"Número de verificações: {contadorverificados}") 
             screenshotwatcher = pyautogui.screenshot(region=(0, 24, 150, 20)) # Primeira variável de segurança, captura a tela no tamanho e posição definidos (x, y, largura e altura)
             screenshotwatcher = screenshotwatcher.convert("L") # Converte a captura para escala monocromática, permitindo uma melhor conversão de dados
-            screenshotwatcher.save('screenshotwatcher.png') # Salva a captura com o nome do arquivo .png dado
+            screenshotwatcher.save('screenshotwatcher.png') 
             from PIL import Image # Importa a biblioteca PIL para interpretação de imagens
-            screenshotwatcher = Image.open('screenshotwatcher.png') # A variável recebe o arquivo de imagem dado
+            screenshotwatcher = Image.open('screenshotwatcher.png')
             textwatcher = pytesseract.image_to_string(screenshotwatcher) # Cria uma variável que recebe dados strings transformados pelo pytesseract, o qual interpreta a imagem e localiza textos.
-            watch = 'Livre' # Define uma palavra-chave que deve ser encontrada no conjunto de textos convertidos
-            watch2 = 'campos' # Define uma segunda palavra-chave
-            time.sleep(0.8) # Tempo de operação para segurança
+            watch = 'Livre' 
+            watch2 = 'campos' 
+            time.sleep(0.8) 
             print(textwatcher)
 
-            if watch in textwatcher or watch2 in textwatcher: # Se a palavra-chave 1 ou 2 estiverem no texto
-                time.sleep(0.2) # Intervalo de segurança                
+            if watch in textwatcher or watch2 in textwatcher: 
+                time.sleep(0.2)              
                 screenshotdesc = pyautogui.screenshot(region=(280, 614, 458, 15)) # Captura a descrição do item
-                screenshotdesc = screenshotdesc.convert("L")  # Converte para escala de cinza
-                screenshotdesc.save('screenshotdesc.png') # Salva a imagem
+                screenshotdesc = screenshotdesc.convert("L")
+                screenshotdesc.save('screenshotdesc.png')
                 from PIL import Image
-                screenshotdesc = Image.open('screenshotdesc.png') # Recebimento da imagem
-                textdesc = pytesseract.image_to_string(screenshotdesc) # Converte para texto
+                screenshotdesc = Image.open('screenshotdesc.png')
+                textdesc = pytesseract.image_to_string(screenshotdesc) 
                 print(textdesc)
                 grupoescolhido, subgrupo_escolhido = verificar_item(textdesc)
 
-                # if "ESCAPAMENTO" and "TRAS" or "ESCAPAMENTO" and "TRASEIRO" in textdesc:
+                # if "ESCAPAMENTO" and "TRAS" or "ESCAPAMENTO" and "TRASEIRO" in textdesc: # Complemento de situação específica
                 #     corrigir_descricao(textdesc)
                 #     time.sleep(0.5)
                 #     pyautogui.doubleClick(x=1124, y=622)
@@ -437,25 +437,24 @@ while option != "4":
                 if grupoescolhido:
                     pyautogui.typewrite(grupoescolhido)
                     if subgrupo_escolhido:
-                        time.sleep(0.2) # Intervalo de segurança
+                        time.sleep(0.2) 
                         pyautogui.press("tab")
-                        time.sleep(0.1) # Intervalo de segurança
+                        time.sleep(0.1)
                         pyautogui.typewrite(subgrupo_escolhido)
                         subgrupoconfirm = True
                                 
-                time.sleep(0.2) # Intervalo de segurança
+                time.sleep(0.2) 
                 pyautogui.press("down")
                 # time.sleep(0.2) # Caso haja necessidade de correção de itens do sistema quanto as suas descrições
-                # pyautogui.press("down") # Pressiona a tecla de seta para baixo passando para o próximo item de modificação
+                # pyautogui.press("down")
                 # time.sleep(0.2)
                 # pyautogui.click(x=1344, y=79)
-                if subgrupoconfirm == True:
-                    time.sleep(0.2) # Intervalo de segurança
+                if subgrupoconfirm == True: # Uso do booleano para quando o subgrupo for alterado
+                    time.sleep(0.2)
                     pyautogui.press("left")
-
-                time.sleep(0.1) # Intervalo de segurança
+                time.sleep(0.1)
             else:
                 exit()
-    elif option == "4": # Se a opção for 4, sai do programa
-        print("Saindo do programa...") # Mensagem de saída
-        break # Quebra o loop
+    elif option == "2": # Se a opção for 4, sai do programa
+        print("Saindo do programa...")
+        break
