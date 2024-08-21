@@ -4,6 +4,7 @@ import pyautogui # Importação da biblioteca Pyautogui para controle do mouse e
 import time # Importação da biblioteca time para intervalos de tempo 
 import re # Importação da biblioteca re para modificação de strings
 import pickle # Importação da biblioteca pickle para salvar arquivos
+import Breaker
 from pyscreeze import screenshot # Importação da biblioteca pyscreeze para captura de tela
 from pytesseract import pytesseract # Importação da biblioteca pytesseract para conversão de imagens em strings
 caminho_tesseract = "C:\\Program Files\\Tesseract-OCR\\tesseract.exe" # Caminho para o executável do pytesseract
@@ -12,14 +13,6 @@ tempo_de_execucao = 40000 # Tempo de execução máximo da operação
 
 
 grupos = {
-    #TINTAS AUTOMOTIVAS
-    'colorometria': {
-        'codigo': '0006',
-        'subgrupos': {
-            'default':{'código': '0001', 'itens': []}
-
-        }
-    },
     #VIDROS
     'parabrisas': {
         'codigo': '0005',
@@ -729,6 +722,7 @@ while option != "2":
     print("Para começar, analise a opção desejada: \n 1 - Iniciar classificação \n 2 - Sair do programa") # Mensagem de seleção de opções
     option = input("Digite o número da opção desejada: ") 
     if option == "1":
+        Breaker.reiniciar_monitoramento()
         print("_____________________________________________________________________________")
         print("Iniciando operação de classificação de itens em 5 segundos...") 
         time.sleep(1) #
@@ -742,8 +736,9 @@ while option != "2":
         time.sleep(1)
         print("Iniciando operação...") 
         tempo_inicial = time.time() # Regra para definir o período de tempo
-        contadorverificados = -1 
-        while(time.time() - tempo_inicial) < tempo_de_execucao: # Loop de execução enquanto o contador de tempo estiver ativo
+        contadorverificados = -1
+        monitor_thread = Breaker.iniciar_monitoramento()
+        while(time.time() - tempo_inicial) < tempo_de_execucao and Breaker.verificar_interrupcao(): # Loop de execução enquanto o contador de tempo estiver ativo
             subgrupoconfirm = False # Define a seleção de código para subgrupo como indefinida até a possível necessidade
             contadorverificados += 1
             print(f"_______________________________")
@@ -763,9 +758,9 @@ while option != "2":
                 time.sleep(0.2)              
                 screenshotdesc = pyautogui.screenshot(region=(280, 614, 458, 15)) # Captura a descrição do item
                 screenshotdesc = screenshotdesc.convert("L")
-                screenshotdesc.save('screenshotdesc.png')
+                screenshotdesc.save('./screenshots/screenshotdesc.png')
                 from PIL import Image
-                screenshotdesc = Image.open('screenshotdesc.png')
+                screenshotdesc = Image.open('./screenshots/screenshotdesc.png')
                 textdesc = pytesseract.image_to_string(screenshotdesc) 
                 print(textdesc)
                 grupoescolhido, subgrupo_escolhido = verificar_item(textdesc)
@@ -799,4 +794,4 @@ while option != "2":
                 exit()
     elif option == "2": # Se a opção for 4, sai do programa
         print("Saindo do programa...")
-        break
+        exit()

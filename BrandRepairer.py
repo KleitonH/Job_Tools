@@ -1,6 +1,7 @@
 #Algoritmo de correção de marca em alteração em massa
 import pyautogui # Importação da biblioteca Pyautogui para controle do mouse e teclado 
-import time # Importação da biblioteca time para intervalos de tempo 
+import time # Importação da biblioteca time para intervalos de tempo
+import Breaker
 from pytesseract import pytesseract # Importação da biblioteca pytesseract para conversão de imagens em strings
 caminho_tesseract = "C:\\Program Files\\Tesseract-OCR\\tesseract.exe" # Caminho para o executável do pytesseract
 pytesseract.tesseract_cmd = caminho_tesseract # Define o caminho para o pytesseract
@@ -17,7 +18,8 @@ def screenshot():
     textdesc = pytesseract.image_to_string(screenshotdesc)
     return textdesc
 
-while(time.time() - tempo_inicial) < tempo_de_execucao:
+monitor_thread = Breaker.iniciar_monitoramento()
+while(time.time() - tempo_inicial) < tempo_de_execucao and Breaker.verificar_interrupcao():
     textdesc = screenshot()
     print(textdesc)
     if '' in textdesc or "---" in textdesc:

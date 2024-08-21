@@ -1,12 +1,12 @@
 import pyautogui # Importação da biblioteca Pyautogui para controle do mouse e teclado 
 import time # Importação da biblioteca time para intervalos de tempo 
-import re # Importação da biblioteca re para modificação de strings
-import pickle # Importação da biblioteca pickle para salvar arquivos
+import Breaker
 from pyscreeze import screenshot # Importação da biblioteca pyscreeze para captura de tela
 from pytesseract import pytesseract # Importação da biblioteca pytesseract para conversão de imagens em strings
 caminho_tesseract = "C:\\Program Files\\Tesseract-OCR\\tesseract.exe" # Caminho para o executável do pytesseract
 pytesseract.tesseract_cmd = caminho_tesseract # Define o caminho para o pytesseract
 keywords = ['BOMBA COMB', 'BOIA COMB', 'BOMBA INJECAO COMB']
+tempo_de_execucao = 40000
 
 print("---------------------------------------------------------------------------------------")
 print("Bem-vindo ao SectionFixer, o programa que insere a seção com base na descrição do item.") # Mensagem de boas vindas
@@ -15,6 +15,7 @@ while option != "4":
     print("Para começar, analise a opção desejada: \n 1 - Iniciar classificação \n 4 - Sair do programa") # Mensagem de seleção de opções
     option = input("Digite o número da opção desejada: ") # Input para seleção de opção
     if option == "1": # Se a opção for 1, inicia a operação
+        Breaker.reiniciar_monitoramento()
         print("_____________________________________________________________________________")
         print("Iniciando operação de classificação de itens em 5 segundos...") # Mensagem de início de operação
         time.sleep(1) # Intervalo de 1 segundo
@@ -29,16 +30,17 @@ while option != "4":
         print("Iniciando operação...") # Mensagem de início de operação
         tempo_inicial = time.time() # Regra para definir o período de tempo
         contadorverificados = -1 # Variável que define a quantidade de itens verificados, começa com -1 pois o loop inicia adicionando 1 a contagem
-        while(time.time() - tempo_inicial) < tempo_de_execucao: # Loop de execução enquanto o contador de tempo estiver ativo
+        monitor_thread = Breaker.iniciar_monitoramento()
+        while(time.time() - tempo_inicial) < tempo_de_execucao and Breaker.verificar_interrupcao(): # Loop de execução enquanto o contador de tempo estiver ativo
             subgrupoconfirm = False # Define a seleção de código para subgrupo como indefinida até a possível necessidade
             contadorverificados += 1 # Adiciona uma verificação para o ciclo, aumentado o contador de itens verificados
             print(f"_______________________________")
             print(f"Número de verificações: {contadorverificados}") # Exibe a quantidade de verificações feitas
             screenshotwatcher = pyautogui.screenshot(region=(0, 20, 150, 15)) # Primeira variável de segurança, captura a tela no tamanho e posição definidos (x, y, largura e altura)
             screenshotwatcher = screenshotwatcher.convert("L") # Converte a captura para escala monocromática, permitindo uma melhor conversão de dados
-            screenshotwatcher.save('screenshotwatcher.png') # Salva a captura com o nome do arquivo .png dado
+            screenshotwatcher.save('./screenshots/screenshotwatcher.png') # Salva a captura com o nome do arquivo .png dado
             from PIL import Image # Importa a biblioteca PIL para interpretação de imagens
-            screenshotwatcher = Image.open('screenshotwatcher.png') # A variável recebe o arquivo de imagem dado
+            screenshotwatcher = Image.open('./screenshots/screenshotwatcher.png') # A variável recebe o arquivo de imagem dado
             textwatcher = pytesseract.image_to_string(screenshotwatcher) # Cria uma variável que recebe dados strings transformados pelo pytesseract, o qual interpreta a imagem e localiza textos.
             watch = 'Livre' # Define uma palavra-chave que deve ser encontrada no conjunto de textos convertidos
             watch2 = 'campos' # Define uma segunda palavra-chave
@@ -48,9 +50,9 @@ while option != "4":
                 time.sleep(0.2) # Intervalo de segurança                
                 screenshotdesc = pyautogui.screenshot(region=(280, 614, 458, 15)) # Captura a descrição do item
                 screenshotdesc = screenshotdesc.convert("L")  # Converte para escala de cinza
-                screenshotdesc.save('screenshotdesc.png') # Salva a imagem
+                screenshotdesc.save('./screenshots/screenshotdesc.png') # Salva a imagem
                 from PIL import Image
-                screenshotdesc = Image.open('screenshotdesc.png') # Recebimento da imagem
+                screenshotdesc = Image.open('./screenshots/screenshotdesc.png') # Recebimento da imagem
                 textdesc = pytesseract.image_to_string(screenshotdesc) # Converte para texto
                 print(textdesc)
                 
