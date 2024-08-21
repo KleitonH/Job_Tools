@@ -6,7 +6,6 @@ from pyscreeze import screenshot # Importação da biblioteca pyscreeze para cap
 from pytesseract import pytesseract # Importação da biblioteca pytesseract para conversão de imagens em strings
 caminho_tesseract = "C:\\Program Files\\Tesseract-OCR\\tesseract.exe" # Caminho para o executável do pytesseract
 pytesseract.tesseract_cmd = caminho_tesseract # Define o caminho para o pytesseract
-tempo_de_execucao = 40000
 keywords = ['BOMBA COMB', 'BOIA COMB', 'BOMBA INJECAO COMB']
 
 print("---------------------------------------------------------------------------------------")
