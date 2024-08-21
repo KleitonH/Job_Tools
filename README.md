@@ -20,3 +20,5 @@ Seguem os algoritmos criados:
     SimpleAutomation: Possui a função de modificar completamente uma seção para outra, como possui padrões fixos, é recomendado apenas para seções pequenas ou de características muito similares entre os produtos que as pertencem.
 
     UltraInat: Algoritmo pioneiro desse conjunto de ferramentas. Possui o objetivo de classificar a seção de um item e inativá-lo caso esteja sem uma movimentação maior/igual a um ano. Utiliza bibliotecas de automação de controle, conversão de imagem em texto e conversão para padrões númericos. Vários padrões desse algoritmo foram utilizados nos demais, principalmente o OutputBlocker. Caso queira entender o funcionamento das demais ferramentas, recomendo começar por aqui, visto que está completamente comentado para compreendimento geral.
+
+    Breaker possui a função de módulo de interrupção, seus métodos podem ser inseridos em outros algoritmos para encerrar uma tarefa em execução com o comando ALT + K
