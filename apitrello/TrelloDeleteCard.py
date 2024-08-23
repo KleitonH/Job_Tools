@@ -1,8 +1,8 @@
 import requests
 
 # Suas credenciais de API
-api_key = 'c9ba71549ffc1f275c196225e8e848ae'
-api_token = 'ATTA244285dccb53ad4eca57419045307b86920dc3ef8f85a3b57d6e7833d3ad88fd07D7E5A9'
+api_key = ''
+api_token = ''
 
 # O ID do card que você quer excluir
 card_id = 'XppkW0J4'
