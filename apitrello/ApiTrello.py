@@ -1,22 +1,44 @@
 import requests
 
-api_key = ''
-api_token = ''
+api_key = '99026117ada802b40108037ee1933a6d'
+api_token = 'ATTAb773be4a883d29f30ac34951dfa32853b43ed8d30d378e73e1b2c5c5f83f9681FA4F614F'
 board_id = '65fa58235477f5d74517cfcb'
-list_id = '66c8e8e8897ef3397ee466b9'
+list_id = '66c8e799fafd5b925749197a'
 
 # Seu dicionário de grupos e subgrupos
 dicionario = {
-    'limpadores': {
-        'codigo': '0079',
+    'farois': {
+        'codigo': '0081',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': ['PARAFUSO FIXACAO ESTEPE', 'PARAFUSO FIXACAO BANDEJA ESTEPE']},
-            'pivos_limpadores': {'codigo': '0001', 'itens': ['PIVO LIMPADOR']},
-            'barras_limpadores': {'codigo': '0255', 'itens': ['BARRA LIMPADOR']},
+            'default': {'codigo': '0001', 'itens': ['']},
+            'farois': {'codigo': '0259', 'itens': ['FAROL']},
+            'faroletes': {'codigo': '0260', 'itens': ['FAROL AUXILIAR', 'FAROLETE']},
+            'lentes_farois': {'codigo': '0268', 'itens': ['LENTE FAROL', 'LENTE FAROL AUXILIAR', 'LENTE FAROLETE']},
+            
         }
-    },    
-
-    # Continue com o restante do seu dicionário...
+    },
+    'lanternas': {
+        'codigo': '0082',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['LANTERNA', 'LANTERNA PILOTO', 'LANTERNA TIJOLINHO']},
+            'lanternas_dianteiras': {'codigo': '0261', 'itens': ['LANTERNA DIANT', 'LANTERNA DIANTEIRA']},
+            'lanternas_laterais': {'codigo': '0264', 'itens': ['LANTERNA LATERAL']},
+            'lentes_lanternas': {'codigo': '0267', 'itens': ['LENTE LANTERNA', 'LENTE LANTERNA DIANT', 'LENTE LANTERNA DIANTEIRA', 'LENTE LANTERNA TRAS', 'LENTE LANTERNA TRASEIRA', 'LENTE LANTERNA PLACA', 'LENTE LANTERNA TIJOLINHO', 'LENTE TRASEIRA']},
+            'lanternas_parachoques': {'codigo': '0263', 'itens': ['LANTERNA REFLETOR', 'LANTERNA (REFLETOR)', 'LANTERNA PARACHOQUE']},
+            'lanternas_placa': {'codigo': '0265', 'itens': ['LANTERNA PLACA']},
+            'lanternas_teto': {'codigo': '0266', 'itens': ['LANTERNA TETO']},
+            'lanternas_traseiras': {'codigo': '0262', 'itens': ['LANTERNA TRASEIRA', 'LANTERNA TRAS']},
+            
+        }
+    },
+    'parachoques': {
+        'codigo': '0080',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['PARACHOQUE']},
+            'parachoques_dianteiros': {'codigo': '0257', 'itens': ['PARACHOQUE DIAN', 'PARACHOQUE DIANTEIRO', 'PARACHOQUE IMPULSAO']},
+            'parachoques_traseiros': {'codigo': '0258', 'itens': ['PARACHOQUE TRAS', 'PARACHOQUE TRASEIRO']},
+        }
+    },
 }
 
 # Função para criar um card

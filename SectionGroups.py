@@ -683,7 +683,39 @@ grupos = {
         'codigo': '0078',
         'subgrupos': {
             'default': {'codigo': '0001', 'itens': ['PARAFUSO CINTO', 'PARAFUSO CINTO SEGURANÇA', 'PORCA ESTEPE']},
-            'default': {'codigo': '0247', 'itens': ['PARAFUSO RODA']},
+            'parafusos_roda': {'codigo': '0247', 'itens': ['PARAFUSO RODA']},
+        }
+    },
+    'farois': {
+        'codigo': '0081',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['']},
+            'farois': {'codigo': '0259', 'itens': ['FAROL']},
+            'faroletes': {'codigo': '0260', 'itens': ['FAROL AUXILIAR', 'FAROLETE']},
+            'lentes_farois': {'codigo': '0268', 'itens': ['LENTE FAROL', 'LENTE FAROL AUXILIAR', 'LENTE FAROLETE']},
+            
+        }
+    },
+    'lanternas': {
+        'codigo': '0082',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['LANTERNA', 'LANTERNA PILOTO', 'LANTERNA TIJOLINHO']},
+            'lanternas_dianteiras': {'codigo': '0261', 'itens': ['LANTERNA DIANT', 'LANTERNA DIANTEIRA']},
+            'lanternas_laterais': {'codigo': '0264', 'itens': ['LANTERNA LATERAL']},
+            'lentes_lanternas': {'codigo': '0267', 'itens': ['LENTE LANTERNA', 'LENTE LANTERNA DIANT', 'LENTE LANTERNA DIANTEIRA', 'LENTE LANTERNA TRAS', 'LENTE LANTERNA TRASEIRA', 'LENTE LANTERNA PLACA', 'LENTE LANTERNA TIJOLINHO', 'LENTE TRASEIRA']},
+            'lanternas_parachoques': {'codigo': '0263', 'itens': ['LANTERNA REFLETOR', 'LANTERNA (REFLETOR)', 'LANTERNA PARACHOQUE']},
+            'lanternas_placa': {'codigo': '0265', 'itens': ['LANTERNA PLACA']},
+            'lanternas_teto': {'codigo': '0266', 'itens': ['LANTERNA TETO']},
+            'lanternas_traseiras': {'codigo': '0262', 'itens': ['LANTERNA TRASEIRA', 'LANTERNA TRAS']},
+            
+        }
+    },
+    'parachoques': {
+        'codigo': '0080',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['PARACHOQUE']},
+            'parachoques_dianteiros': {'codigo': '0257', 'itens': ['PARACHOQUE DIAN', 'PARACHOQUE DIANTEIRO', 'PARACHOQUE IMPULSAO']},
+            'parachoques_traseiros': {'codigo': '0258', 'itens': ['PARACHOQUE TRAS', 'PARACHOQUE TRASEIRO']},
         }
     },
     'retrovisores': {
@@ -694,7 +726,7 @@ grupos = {
             'vidro_espelho_externo': {'codigo': '0242', 'itens': ['BASE VIDRO ESPELHO', 'LENTE RETROVISOR', 'VIDRO ESPELHO', 'VIDRO ESPELHO RETROVISOR', 'VIDRO ESPELHO BASE']},
             'retrovisores_completo': {'codigo': '0243', 'itens': ['ESPELHO', 'ESPELHO ELETRICO', 'ESPELHO COM CONTROLE', 'RETROVISOR', 'RETROVISOR CONTROLE']},
             'retrovisores_internos': {'codigo': '0244', 'itens': ['ESPELHO INTERNO']},
-            'piscas_retrovisores': {'codigo': '0245', 'itens': ['CAPA ESPELHO C/PISCA', 'CAPA ESPELHO COM PISCA', 'RETROVISOR C/PISCA', 'RETROVISOR COM PISCA']},
+            'piscas_retrovisores': {'codigo': '0245', 'itens': ['CAPA ESPELHO C/PISCA', 'CAPA ESPELHO COM PISCA', 'RETROVISOR C/PISCA', 'RETROVISOR COM PISCA', 'LANTERNA ESPELHO']},
         }
     },
     #LATARIAS
@@ -801,12 +833,12 @@ while option != "2":
 
             if watch in textwatcher or watch2 in textwatcher: 
                 time.sleep(0.2)              
-                screenshotdesc = pyautogui.screenshot(region=(280, 614, 458, 15)) # Captura a descrição do item
+                screenshotdesc = pyautogui.screenshot(region=(276, 614, 458, 15)) # Captura a descrição do item
                 screenshotdesc = screenshotdesc.convert("L")
                 screenshotdesc.save('./screenshots/screenshotdesc.png')
                 from PIL import Image
                 screenshotdesc = Image.open('./screenshots/screenshotdesc.png')
-                textdesc = pytesseract.image_to_string(screenshotdesc) 
+                textdesc = pytesseract.image_to_string(screenshotdesc)
                 print(textdesc)
                 grupoescolhido, subgrupo_escolhido = verificar_item(textdesc)
 
@@ -815,6 +847,10 @@ while option != "2":
                 #     time.sleep(0.5)
                 #     pyautogui.doubleClick(x=1124, y=622)
                 #     time.sleep(0.2)
+
+                # if all(item not in textdesc for item in []): #Adiciona interrupção opcional da operação caso o usuário queira definir palavras-chave de itens que devam ser alterados
+                #     Breaker.monitorar_interrupcao(True)
+                #     exit()
 
                 if grupoescolhido:
                     pyautogui.typewrite(grupoescolhido)
