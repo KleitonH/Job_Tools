@@ -1,9 +1,9 @@
 import requests
 
-api_key = '99026117ada802b40108037ee1933a6d'
-api_token = 'ATTAb773be4a883d29f30ac34951dfa32853b43ed8d30d378e73e1b2c5c5f83f9681FA4F614F'
-board_id = '65fa58235477f5d74517cfcb'
-list_id = '66c8e799fafd5b925749197a'
+api_key = ''
+api_token = ''
+board_id = ''
+list_id = ''
 
 # Seu dicionário de grupos e subgrupos
 dicionario = {
