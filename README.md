@@ -1,5 +1,5 @@
 # Job_Tools
-Repositório dedicado aos algoritmos de Python para automatizar tarefas
+Repositório dedicado aos algoritmos de Python para automatizar tarefas.
 Todos os algoritmos utilizam estruturas em python com implementação de bibliotecas externas, fundamentalmente, se baseia em pyautogui com complementares de auxílio como o Tesseract OCR.
 
 Em suma, os algoritmos criados estão encarregados de realizarem tarefas específicas, todas direcionadas à correção gerencial do estoque.
