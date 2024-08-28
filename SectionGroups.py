@@ -356,7 +356,7 @@ grupos = {
             'pratos': {'codigo': '0104', 'itens': ['ASSENTO SUPERIOR MOLA', 'KIT PRATO AMORTECEDOR', 'KIT PRATO LOCALIZADOR BATENTE', 'PRATO AMORTECEDOR', 'PRATO COXIM AMORT', 'PRATO LOCALIZADOR BATENTE DIANT', 'PRATO MOLA DIANT', 'PRATO MOLA VAL', 'PRATO SUPERIOR AMORTECEDOR DIANT', 'PRATO SUPERIOR MOLA DIANT']},
             'barra_estabilizadora': {'codigo': '0095', 'itens': ['BARRA ESTABILIZADORA', 'SUPORTE BARRA ESTABILIZADORA']},
             'kit_barra_estabilizadora': {'codigo': '0096', 'itens': ['KIT BARRA ESTAB', 'KIT BARRA ESTABILIZADORA', 'KIT ESTABILIZADOR']},
-            'cubos_roda': {'codigo': '0076', 'itens': ['CUBO RODA', 'CUBO RODA DIANTEIR', 'CUBO RODA TRASEIR']},
+            'cubos_roda': {'codigo': '0076', 'itens': ['CUBO RODA', 'CUBO RODA DIANTEIR', 'CUBO RODA TRASEIR', 'CALOTA CUBO RODA', 'CALOTA FERRO CUBO RODA']},
         }
     },
     'transmissao': {
@@ -675,14 +675,17 @@ grupos = {
     'acessorios_internos': {
         'codigo': '0076',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': ['PARAFUSO CINTO', 'PARAFUSO CINTO SEGURANÇA', 'PINO TAMPA PORTA LUVAS']},
+            'default': {'codigo': '0001', 'itens': ['PARAFUSO CINTO', 'PARAFUSO CINTO SEGURANÇA', 'PINO TAMPA PORTA LUVAS', 'BORRACHA MOLDURA INTERRUPTOR']},
             'porta_luvas': {'codigo': '0249', 'itens': ['TAMPAO MACANETA PORTA LUVA']},
+            'quebra_sol': {'codigo': '0277', 'itens': ['QUEBRA SOL']},
         }
     },
     'calotas_derivados': {
         'codigo': '0078',
         'subgrupos': {
             'default': {'codigo': '0001', 'itens': ['PARAFUSO CINTO', 'PARAFUSO CINTO SEGURANÇA', 'PORCA ESTEPE']},
+            'calotas_roda': {'codigo': '0276', 'itens': ['CALOTA ARO', 'CALOTA CENTRO RODA', 'CALOTA CENTRAL', 'CALOTA', 'CALOTA', 'CALOTINHA CENTRAL', 'CALOTA RODA', 'CALOTA RODA FERRO']},
+            'emblemas_calota': {'codigo': '0275', 'itens': ['EMBLEMA CALOTA']},
             'parafusos_roda': {'codigo': '0247', 'itens': ['PARAFUSO RODA']},
         }
     },
@@ -692,8 +695,45 @@ grupos = {
             'default': {'codigo': '0001', 'itens': ['']},
             'farois': {'codigo': '0259', 'itens': ['FAROL']},
             'faroletes': {'codigo': '0260', 'itens': ['FAROL AUXILIAR', 'FAROLETE']},
-            'lentes_farois': {'codigo': '0268', 'itens': ['LENTE FAROL', 'LENTE FAROL AUXILIAR', 'LENTE FAROLETE']},
+            'lentes_farois': {'codigo': '0268', 'itens': ['LENTE FAROL', 'LENTE FAROL AUXILIAR', 'LENTE FAROLETE', 'VIDRO FAROL']},
             
+        }
+    },
+    'grades_parachoque': {
+        'codigo': '0083',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['']},
+            'grade_superior_parachoque': {'codigo': '0001', 'itens': ['']},
+            'grade_inferior_parachoque': {'codigo': '0001', 'itens': ['GRADE CENTRAL', 'GRADE CENTRAL INFERIOR', 'GRADE CENTRAL PARACHOQUE']},
+            'grade_farolete': {'codigo': '0001', 'itens': ['']},
+            
+        }
+    },
+    'emblemas': {
+        'codigo': '0084',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['']},
+            'emblema_logo': {'codigo': '0273', 'itens': ['EMBLEMA LOGOTIPO', 'EMBLEMA GRAVATA', 'EMBLEMA GRADE']},
+            'emblema_letreiro': {'codigo': '0274', 'itens': ['EMBLEMA', 'EMBLEMA LETREIRO', 'EMBLEMA ADESIVO']},
+            
+        }
+    },
+    'guarnicoes': {
+        'codigo': '0085',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['BORRACHA PARALAMA', 'BORRACHA CAPOTA', 'BORRACHA PROTETOR CACAMBA']},
+            'borrachas_capo': {'codigo': '0278', 'itens': ['BORRACHA CAPO', 'BORRACHA CAPO DIANT']},
+            'borrachas_cofre_motor': {'codigo': '0279', 'itens': ['BORRACHA CAPO/MOTOR', 'BORRACHA COFRE MOTOR', 'BORRACHA MOTOR']},
+            'borrachas_chassis': {'codigo': '0280', 'itens': ['BORRACHA CHASSIS']},
+            'borrachas_parabrisas': {'codigo': '0281', 'itens': ['BORRACHA PARABRISA', 'BORRACHA PARABRISA/VIGIA','BORRACHA INFERIOR PARABRISA', 'BORRACHA LATERAL PARABRISA', 'BORRACHA MOLDURA PARABRISA']},
+            'borrachas_internas': {'codigo': '0283', 'itens': ['BORRACHA PAINEL', 'BORRACHA QUEBRA VENTO', 'BORRACHA TOMADA AR']},
+            'borrachas_vigias': {'codigo': '0282', 'itens': ['BORRACHA LATERAL VIGIA', 'BORRACHA VIGIA']},
+            'borrachas_portas': {'codigo': '0284', 'itens': ['BORRACHA PORTA', 'BORRACHA PORTA TRAS', 'BORRACHA ENTRE PORTAS', 'BORRACHA VEDACAO PORTA']},
+            'borrachas_vidros_geral': {'codigo': '0285', 'itens': ['BORRACHAS COLUNA ENTREVIDRO', 'BORRACHA CRUA VULCANITE']},
+            'borrachas_vidro_porta': {'codigo': '0287', 'itens': ['BORRACHA JANELA', 'BORRACHA JANELA LATERAL', 'BORRACHA JANELA MOVEL','BORRACHA VIDRO LATERAL']},
+            'borrachas_porta_malas': {'codigo': '0286', 'itens': ['BORRACHA MALA', 'BORRACHA PORTA MALA', 'BORRACHA TAMPA TRAS', 'BORRACHA VEDACAO JANELA']},
+            'borrachas_parachoque': {'codigo': '0288', 'itens': ['BORRACHA PARACHOQUE', 'BORRACHA SUPERIOR PARACHOQUE', 'BORRACHA SUPORTE PARACHOQUE', 'BORRACHAO PARACHOQUE']},
+            'borrachas_teto': {'codigo': '0289', 'itens': ['BORRACHA TETO']},
         }
     },
     'lanternas': {
@@ -707,7 +747,6 @@ grupos = {
             'lanternas_placa': {'codigo': '0265', 'itens': ['LANTERNA PLACA']},
             'lanternas_teto': {'codigo': '0266', 'itens': ['LANTERNA TETO']},
             'lanternas_traseiras': {'codigo': '0262', 'itens': ['LANTERNA TRASEIRA', 'LANTERNA TRAS']},
-            
         }
     },
     'parachoques': {
@@ -716,6 +755,7 @@ grupos = {
             'default': {'codigo': '0001', 'itens': ['PARACHOQUE']},
             'parachoques_dianteiros': {'codigo': '0257', 'itens': ['PARACHOQUE DIAN', 'PARACHOQUE DIANTEIRO', 'PARACHOQUE IMPULSAO']},
             'parachoques_traseiros': {'codigo': '0258', 'itens': ['PARACHOQUE TRAS', 'PARACHOQUE TRASEIRO']},
+            'guias_parachoques': {'codigo': '0269', 'itens': ['GUIA PARACHOQUE', 'GUIA PARACHOQUE TRAS', 'GUIA PARACHOQUE DIANT', 'SUPORTE GUIA PARACHOQUE', 'SUPORTE GUIA PARACHOQUE DIANT', 'SUPORTE GUIA PARACHOQUE TRAS']},
         }
     },
     'retrovisores': {
@@ -757,7 +797,6 @@ grupos = {
             'barras_limpadores': {'codigo': '0255', 'itens': ['BARRA LIMPADOR']},
         }
     },    
-
 }
 
 
@@ -848,9 +887,9 @@ while option != "2":
                 #     pyautogui.doubleClick(x=1124, y=622)
                 #     time.sleep(0.2)
 
-                # if all(item not in textdesc for item in []): #Adiciona interrupção opcional da operação caso o usuário queira definir palavras-chave de itens que devam ser alterados
-                #     Breaker.monitorar_interrupcao(True)
-                #     exit()
+                if all(item not in textdesc for item in ['BORRACHA', 'BORRACHAO']): #Adiciona interrupção opcional da operação caso o usuário queira definir palavras-chave de itens que devam ser alterados
+                    Breaker.monitorar_interrupcao(True)
+                    exit()
 
                 if grupoescolhido:
                     pyautogui.typewrite(grupoescolhido)

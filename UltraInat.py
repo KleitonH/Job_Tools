@@ -65,13 +65,14 @@ while option != "2":
                 if not Breaker.verificar_interrupcao():
                     exit()
                 time.sleep(0.3) # Intervalo de segurança
-                screenshotcod = pyautogui.screenshot(region=(36, 614, 59, 15)) # Variável para receber código da célula do item da tabela
+                screenshotcod = pyautogui.screenshot(region=(36, 614, 59, 17)) # Variável para receber código da célula do item da tabela
                 screenshotcod = screenshotcod.convert("L")  # Converte para escala de cinza
                 screenshotcod.save('./screenshots/screenshotcod.png') # Salva a imagem
 
                 from PIL import Image # Interpretação de imagem
                 screenshootcod = Image.open('./screenshots/screenshotcod.png') # Recebimento da imagem
                 textcod = pytesseract.image_to_string(screenshotcod) # Converte para texto
+                clean_textcod = re.sub(r'[@,!#.]', '', textcod) #Limpa qualquer algarismo indesejado interpretado pelo Tesseract
                 time.sleep(2) # Intervalo
                 pyautogui.click(217, 750) # Clica na posição do ícone da barra de tarefas do sistema
                 time.sleep(0.9) 
@@ -84,7 +85,7 @@ while option != "2":
                 from PIL import Image # Interpretação de imagem
                 screenshotwatcher2 = Image.open('./screenshots/screenshotwatcher2.png') # Recebimento da imagem
                 textwatcher2 = pytesseract.image_to_string(screenshotwatcher2) # Converte para texto
-                watch3 = "sisinias" # Palavra-chave
+                watch3 = "stnieas.calil" # Palavra-chave
                 time.sleep(0.5) # Intervalo de segurança
                 print (textwatcher2)
 
@@ -94,7 +95,7 @@ while option != "2":
                     time.sleep(0.5) # Intervalo de segurança
                     pyautogui.press("f5") # Pressiona a tecla F5 para atualizar a tela
                     time.sleep(0.5) # Intervalo de segurança
-                    pyautogui.typewrite(textcod) # Digita o código do item
+                    pyautogui.typewrite(clean_textcod) # Digita o código do item
                     time.sleep(1) # Intervalo de segurança
                     
                     screenshoterror = pyautogui.screenshot(region=(507, 304, 340, 142)) # Observa se houve um erro de identificação de registro
@@ -103,12 +104,13 @@ while option != "2":
                     from PIL import Image # Interpretação de imagem 
                     screenshooterror = Image.open('./screenshots/screenshoterror.png') # Recebimento da imagem
                     texterror = pytesseract.image_to_string(screenshoterror) # Converte para texto
+                    print(f"texterror: {texterror}")
                     errorname = 'registro' # Palavra-chave de erro
 
                     if errorname in texterror: # Se a palavra-chave estiver no texto
                         if not Breaker.verificar_interrupcao():
                             exit()
-                        pyautogui.click(790, 486) # Clica no botão de fechar o erro
+                        pyautogui.click(668, 418) # Clica no botão de fechar o erro
                         time.sleep(0.8) # Intervalo de segurança
                         pyautogui.press("esc") # Pressiona a tecla ESC, fechando a aba de procura
                         time.sleep(0.5) # Intervalo de segurança
@@ -156,12 +158,18 @@ while option != "2":
                             time.sleep(0.5) # Intervalo de segurança
                             pyautogui.press("f3") # Pressiona a tecla F3 para abrir a aba de procura de item com modificação de estoque
                             time.sleep(0.5) # Intervalo de segurança
-                            pyautogui.typewrite(textcod) # Digita o código do item
+                            pyautogui.typewrite(clean_textcod) # Digita o código do item
                             time.sleep(0.8) # Intervalo de segurança
                             pyautogui.press("enter") # Clica no item encontrado
                             time.sleep(0.2) # Intervalo de segurança
                             pyautogui.press("enter") # Clica no item na lista de similares, caso haja
                             time.sleep(1) # Intervalo de segurança
+                            pyautogui.click(365, 300) # Clica na caixa do código
+                            time.sleep(0.3) # Intervalo de segurança
+                            pyautogui.press("end") # acessa o final da descrição
+                            time.sleep(0.3) # Intervalo de segurança
+                            pyautogui.typewrite(" (INATIVADO)") # Digita INAT para identificação do item
+                            time.sleep(0.3) # Intervalo de segurança
                             pyautogui.click(828, 498) # Clica em inativar
                             time.sleep(0.5) # Intervalo de segurança
                             pyautogui.click(543, 595) # Clica em gravar
