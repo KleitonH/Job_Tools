@@ -1,5 +1,5 @@
 # Job_Tools
-Repositório dedicado aos algoritmos de Python para automatizar tarefas
+Repositório dedicado aos algoritmos de Python para automatizar tarefas.
 Todos os algoritmos utilizam estruturas em python com implementação de bibliotecas externas, fundamentalmente, se baseia em pyautogui com complementares de auxílio como o Tesseract OCR.
 
 Em suma, os algoritmos criados estão encarregados de realizarem tarefas específicas, todas direcionadas à correção gerencial do estoque.
@@ -7,6 +7,7 @@ Em suma, os algoritmos criados estão encarregados de realizarem tarefas especí
 Algumas váriaveis, como as terminadas em 'watcher' ou 'error', servem para aumentar a segurança de operação. Como o computador que executa o algoritmo é o mesmo que possui o sistema, a troca de janelas de aplicativos e o manuseio de informações importantes ocorre a todo instante; sendo necessárias, então, medidas preventivas.
 
 Seguem os algoritmos criados:
+
     BrandRepairer: Utiliza o menu "Alteração em massa de produtos" para redefinir uma marca em outra, ambas definidas dentro das especificações.
 
     OutputBlocker: Alguns produtos só podem terem uma venda com um valor mínimo de saldo, dessa forma, ele automatiza o processo. Ele é uma extensão de outros algoritmos, ou seja, ele ajusta a seção do item, inativa caso necessário e adiciona a saída mínima, necessário que os itens estejam em ordem. Pode ser melhorado para inativar um grupo seleto de itens em uma lista diversificada.
