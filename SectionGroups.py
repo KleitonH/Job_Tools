@@ -2,10 +2,7 @@
 from email.mime import text 
 import pyautogui # Importação da biblioteca Pyautogui para controle do mouse e teclado 
 import time # Importação da biblioteca time para intervalos de tempo 
-import re # Importação da biblioteca re para modificação de strings
-import pickle # Importação da biblioteca pickle para salvar arquivos
 import Breaker
-from pyscreeze import screenshot # Importação da biblioteca pyscreeze para captura de tela
 from pytesseract import pytesseract # Importação da biblioteca pytesseract para conversão de imagens em strings
 caminho_tesseract = "C:\\Program Files\\Tesseract-OCR\\tesseract.exe" # Caminho para o executável do pytesseract
 pytesseract.tesseract_cmd = caminho_tesseract # Define o caminho para o pytesseract
@@ -323,7 +320,7 @@ grupos = {
             'kit_reparo_pincas': {'codigo': '0077', 'itens': ['BUCHA PINCA', 'KIT PINO PINCA', 'REPARO PINCA', 'REPARO PINCA FREIO', 'REPARO PINCA VEDACAO']},
             'kit_reparo_setor': {'codigo': '0088', 'itens': ['ACOPLAMENTO SETOR', 'GUIA SETOR DIRECAO', 'REPARO COLUNA DIR', 'REPARO CIL RODA', 'REPARO CILINDRO MESTRE', 'REPARO CILINDRO RODA', 'REPARO COLUNA', 'REPARO PARCIAL CIL RODA', 'REPARO SETOR']},
             'kit_reparo_suspensao': {'codigo': '0148', 'itens': ['REPARO BANDEJ', 'REPARO BANDEJ EIXO', 'REPARO BATENTE BANDEJ', 'REPARO BRACO OSCILANTE', 'REPARO CAPA EIXO', 'REPARO EIXO TRAS', 'CHAPA SUPERIOR AMORTECEDOR']},
-            'alavancas': {'codigo': '0090', 'itens': ['ALAVANCA ACIONADORA', 'ALAVANCA CAMBIO', 'ALAVANCA EMB', 'ALAVANCA EMBREAGEM', 'ALAVANCA ENGATE', 'ALAVANCA ENGRENAGEM', 'ALAVANCA FREIO MAO', 'ALAVANCA FREIO TRAS', 'ALAVANCA INIBIDORA', 'ALAVANCA LIGACAO', 'ALAVANCA MARCHA', 'ALAVANCA PATIM', 'ALAVANCA REG', 'ALAVANCA REGULADO', 'ALAVANCA SELETORA', 'ALAVANCA TRAMBULADOR', 'BUCHA LATERAL ALAVANCA', 'HASTE CABO EMB', 'HASTE DESLIZ MARCH', 'HASTE DELIZ RE', 'HASTE ALAV CAMB', 'HASTE EMB', 'HASTE PORSCHE', 'HASTE TRAMB', 'HASTE PATIM FREIO', 'JOGO ALAVANCA ACIONAMENTO', 'KIT ALAVANCA ACELERADOR', 'KIT ALAVANCA CAMBIO', 'KIT ALAVANCA CARBU', 'KIT REPARO ALAVANCA', 'KIR REPARO CUPULA ALAVANCA', 'LIMITADOR ALAVANCA', 'MOLA ALAVANCA SELETORA', 'MOLA ALAVANCA CAMBIO', 'REPARO ALAVANCA CAMBIO', 'REPARO ALAVANCA FREIO', 'REPARO BUCHA VARAO', 'REPARO HASTE ALAVANCA', 'ROTULA ALAVANCA CAMBIO', 'TIRANTE EXTERNO CAMBIO', 'TIRANTE LIGACAO ARTICULACAO', 'TIRANTE LIGACAO CAMBIO', 'TIRANTE SUSP TRAS', 'TRAVA ALAVANCA CAMBIO ', 'VARAO EMBREAGEM', 'SUPORTE ALAVANCA FREIO']},
+            'alavancas': {'codigo': '0090', 'itens': ['ALAVANCA ACIONADORA', 'ALAVANCA CAMBIO', 'ALAVANCA EMB', 'ALAVANCA EMBREAGEM', 'ALAVANCA ENGATE', 'ALAVANCA ENGRENAGEM', 'ALAVANCA FREIO MAO', 'ALAVANCA FREIO TRAS', 'ALAVANCA INIBIDORA', 'ALAVANCA LIGACAO', 'ALAVANCA MARCHA', 'ALAVANCA PATIM', 'ALAVANCA REG', 'ALAVANCA REGULADO', 'ALAVANCA SELETORA', 'ALAVANCA TRAMBULADOR', 'BUCHA LATERAL ALAVANCA', 'HASTE CABO EMB', 'HASTE DESLIZ MARCH', 'HASTE DELIZ RE', 'HASTE ALAV CAMB', 'HASTE EMB', 'HASTE PORSCHE', 'HASTE TRAMB', 'HASTE PATIM FREIO', 'JOGO ALAVANCA ACIONAMENTO', 'KIT ALAVANCA ACELERADOR', 'KIT ALAVANCA CAMBIO', 'KIT ALAVANCA CARBU', 'KIT REPARO ALAVANCA', 'KIT REPARO CUPULA ALAVANCA', 'LIMITADOR ALAVANCA', 'MOLA ALAVANCA SELETORA', 'MOLA ALAVANCA CAMBIO', 'REPARO ALAVANCA CAMBIO', 'REPARO ALAVANCA FREIO', 'REPARO BUCHA VARAO', 'REPARO HASTE ALAVANCA', 'ROTULA ALAVANCA CAMBIO', 'TIRANTE EXTERNO CAMBIO', 'TIRANTE LIGACAO ARTICULACAO', 'TIRANTE LIGACAO CAMBIO', 'TIRANTE SUSP TRAS', 'TRAVA ALAVANCA CAMBIO ', 'VARAO EMBREAGEM', 'SUPORTE ALAVANCA FREIO']},
             'molas_reparo': {'codigo': '0147', 'itens': ['MOLA EXTERNA VALVULA', 'MOLA ATUACAO VALVULA PROPO FREIO', 'MOLA RETORNO FREIO', 'MOLA COLAR EMBREAGEM', 'MOLA ACELERADOR', 'MOLA BUZINA', 'MOLA RETENCAO', 'MOLA RETORNO', 'MOLA PATIM', 'MOLA HASTE ACIONAMENTO', 'MOLA INTERNA VALVULA', 'MOLA VALVULA']},
             'valvulas_reparo': {'codigo': '0154', 'itens': ['VALVULA AGULHA', 'VALVULA ALIVIO PRESSAO', 'VALVULA ANTI CHAMA', 'VALVULA AR QUENTE', 'VALVULA OLEO', 'VALVULA EQUALIZADORA', 'VALVULA PROPORCIONADORA', 'VALVULA SERVO FREIO', 'VALVULA SOLENOIDE', 'VALVULA CANISTER', 'VALVULA COMUTADORA', 'VALVULA DE MAXIMA']},
         }
@@ -672,12 +669,23 @@ grupos = {
         }
     },
     #PLÁSTICOS
+    'acessorios_externos': {
+        'codigo': '0087',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': []},
+            'molduras_externas': {'codigo': '0296', 'itens': ['MOLDURA LANTERNA', 'MOLDURA PLACA', 'MOLDURA ACABAMENTO PARALAMA', 'MOLDURA ACABAMENTO FAROLETE', 'MOLDURA CACAMBA', 'MOLDURA CANTONEIRA CACAMBA', 'MOLDURA CAPO', 'MOLDURA ESPELHO', 'MOLDURA EXTENSAO PARACHOQUE', 'MOLDURA EXTERNA PORTA', 'MOLDURA FAROL', 'MOLDURA FAROLETE', 'MOLDURA FECHO PORTA MALA', 'MOLDURA GRADE', 'MOLDURA INFERIOR GRADE', 'MOLDURA SUPERIOR GRADE', 'MOLDURA LANTERNA TRASEIRA', 'MOLDURA LATERAL PORTA', 'MOLDURA LATERAL JANELA', 'MOLDURA LATERAL',' MOLDURA MACANETA', 'MOLDURA MALA', 'MOLDURA PALHETA', 'MOLDURA PARABRISA', 'MOLDURA PARACHOQUE DIANTEIRO', 'MOLDURA PARACHOQUE', 'MOLDURA PARACHOQUE INFERIOR', 'MOLDURA PARACHOQUE TRASEIRO', 'MOLDURA PARALAMA DIANTEIRO', 'MOLDURA PARALAMA', 'MOLDURA PARALAMA TRASEIRO', 'MOLDURA PLACA', 'MOLDURA PLACA PARACHOQUE', 'MOLDURA PORTA', 'MOLDURA PORTA TRASEIRA', 'MOLDURA PROTECAO', 'MOLDURA PUXADOR PORTA', 'MOLDURA SPOILER', 'MOLDURA SUPERIOR TAMPA', 'MOLDURA SUPERIOR GRADE', 'MOLDURA TAMPA TRASEIRA', 'MOLDURA ESPELHO', 'MOLDURA LANTERNA TRAS', 'MOLDURA COBERTURA PLACA']},
+        }
+    },
     'acessorios_internos': {
         'codigo': '0076',
         'subgrupos': {
             'default': {'codigo': '0001', 'itens': ['PARAFUSO CINTO', 'PARAFUSO CINTO SEGURANÇA', 'PINO TAMPA PORTA LUVAS', 'BORRACHA MOLDURA INTERRUPTOR']},
-            'porta_luvas': {'codigo': '0249', 'itens': ['TAMPAO MACANETA PORTA LUVA']},
+            'bolas_cambio': {'codigo': '0298', 'itens': ['BOLA CAMBIO']},
+            'botoes_plastico': {'codigo': '0295', 'itens': ['BOTAO DESEMBACADOR', 'BOTAO FALSO', 'BOTAO FIXACAO', 'BOTAO LIMITADOR', 'BOTAO MACACO', 'BOTAO MANOPLA', 'BOTAO MOLDURA RADIO', 'BOTAO PAINEL CINZEIRO', 'BOTAO REGULAGEM', 'BOTAO TAMPAO', 'BOTAO TRAVA BANCO', 'BOTAO/ACABAMENTO']},
+            'molduras_internas': {'codigo': '0297', 'itens': ['MOLDURA ACABAMENTO CAIXA AR', 'MOLDURA ACABAMENTO BANCO', 'MOLDURA ACABAMENTO', 'MOLDURA ACABAMENTO INTERNO', 'MOLDURA ACABAMENTO TETO', 'MOLDURA BANCO', 'MOLDURA ALAVANCA BANCO', 'MOLDURA AR FORCADO', 'MOLDURA BOTAO', 'MOLDURA BOTAO TRAVA BANCO', 'MOLDURA BOTAO VIDRO', 'MOLDURA BRACO PORTA', 'MOLDURA CARPETE', 'MOLDURA CENTRAL', 'MOLDURA CENTRAL BOTOES', 'MOLDURA CENTRAL PAINEL', 'MOLDURA CINZERO', 'MOLDURA COBERTURA', 'MOLDURA COLUNA', 'MOLDURA COM LENTE PAINEL', 'MOLDURA DESCANSA BRACO', 'MOLDURA DIFUSOR AR', 'MOLDURA INTERRUPTOR VIDRO ELETRICO', 'MOLDURA LATERAL BANCO', 'MOLDURA LATERAL INTERNA PARABRISA', 'MOLDURA MACANETA INTERNA',' MOLDURA PAINEL', 'MOLDURA PUXADOR VIDRO', 'MOLDURA RADIO', 'MOLDURA DVD', 'MOLDURA VIDRO PORTA INTERNO', 'MOLDURA COLUNA INTERNA', 'MOLDURA ESPELHO INTERNO', 'MOLDURA CINTO SEGURANCA', 'MOLDURA DIFUSOR AR PAINEL', 'MOLDURA COIFA ALAVANCA CAMBIO']},
             'quebra_sol': {'codigo': '0277', 'itens': ['QUEBRA SOL']},
+            'manivelas_manoplas_plastico': {'codigo': '0299', 'itens': ['MANIVELA VIDRO', 'MANIVELA REGULADORA VIDRO', 'MANOPLA REGULAGEM']},
+            'porta_luvas': {'codigo': '0249', 'itens': ['TAMPAO MACANETA PORTA LUVA']},
         }
     },
     'calotas_derivados': {
@@ -687,6 +695,23 @@ grupos = {
             'calotas_roda': {'codigo': '0276', 'itens': ['CALOTA ARO', 'CALOTA CENTRO RODA', 'CALOTA CENTRAL', 'CALOTA', 'CALOTA', 'CALOTINHA CENTRAL', 'CALOTA RODA', 'CALOTA RODA FERRO']},
             'emblemas_calota': {'codigo': '0275', 'itens': ['EMBLEMA CALOTA']},
             'parafusos_roda': {'codigo': '0247', 'itens': ['PARAFUSO RODA']},
+        }
+    },
+    'capas_protecao': {
+        'codigo': '0086',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': []},
+            'capa_banco': {'codigo': '0292', 'itens': ['CAPA BANCO']},
+            'capa_cobrir_carro': {'codigo': '0293', 'itens': ['CAPA COBRIR CARRO']},
+        }
+    },
+    'emblemas': {
+        'codigo': '0084',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['']},
+            'emblema_logo': {'codigo': '0273', 'itens': ['EMBLEMA LOGOTIPO', 'EMBLEMA GRAVATA', 'EMBLEMA GRADE']},
+            'emblema_letreiro': {'codigo': '0274', 'itens': ['EMBLEMA', 'EMBLEMA LETREIRO', 'EMBLEMA ADESIVO']},
+            
         }
     },
     'farois': {
@@ -709,31 +734,27 @@ grupos = {
             
         }
     },
-    'emblemas': {
-        'codigo': '0084',
-        'subgrupos': {
-            'default': {'codigo': '0001', 'itens': ['']},
-            'emblema_logo': {'codigo': '0273', 'itens': ['EMBLEMA LOGOTIPO', 'EMBLEMA GRAVATA', 'EMBLEMA GRADE']},
-            'emblema_letreiro': {'codigo': '0274', 'itens': ['EMBLEMA', 'EMBLEMA LETREIRO', 'EMBLEMA ADESIVO']},
-            
-        }
-    },
     'guarnicoes': {
         'codigo': '0085',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': ['BORRACHA PARALAMA', 'BORRACHA CAPOTA', 'BORRACHA PROTETOR CACAMBA']},
-            'borrachas_capo': {'codigo': '0278', 'itens': ['BORRACHA CAPO', 'BORRACHA CAPO DIANT']},
+            'default': {'codigo': '0001', 'itens': ['BORRACHA PARALAMA', 'BORRACHA CAPOTA', 'BORRACHA PROTETOR CACAMBA', 'FRISO', 'FRISO ESTRIBO', 'FRISO MOLDURA PLACA', 'FRISO PROTETOR CACAMBA', 'FRISO LANTERNA']},
+            'borrachas_capo': {'codigo': '0278', 'itens': ['BORRACHA CAPO', 'BORRACHA CAPO DIANT', 'FRISO CAPO']},
             'borrachas_cofre_motor': {'codigo': '0279', 'itens': ['BORRACHA CAPO/MOTOR', 'BORRACHA COFRE MOTOR', 'BORRACHA MOTOR']},
             'borrachas_chassis': {'codigo': '0280', 'itens': ['BORRACHA CHASSIS']},
-            'borrachas_parabrisas': {'codigo': '0281', 'itens': ['BORRACHA PARABRISA', 'BORRACHA PARABRISA/VIGIA','BORRACHA INFERIOR PARABRISA', 'BORRACHA LATERAL PARABRISA', 'BORRACHA MOLDURA PARABRISA']},
-            'borrachas_internas': {'codigo': '0283', 'itens': ['BORRACHA PAINEL', 'BORRACHA QUEBRA VENTO', 'BORRACHA TOMADA AR']},
+            'borrachas_parabrisas': {'codigo': '0281', 'itens': ['BORRACHA PARABRISA', 'BORRACHA PARABRISA/VIGIA','BORRACHA INFERIOR PARABRISA', 'BORRACHA LATERAL PARABRISA', 'BORRACHA MOLDURA PARABRISA', 'FRISO INFERIOR PARABRISA', 'FRISO PARABRISA']},
+            'borrachas_internas': {'codigo': '0283', 'itens': ['BORRACHA PAINEL', 'BORRACHA QUEBRA VENTO', 'BORRACHA TOMADA AR', 'FRISO CAIXA AR']},
             'borrachas_vigias': {'codigo': '0282', 'itens': ['BORRACHA LATERAL VIGIA', 'BORRACHA VIGIA']},
-            'borrachas_portas': {'codigo': '0284', 'itens': ['BORRACHA PORTA', 'BORRACHA PORTA TRAS', 'BORRACHA ENTRE PORTAS', 'BORRACHA VEDACAO PORTA']},
-            'borrachas_vidros_geral': {'codigo': '0285', 'itens': ['BORRACHAS COLUNA ENTREVIDRO', 'BORRACHA CRUA VULCANITE']},
+            'borrachas_portas': {'codigo': '0284', 'itens': ['BORRACHA PORTA', 'BORRACHA PORTA TRAS', 'BORRACHA ENTRE PORTAS', 'BORRACHA VEDACAO PORTA', 'FRISO LATERAL', 'FRISO PORTA', 'FRISO SOLEIRA PORTA']},
+            'borrachas_vidros_geral': {'codigo': '0285', 'itens': ['BORRACHA COLUNA ENTREVIDRO', 'BORRACHA CRUA VULCANITE']},
             'borrachas_vidro_porta': {'codigo': '0287', 'itens': ['BORRACHA JANELA', 'BORRACHA JANELA LATERAL', 'BORRACHA JANELA MOVEL','BORRACHA VIDRO LATERAL']},
-            'borrachas_porta_malas': {'codigo': '0286', 'itens': ['BORRACHA MALA', 'BORRACHA PORTA MALA', 'BORRACHA TAMPA TRAS', 'BORRACHA VEDACAO JANELA']},
-            'borrachas_parachoque': {'codigo': '0288', 'itens': ['BORRACHA PARACHOQUE', 'BORRACHA SUPERIOR PARACHOQUE', 'BORRACHA SUPORTE PARACHOQUE', 'BORRACHAO PARACHOQUE']},
-            'borrachas_teto': {'codigo': '0289', 'itens': ['BORRACHA TETO']},
+            'borrachas_porta_malas': {'codigo': '0286', 'itens': ['BORRACHA MALA', 'BORRACHA PORTA MALA', 'BORRACHA TAMPA TRAS', 'BORRACHA VEDACAO JANELA', 'FRISO TAMPA CACAMBA', 'FRISO PORTA MALA', 'FRISO TAMPA TRAS']},
+            'borrachas_parachoque': {'codigo': '0288', 'itens': ['BORRACHA PARACHOQUE', 'BORRACHA SUPERIOR PARACHOQUE', 'BORRACHA SUPORTE PARACHOQUE', 'BORRACHAO PARACHOQUE', 'FRISO PARACHOQUE']},
+            'borrachas_teto': {'codigo': '0289', 'itens': ['BORRACHA TETO', 'FRISO QUADRO TETO',' FRISO TETO']},
+            'canaletas': {'codigo': '0294', 'itens': ['CANALETA']},
+            'frisos_grade': {'codigo': '0290', 'itens': ['FRISO GRADE']},
+            'frisos_farol': {'codigo': '0291', 'itens': ['FRISO FAROL', 'FRISO INFERIOR FAROL', 'FRISO MOLDURA FAROL']},
+            'pestanas': {'codigo': '0300', 'itens': ['PESTANA', 'PESTANA INTERNA', 'PESTANA EXTERNA', 'PESTANA PORTA']},
+            'pingadeira': {'codigo': '0301', 'itens': ['PINGADEIRA PORTA']},
         }
     },
     'lanternas': {
@@ -831,6 +852,12 @@ def corrigir_descricao(item): # Função de situação específica, o objetivo e
         pyautogui.typewrite("SILENCIOSO")
         time.sleep(0.5)
 
+def filtro_operacao(Filtro):
+        filtro = Filtro
+        if all(item not in textdesc for item in filtro): #Adiciona interrupção opcional da operação caso o usuário queira definir palavras-chave de itens que devam ser alterados
+            Breaker.monitorar_interrupcao(True)
+            exit()
+
 print("---------------------------------------------------------------------------------------")
 print("Bem-vindo ao SectionDescripted, o programa que classifica grupos e subgrupos com base nas descrições de itens.") # Mensagem de boas vindas
 option = "" # Variável que receberá a opção selecionada
@@ -887,9 +914,7 @@ while option != "2":
                 #     pyautogui.doubleClick(x=1124, y=622)
                 #     time.sleep(0.2)
 
-                if all(item not in textdesc for item in ['BORRACHA', 'BORRACHAO']): #Adiciona interrupção opcional da operação caso o usuário queira definir palavras-chave de itens que devam ser alterados
-                    Breaker.monitorar_interrupcao(True)
-                    exit()
+                # filtro_operacao(["BOLA CAMBIO"])
 
                 if grupoescolhido:
                     pyautogui.typewrite(grupoescolhido)

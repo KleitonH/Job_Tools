@@ -1,42 +1,20 @@
 import requests
 
-api_key = ''
-api_token = ''
-board_id = ''
-list_id = ''
+api_key = '99026117ada802b40108037ee1933a6d'
+api_token = 'ATTAb773be4a883d29f30ac34951dfa32853b43ed8d30d378e73e1b2c5c5f83f9681FA4F614F'
+board_id = '65fa58235477f5d74517cfcb'
+list_id = '66c8e799fafd5b925749197a'
 
 # Seu dicionário de grupos e subgrupos
 dicionario = {
-    'farois': {
-        'codigo': '0081',
+    'acessorios_internos': {
+        'codigo': '0076',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': ['']},
-            'farois': {'codigo': '0259', 'itens': ['FAROL']},
-            'faroletes': {'codigo': '0260', 'itens': ['FAROL AUXILIAR', 'FAROLETE']},
-            'lentes_farois': {'codigo': '0268', 'itens': ['LENTE FAROL', 'LENTE FAROL AUXILIAR', 'LENTE FAROLETE']},
-            
-        }
-    },
-    'lanternas': {
-        'codigo': '0082',
-        'subgrupos': {
-            'default': {'codigo': '0001', 'itens': ['LANTERNA', 'LANTERNA PILOTO', 'LANTERNA TIJOLINHO']},
-            'lanternas_dianteiras': {'codigo': '0261', 'itens': ['LANTERNA DIANT', 'LANTERNA DIANTEIRA']},
-            'lanternas_laterais': {'codigo': '0264', 'itens': ['LANTERNA LATERAL']},
-            'lentes_lanternas': {'codigo': '0267', 'itens': ['LENTE LANTERNA', 'LENTE LANTERNA DIANT', 'LENTE LANTERNA DIANTEIRA', 'LENTE LANTERNA TRAS', 'LENTE LANTERNA TRASEIRA', 'LENTE LANTERNA PLACA', 'LENTE LANTERNA TIJOLINHO', 'LENTE TRASEIRA']},
-            'lanternas_parachoques': {'codigo': '0263', 'itens': ['LANTERNA REFLETOR', 'LANTERNA (REFLETOR)', 'LANTERNA PARACHOQUE']},
-            'lanternas_placa': {'codigo': '0265', 'itens': ['LANTERNA PLACA']},
-            'lanternas_teto': {'codigo': '0266', 'itens': ['LANTERNA TETO']},
-            'lanternas_traseiras': {'codigo': '0262', 'itens': ['LANTERNA TRASEIRA', 'LANTERNA TRAS']},
-            
-        }
-    },
-    'parachoques': {
-        'codigo': '0080',
-        'subgrupos': {
-            'default': {'codigo': '0001', 'itens': ['PARACHOQUE']},
-            'parachoques_dianteiros': {'codigo': '0257', 'itens': ['PARACHOQUE DIAN', 'PARACHOQUE DIANTEIRO', 'PARACHOQUE IMPULSAO']},
-            'parachoques_traseiros': {'codigo': '0258', 'itens': ['PARACHOQUE TRAS', 'PARACHOQUE TRASEIRO']},
+            'default': {'codigo': '0001', 'itens': ['PARAFUSO CINTO', 'PARAFUSO CINTO SEGURANÇA', 'PINO TAMPA PORTA LUVAS', 'BORRACHA MOLDURA INTERRUPTOR']},
+            'botoes_plastico': {'codigo': '0295', 'itens': ['BOTAO DESEMBACADOR', 'BOTAO FALSO', 'BOTAO FIXACAO', 'BOTAO LIMITADOR', 'BOTAO MACACO', 'BOTAO MANOPLA', 'BOTAO MOLDURA RADIO', 'BOTAO PAINEL CINZEIRO', 'BOTAO REGULAGEM', 'BOTAO TAMPAO', 'BOTAO TRAVA BANCO', 'BOTAO/ACABAMENTO']},
+            'molduras_internas': {'codigo': '0297', 'itens': ['MOLDURA ACABAMENTO CAIXA AR', 'MOLDURA ACABAMENTO BANCO', 'MOLDURA ACABAMENTO', 'MOLDURA ACABAMENTO INTERNO', 'MOLDURA ACABAMENTO TETO', 'MOLDURA BANCO', 'MOLDURA ALAVANCA BANCO', 'MOLDURA AR FORCADO', 'MOLDURA BOTAO', 'MOLDURA BOTAO TRAVA BANCO', 'MOLDURA BOTAO VIDRO', 'MOLDURA BRACO PORTA', 'MOLDURA CARPETE', 'MOLDURA CENTRAL', 'MOLDURA CENTRAL BOTOES', 'MOLDURA CENTRAL PAINEL', 'MOLDURA CINZERO', 'MOLDURA COBERTURA', 'MOLDURA COLUNA', 'MOLDURA COM LENTE PAINEL', 'MOLDURA DESCANSA BRACO', 'MOLDURA DIFUSOR AR', 'MOLDURA INTERRUPTOR VIDRO ELETRICO', 'MOLDURA LATERAL BANCO', 'MOLDURA LATERAL INTERNA PARABRISA', 'MOLDURA MACANETA INTERNA',' MOLDURA PAINEL', 'MOLDURA PUXADOR VIDRO', 'MOLDURA RADIO', 'MOLDURA DVD', 'MOLDURA VIDRO PORTA INTERNO', 'MOLDURA COLUNA INTERNA', 'MOLDURA ESPELHO INTERNO', 'MOLDURA CINTO SEGURANCA', 'MOLDURA DIFUSOR AR PAINEL', 'MOLDURA COIFA ALAVANCA CAMBIO']},
+            'quebra_sol': {'codigo': '0277', 'itens': ['QUEBRA SOL']},
+            'porta_luvas': {'codigo': '0249', 'itens': ['TAMPAO MACANETA PORTA LUVA']},
         }
     },
 }

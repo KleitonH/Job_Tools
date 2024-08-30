@@ -21,4 +21,6 @@ Seguem os algoritmos criados:
 
     UltraInat: Algoritmo pioneiro desse conjunto de ferramentas. Possui o objetivo de classificar a seção de um item e inativá-lo caso esteja sem uma movimentação maior/igual a um ano. Utiliza bibliotecas de automação de controle, conversão de imagem em texto e conversão para padrões númericos. Vários padrões desse algoritmo foram utilizados nos demais, principalmente o OutputBlocker. Caso queira entender o funcionamento das demais ferramentas, recomendo começar por aqui, visto que está completamente comentado para compreendimento geral.
 
+    LostSale: Utiliza o menu de consulta de vendas perdidas para agrupar todos os itens que se repetiram em um único dia. Assim que é identificada uma repetição, o algoritmo transfere a ocorrência para uma planilha em excel. (Alguns pequenos erros de transcrição ainda passam, talvez aperfeiçoar ainda mais os filtros resolva, ou uma atualização do Tesseract. Os erros são pouco relevantes com um método de consulta do item em paralelo à operação)
+
     Breaker possui a função de módulo de interrupção, seus métodos podem ser inseridos em outros algoritmos para encerrar uma tarefa em execução com o comando ALT + K
