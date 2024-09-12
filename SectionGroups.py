@@ -3,6 +3,8 @@ from email.mime import text
 import pyautogui # Importação da biblioteca Pyautogui para controle do mouse e teclado 
 import time # Importação da biblioteca time para intervalos de tempo 
 import Breaker
+import re # Importação da biblioteca re para modificação de strings
+import pickle # Importação da biblioteca pickle para salvar arquivos
 from pytesseract import pytesseract # Importação da biblioteca pytesseract para conversão de imagens em strings
 caminho_tesseract = "C:\\Program Files\\Tesseract-OCR\\tesseract.exe" # Caminho para o executável do pytesseract
 pytesseract.tesseract_cmd = caminho_tesseract # Define o caminho para o pytesseract
@@ -45,6 +47,13 @@ grupos = {
         'codigo': '0010',
         'subgrupos': {
             'default': {'codigo': '0001', 'itens': ['BATERIA NOBREAK', 'BATERIA NOOBREAK']},
+
+        }
+    },
+    'baterias_convencionais': {
+        'codigo': '0113',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['BATERIA 100 AH', 'BATERIA 40 AH', 'BATERIA 45 AH', 'BATERIA 50 AH', 'BATERIA 60 AH', 'BATERIA 70 AH', 'BATERIA 75 AH', 'BATERIA 78 AH', 'BATERIA 80 AH', 'BATERIA 90 AH', 'BATERIA 95 AH']},
 
         }
     },
@@ -240,7 +249,7 @@ grupos = {
         'codigo': '0027',
         'subgrupos': {
             'default': {'codigo': '0001', 'itens': ['JUNTA BOMBA COMBUS', 'JUNTA SENSOR TEMP', 'JUNTA BASE CARBURADOR', 'JUNTA CONEXAO SENSOR TEMPERATURA', 'JUNTA CONEXAO SENSOR TEMPERATURA', 'JUNTA CURTICA', 'JUNTA LUBRIFICACAO', 'JUNTA RADIADOR', 'JUNTA TAMPA BOMBA', 'JUNTA TAMPA ARVORE', 'JUNTA TAMPA DIFERENCIAL', 'JUNTA TAMPA OLEO', 'JUNTA TAMPA TRAS', 'JUNTA SUPERIOR FILTRO OLEO', 'JUNTA SUPORTE ROLAMENTO', 'JUNTA VELUMOIDE', 'KIT JUNTA RADIADOR', 'RETENTOR BOMBA HIDRAULICA', 'RETENTOR BOMBA INJETORA', 'RETENTOR SELO COMPRESSOR', 'VELUMOIDE JUNTAS']},
-            'aneis': {'codigo': '0091', 'itens': ['ANEIS PISTAO', 'ANEL PISTAO', 'ANEL BUJAO', 'ANEL AJUSTE ROLAMENTO', 'ANEL ALAVANCA', 'ANEL AMORTECEDOR', 'ANEL ANTI RUIDO', 'ANEL BOCAL TANQUE', 'ANEL BORRACHA', 'ANEL BRACO SUSP', 'ANEL CARCACA', 'ANEL CEBOLAO', 'ANEL CILINDRO', 'ANEL COLETOR', 'ANEL VEDACAO', 'ANEL EIXO TRAS', 'ANEL IMPULSOR ARV', 'ANEL INFERIOR CARRO', 'ANEL INTERMEDIARIO', 'ANEL JUNTA', 'ANEL MALHA ACO', 'ANEL MOTOR', 'ANEL RADIADOR', 'ANEL RODA', 'ANEL SILENCIOSO', 'ANEL SINCRONIZ', 'ANEL TAMPA VALV', 'ANEL TIRANTE SUSP', 'ANEL TRASEIRO', 'ANEL TRAVA', 'ANEL VEDACAO', 'ANEL VEDADOR', 'ANEL JUNTA DISTRI', 'ANEL TOMADA FORCA', 'BORRACHA BOCAL', 'GARFO ANEL', 'ANEL ESCAPAMENTO']},
+            'aneis': {'codigo': '0091', 'itens': ['ANEIS PISTAO', 'ANEL PISTAO', 'ANEL BUJAO', 'ANEL AJUSTE ROLAMENTO', 'ANEL ALAVANCA', 'ANEL AMORTECEDOR', 'ANEL ANTI RUIDO', 'ANEL BOCAL TANQUE', 'ANEL BORRACHA', 'ANEL BRACO SUSP', 'ANEL CARCACA', 'ANEL CEBOLAO', 'ANEL CILINDRO', 'ANEL COLETOR', 'ANEL VEDACAO', 'ANEL EIXO TRAS', 'ANEL IMPULSOR ARV', 'ANEL INFERIOR CARRO', 'ANEL INTERMEDIARIO', 'ANEL JUNTA', 'ANEL MALHA ACO', 'ANEL MOTOR', 'ANEL RADIADOR', 'ANEL RODA', 'ANEL SILENCIOSO', 'ANEL SINCRONIZ', 'ANEL TAMPA VALV', 'ANEL TIRANTE SUSP', 'ANEL TRASEIRO', 'ANEL TRAVA', 'ANEL VEDACAO', 'ANEL VEDADOR', 'ANEL JUNTA DISTRI', 'ANEL TOMADA FORCA', 'BORRACHA BOCAL', 'GARFO ANEL', 'ANEL ESCAPAMENTO', 'JOGO ANEIS', 'JOGO ANEIS COLETOR ADMISSAO']},
             'diafragmas_tampa': {'codigo': '0127', 'itens': ['DIAFRAGMA TAMPA VALVU']},  
             'jogo_juntas': {'codigo': '0133', 'itens': ['JOGO JUNTA', 'JUNTA COMPLETA RETENTOR']},  
             'juntas_bombas_agua': {'codigo': '0143', 'itens': ['JUNTA BASE BOMBA AGUA', 'JUNTA BOMBA AGUA', 'JUNTA CONEXAO BOMBA AGUA']},  
@@ -320,7 +329,7 @@ grupos = {
             'kit_reparo_pincas': {'codigo': '0077', 'itens': ['BUCHA PINCA', 'KIT PINO PINCA', 'REPARO PINCA', 'REPARO PINCA FREIO', 'REPARO PINCA VEDACAO']},
             'kit_reparo_setor': {'codigo': '0088', 'itens': ['ACOPLAMENTO SETOR', 'GUIA SETOR DIRECAO', 'REPARO COLUNA DIR', 'REPARO CIL RODA', 'REPARO CILINDRO MESTRE', 'REPARO CILINDRO RODA', 'REPARO COLUNA', 'REPARO PARCIAL CIL RODA', 'REPARO SETOR']},
             'kit_reparo_suspensao': {'codigo': '0148', 'itens': ['REPARO BANDEJ', 'REPARO BANDEJ EIXO', 'REPARO BATENTE BANDEJ', 'REPARO BRACO OSCILANTE', 'REPARO CAPA EIXO', 'REPARO EIXO TRAS', 'CHAPA SUPERIOR AMORTECEDOR']},
-            'alavancas': {'codigo': '0090', 'itens': ['ALAVANCA ACIONADORA', 'ALAVANCA CAMBIO', 'ALAVANCA EMB', 'ALAVANCA EMBREAGEM', 'ALAVANCA ENGATE', 'ALAVANCA ENGRENAGEM', 'ALAVANCA FREIO MAO', 'ALAVANCA FREIO TRAS', 'ALAVANCA INIBIDORA', 'ALAVANCA LIGACAO', 'ALAVANCA MARCHA', 'ALAVANCA PATIM', 'ALAVANCA REG', 'ALAVANCA REGULADO', 'ALAVANCA SELETORA', 'ALAVANCA TRAMBULADOR', 'BUCHA LATERAL ALAVANCA', 'HASTE CABO EMB', 'HASTE DESLIZ MARCH', 'HASTE DELIZ RE', 'HASTE ALAV CAMB', 'HASTE EMB', 'HASTE PORSCHE', 'HASTE TRAMB', 'HASTE PATIM FREIO', 'JOGO ALAVANCA ACIONAMENTO', 'KIT ALAVANCA ACELERADOR', 'KIT ALAVANCA CAMBIO', 'KIT ALAVANCA CARBU', 'KIT REPARO ALAVANCA', 'KIT REPARO CUPULA ALAVANCA', 'LIMITADOR ALAVANCA', 'MOLA ALAVANCA SELETORA', 'MOLA ALAVANCA CAMBIO', 'REPARO ALAVANCA CAMBIO', 'REPARO ALAVANCA FREIO', 'REPARO BUCHA VARAO', 'REPARO HASTE ALAVANCA', 'ROTULA ALAVANCA CAMBIO', 'TIRANTE EXTERNO CAMBIO', 'TIRANTE LIGACAO ARTICULACAO', 'TIRANTE LIGACAO CAMBIO', 'TIRANTE SUSP TRAS', 'TRAVA ALAVANCA CAMBIO ', 'VARAO EMBREAGEM', 'SUPORTE ALAVANCA FREIO']},
+            'alavancas': {'codigo': '0090', 'itens': ['ALAVANCA ACIONADORA', 'ALAVANCA CAMBIO', 'ALAVANCA EMB', 'ALAVANCA EMBREAGEM', 'ALAVANCA ENGATE', 'ALAVANCA ENGRENAGEM', 'ALAVANCA FREIO MAO', 'ALAVANCA FREIO TRAS', 'ALAVANCA GARFO PARTIDA', 'ALAVANCA INIBIDORA', 'ALAVANCA LIGACAO', 'ALAVANCA MARCHA', 'ALAVANCA PATIM', 'ALAVANCA REG', 'ALAVANCA REGULADO', 'ALAVANCA SELETORA', 'ALAVANCA TRAMBULADOR', 'BUCHA LATERAL ALAVANCA', 'HASTE CABO EMB', 'HASTE DESLIZ MARCH', 'HASTE DELIZ RE', 'HASTE ALAV CAMB', 'HASTE EMB', 'HASTE PORSCHE', 'HASTE TRAMB', 'HASTE PATIM FREIO', 'JOGO ALAVANCA ACIONAMENTO', 'KIT ALAVANCA ACELERADOR', 'KIT ALAVANCA CAMBIO', 'KIT ALAVANCA CARBU', 'KIT REPARO ALAVANCA', 'KIT REPARO CUPULA ALAVANCA', 'LIMITADOR ALAVANCA', 'MOLA ALAVANCA SELETORA', 'MOLA ALAVANCA CAMBIO', 'REPARO ALAVANCA CAMBIO', 'REPARO ALAVANCA FREIO', 'REPARO BUCHA VARAO', 'REPARO HASTE ALAVANCA', 'ROTULA ALAVANCA CAMBIO', 'TIRANTE EXTERNO CAMBIO', 'TIRANTE LIGACAO ARTICULACAO', 'TIRANTE LIGACAO CAMBIO', 'TIRANTE SUSP TRAS', 'TRAVA ALAVANCA CAMBIO ', 'VARAO EMBREAGEM', 'SUPORTE ALAVANCA FREIO']},
             'molas_reparo': {'codigo': '0147', 'itens': ['MOLA EXTERNA VALVULA', 'MOLA ATUACAO VALVULA PROPO FREIO', 'MOLA RETORNO FREIO', 'MOLA COLAR EMBREAGEM', 'MOLA ACELERADOR', 'MOLA BUZINA', 'MOLA RETENCAO', 'MOLA RETORNO', 'MOLA PATIM', 'MOLA HASTE ACIONAMENTO', 'MOLA INTERNA VALVULA', 'MOLA VALVULA']},
             'valvulas_reparo': {'codigo': '0154', 'itens': ['VALVULA AGULHA', 'VALVULA ALIVIO PRESSAO', 'VALVULA ANTI CHAMA', 'VALVULA AR QUENTE', 'VALVULA OLEO', 'VALVULA EQUALIZADORA', 'VALVULA PROPORCIONADORA', 'VALVULA SERVO FREIO', 'VALVULA SOLENOIDE', 'VALVULA CANISTER', 'VALVULA COMUTADORA', 'VALVULA DE MAXIMA']},
         }
@@ -334,14 +343,14 @@ grupos = {
             'rolamentos_motor': {'codigo': '0062', 'itens': ['ROLAMENTO ESTICADOR', 'ROLAMENTO MOTOR', 'ROLAMENTO ALTERNADOR', 'ROLAMENTO CORREIA ESTICADORA DO ALTERNADOR', 'ROLAMENTO ESTICADOR', 'ROLAMENTO ESTIC ALT', 'ROLAMENTO ESTIC CORR', 'ROLAMENTO ESTIC', 'ROLAMENTO ESTICADOR CORREIA ALTERNADOR', 'ROLAMENTO ESTICADOR ALTERNADOR', 'ROLAMENTO ESTICADOR CORREIA', 'ROLAMENTO COMANDO', 'ROLAMENTO CORREIA COMANDO', 'ROLAMENTO TENSOR', 'ROLAMENTO TENSOR CORREIA']},
             'rolamentos_embreagem': {'codigo': '0149', 'itens': ['ROLAMENTO EMBREAGEM', 'ROLAMENTO CAMBIO', 'ROLAMENTO CAIXA CAMBIO', 'ROLAMENTO CARDAN', 'ROLAMENTO PINHAO', 'ROLAMENTO AGULHA', 'ROLAMENTO ATUADOR EMBREAGEM', 'ROLAMENTO COIFA', 'ROLAMENTO DIFERENCIAL', 'ROLAMENTO LATERAL COROA CAIXA', 'ROLAMENTO SATELITE', 'ROLAMENTRO TRASEIRO CAIXA', 'ROLAMENTO VISCOSA']},
             'tensores': {'codigo': '0063', 'itens': ['ROLO ROLAMENTO DAMPER', 'TENSOR CORREIA ALTERNADOR', 'TENSOR CORREIA COMANDO', 'TENSOR ESTICADOR']},
-            'polias': {'codigo': '0064', 'itens': ['POLIA ALTERNADOR', 'POLIA ALT', 'POLIA AUXILIAR', 'POLIA BOMBA AGUA', 'POLIA BOMBA DIR', 'POLIA CORREIA', 'POLIA DIRECAO', 'POLIA VENTILADOR', 'POLIA RODA LIVRE', 'POLIA TENSOR', 'POLIA VIRAB', 'POLIA VIRABREQUIM', 'SOBREPOLIA AR COND', 'POLIA MANIVELA MOTOR']},
+            'polias': {'codigo': '0064', 'itens': ['CHAVETA FRESADA POLIA', 'POLIA ALTERNADOR', 'POLIA ALT', 'POLIA AUXILIAR', 'POLIA BOMBA AGUA', 'POLIA BOMBA DIR', 'POLIA CORREIA', 'POLIA DIRECAO', 'POLIA VENTILADOR', 'POLIA RODA LIVRE', 'POLIA TENSOR', 'POLIA VIRAB', 'POLIA VIRABREQUIM', 'SOBREPOLIA AR COND', 'POLIA MANIVELA MOTOR']},
         }
     },
     'suspensao': {
         'codigo': '0033',
         'subgrupos': {
             'default': {'codigo': '0001', 'itens': ['EMBUCHAMENTO', 'CALCO AJUSTE', 'CALCO AMORT', 'CALCO BATENT', 'CALCO CAMBAGEM', 'CUPILHA', 'EIXO BANDEJA TRAS', 'EIXO TENSOR', 'ESPACADOR ANEL VEDADOR', 'ESPACADOR ROLAMENTO', 'FACAO SUSPENS', 'MONTANTE', 'PARAFUSO BANDEJA', 'PARAFUSO CAMBAGEM', 'PARAFUSO EIXO TRAS', 'PORCA AMORTECEDOR', 'SUPORTE AMORTECEDOR DIANT', 'TELEFONE PINO ROLAMENTO', 'TIRANTE SUSPENSAO']},
-            'buchas_suspensao': {'codigo': '0065', 'itens': ['BARRA TORCAO', 'BUCHA BAND SUSP', 'BUCHA BARRA ESTAB', 'BUCHA BANDEJA DIANT', 'BUCHA AGREGADO', 'BUCHA ALGEMA BARRA', 'BUCHA ALT SUP', 'BUCHA ALTERNADOR', 'BUCHA AMORT', 'BUCHA AMORT DIANT', 'BUCHA AMORTEC', 'BUCHA AMORTECEDOR', 'BUCHA AR COND', 'BUCHA ARTIC EIXO', 'BUCHA ARTICULACAO', 'BUCHA BAND', 'BUCHA BANDEJA', 'BUCHA BARR ESTAB', 'BUCHA BARRA ESTAB', 'BUCHA BARRA LIGACAO', 'BUCHA BARRA TENS SUSP', 'BUCHA BARRA TORCAO' 'BUCHA BIELA', 'BUCHA CALCO TRAVESSA', 'BUCHA CENTRAL BANDEJA', 'BUCHA COXIM', 'BUCHA EIXO', "BUCHA ESTAB", 'BUCHA ESTABILIZADORA', 'BUCHA FEIXE MOLA', 'BUCHA MANGA EIXO', 'BUCHA HAST BAND', 'BUCHA INF AMOR', 'BUCHA INFERIOR BANDE', 'BUCHA INFERIOR AMORT', 'BUCHA INFERIOR JUMELO', 'BUCHA JUMELO', 'BUCHA MAIOR', 'BUCHA MENOR', 'BUCHA MOLA', 'BUCHA OVAL EIXO', 'BUCHA TRAS BAND', 'BUCHA PONTA BANDEJA', 'BUCHA SUP ALGEMA', 'BUCHA SUP AMOR', 'BUCHA SUPERIOR BAND', 'BUCHA SUPERIOR JUMELO', 'BUCHA SUSP', 'BUCHA SUSPEN', 'BUCHA SUSPENSAO', 'BUCHA TENSO', 'BUCHA TENSOR SUS', 'BUCHA TERMINAL EIXO', 'BUCHA TIRANTE', 'BUCHA TARS BAND', 'BUCHA TRAS BRAC', 'BUCHA TRAS EIXO', 'BUCHA TRAS FEIXE MOLA', 'BUCHA TRAS SUSP', 'BUCHA TRAS BAND', 'BUCHA TRASEIRA BANDEJA', 'BUCHA TRAV EIXO', 'BUCHA QUADRO', 'BUCHA SUPERIOR QUADRO', 'BUCHA TRAS QUADRO', 'CAPA AMORTECE DIAN', 'FLUTOBLOC', 'KIT BUCH SUSP', 'KIT BORRACHA BARRA ESTAB', 'KIT BUCHA ACAB', 'KIT BUCHA BARRA ESTAB', 'KIT BUCHA BRACO', 'KIT BUCHA ESTAB', 'KIT BUCHA ESTABILIZADORA', 'KIT BUCHA FEIXE MOLA', 'KIT BUCHA TIRANTE', 'KIT TIRANTE DIANT', 'KIT TIRANTE']},
+            'buchas_suspensao': {'codigo': '0065', 'itens': ['BARRA TORCAO', 'BUCHA BAND SUSP', 'BUCHA BARRA ESTAB', 'BUCHA BANDEJA DIANT', 'BUCHA AGREGADO', 'BUCHA ALGEMA BARRA', 'BUCHA ALT SUP', 'BUCHA ALTERNADOR', 'BUCHA AMORT', 'BUCHA AMORT DIANT', 'BUCHA AMORTEC', 'BUCHA AMORTECEDOR', 'BUCHA AR COND', 'BUCHA ARTIC EIXO', 'BUCHA ARTICULACAO', 'BUCHA BAND', 'BUCHA BANDEJA', 'BUCHA BARR ESTAB', 'BUCHA BARRA ESTAB', 'BUCHA BARRA LIGACAO', 'BUCHA BARRA TENS SUSP', 'BUCHA BARRA TORCAO' 'BUCHA BIELETA', 'BUCHA CALCO TRAVESSA', 'BUCHA CENTRAL BANDEJA', 'BUCHA COXIM', 'BUCHA EIXO', "BUCHA ESTAB", 'BUCHA ESTABILIZADORA', 'BUCHA FEIXE MOLA', 'BUCHA MANGA EIXO', 'BUCHA HAST BAND', 'BUCHA INF AMOR', 'BUCHA INFERIOR BANDE', 'BUCHA INFERIOR AMORT', 'BUCHA INFERIOR JUMELO', 'BUCHA JUMELO', 'BUCHA MAIOR', 'BUCHA MENOR', 'BUCHA MOLA', 'BUCHA OVAL EIXO', 'BUCHA TRAS BAND', 'BUCHA PONTA BANDEJA', 'BUCHA SUP ALGEMA', 'BUCHA SUP AMOR', 'BUCHA SUPERIOR BAND', 'BUCHA SUPERIOR JUMELO', 'BUCHA SUSP', 'BUCHA SUSPEN', 'BUCHA SUSPENSAO', 'BUCHA TENSO', 'BUCHA TENSOR SUS', 'BUCHA TERMINAL EIXO', 'BUCHA TIRANTE', 'BUCHA TARS BAND', 'BUCHA TRAS BRAC', 'BUCHA TRAS EIXO', 'BUCHA TRAS FEIXE MOLA', 'BUCHA TRAS SUSP', 'BUCHA TRAS BAND', 'BUCHA TRASEIRA BANDEJA', 'BUCHA TRAV EIXO', 'BUCHA QUADRO', 'BUCHA SUPERIOR QUADRO', 'BUCHA TRAS QUADRO', 'CAPA AMORTECE DIAN', 'FLUTOBLOC', 'KIT BUCH SUSP', 'KIT BORRACHA BARRA ESTAB', 'KIT BUCHA ACAB', 'KIT BUCHA BARRA ESTAB', 'KIT BUCHA BRACO', 'KIT BUCHA ESTAB', 'KIT BUCHA ESTABILIZADORA', 'KIT BUCHA FEIXE MOLA', 'KIT BUCHA TIRANTE', 'KIT TIRANTE DIANT', 'KIT TIRANTE']},
             'amortecedores': {'codigo': '0066', 'itens': ["AMORT DIANT", "AMORTECEDOR DIANT", "AMORTECEDOR REMAN", "AMORTECEDOR TRAS", "AMORTECEDOR TRASEIRO", 'COXIM COM ROLAMENTO AMORT']},
             'coifas': {'codigo': '0128', 'itens': ['COIFA AMORT', 'GUARDA PO AMORT', 'KIT COIFA AMORT', 'KIT COIFA AMORTECEDOR', 'KIT COIFA BATENTE AMORTECEDOR DIANTEIRO', 'KIT COIFA AMORTECEDOR TRASEIRO', 'KIT COIFA BATENTE DIANTEIRO', 'KIT COIFA BATENTE AMORTECEDOR', 'KIT COIFA BATENTE', 'KIT COIFA BATENTE AMORT', 'KIT COIFA BATENTE DIANTEIRO', 'KIT COIFA BATENTE', 'KIT COIFA BATENTE COXIM AMORT', 'PAR AMORTECEDOR DIANTEIRO', 'PAR AMORTECEDOR REMANUFATURADO' ]},
             'coxins': {'codigo': '0078', 'itens': ['CALCO AMORTECE', 'SEDE ROLAMENTO SUSP', 'COXIM AMORT', 'COXIM AMORTECEDOR', 'COXIM BR OSCI', 'COXIM BRACO OSCIL', ' COXIM CABINE', 'COXIM LIMITADOR TORCAO', 'COXIM ESTABILIZADOR', 'COXIM SUSP', 'CAPA SUSPENSAO', 'COXIM CABINE', 'COXIM LIMITADOR SUSPENSAO']},
@@ -438,7 +447,7 @@ grupos = {
         'subgrupos': {
             'default': {'codigo': '0001', 'itens': ['SUPORTE SENSOR']},
             'interruptores': {'codigo': '0198', 'itens': ['INTERRUPTOR DE EMBREAGEM', 'INTERRUPTOR DE FREIO', 'INTERRUPTOR DIRECAO HIDRAULICA', 'INTERRUPTOR PRESSAO OLEO', 'INTERRUPTOR LUZ FREIO', 'INTERRUPTOR LUZ RE', 'INTERRUPTOR OLEO', 'INTERRUPTOR PARTIDA FRIO', 'INTERRUPTOR PEDAL', 'INTERRUPTOR RADIADOR', 'INTERRUPTOR RE', 'INTERRUPTOR REDUZIDA', 'INTERRUPTOR REGULAGEM', 'INTERRUPTOR RELE', 'INTERRUPTOR TEMPERATURA', 'INTERRUPTOR VENTILADOR', 'INTERRUPTOR LUZ', 'INTERRUPTOR DUPLO LUZ','INTERRUPTOR MOTOR']},
-            'sensores': {'codigo': '0199', 'itens': ['INTERRUPTOR SENSOR', 'MEDIDOR FLUXO AR', 'MEDIDOR MASSA AR', 'SENSOR FLUXO AR', 'SENSOR ABS', 'SENSOR', 'SENSOR AR CONDICIONADO', 'SENSOR BOIA COMBUSTIVEL', 'SENSOR BORBOLETA', 'SENSOR NIVEL', 'SENSOR POSICAO ARVORE', 'SENSOR ROTACAO', 'SENSOR VELOCIDADE', 'SENSOR DESGASTE PASTILHA', 'SENSOR DETONACAO', 'SENSOR FASE', 'SENSOR FLUXO AR', 'SENSOR HALL', 'SENSOR MAP', 'SENSOR NIVEL', 'SENSOR PARTIDA', 'SENSOR PASTILHA', 'SENSOR POSICAO BORBOLETA', 'SENSOR POSICAO PEDAL', 'SENSOR PRESSAO', 'SENSOR ROTACAO', 'SENSOR TEMPERATURA', 'SENSOR VELOCIDADE', 'SONDA LAMBDA']},
+            'sensores': {'codigo': '0199', 'itens': ['INTERRUPTOR SENSOR', 'MEDIDOR FLUXO AR', 'MEDIDOR MASSA AR', 'SENSOR FLUXO AR', 'SENSOR ABS', 'SENSOR', 'SENSOR AR CONDICIONADO', 'SENSOR BOIA COMBUSTIVEL', 'SENSOR BORBOLETA', 'SENSOR NIVEL', 'SENSOR ESTACIONAMENTO', 'SENSOR POSICAO ARVORE', 'SENSOR ROTACAO', 'SENSOR VELOCIDADE', 'SENSOR DESGASTE PASTILHA', 'SENSOR DETONACAO', 'SENSOR FASE', 'SENSOR FLUXO AR', 'SENSOR HALL', 'SENSOR MAP', 'SENSOR NIVEL', 'SENSOR PARTIDA', 'SENSOR PASTILHA', 'SENSOR POSICAO BORBOLETA', 'SENSOR POSICAO PEDAL', 'SENSOR PRESSAO', 'SENSOR ROTACAO', 'SENSOR TEMPERATURA', 'SENSOR VELOCIDADE', 'SONDA LAMBDA']},
         }
     },
     'reles': {
@@ -478,7 +487,7 @@ grupos = {
             'default': {'codigo': '0001', 'itens': ['MODULO AIR BAG', 'PARAFUSO ANTI FURTO', 'PORCA FIXACAO MODULO', 'MODULO ENGATE REBOQUE']},
             'modulo_alarme': {'codigo': '0163', 'itens': ['ANTENA/MODULO ALARME', 'MODULO CONTRA ROUBO', 'SISTEMA ANTI FURTO']},
             'modulo_travamento': {'codigo': '0176', 'itens': ['CENTRAL TRAVA ELETRICA', 'CENTRAL ELETRONICA TRAVA', 'CENTRALINA TECH LINE', 'KIT TRAVA ELETRICA', 'MODULO TRAVA ELETRICA', 'MODULO TRAVA ELETRONICA']},
-            'modulo_vidro_eletrico': {'codigo': '0175', 'itens': ['CENTRAL VIDRO ELETRICO', 'INTERFACE COMANDO FECHAMENTO VIDRO', 'MODULO VIDRO ELETRICO', 'SISTEMA VIDRO ELETRICO', 'TEMPORIZADOR VIDRO ELETRICO']},
+            'modulo_vidro_eletrico': {'codigo': '0175', 'itens': ['CENTRAL VIDRO ELETRICO', 'INTERFACE COMANDO FECHAMENTO VIDRO', 'COMANDO FECHADURA TAMPA CACAMBA', 'MODULO VIDRO ELETRICO', 'SISTEMA VIDRO ELETRICO', 'TEMPORIZADOR VIDRO ELETRICO']},
             'modulo_ignicao': {'codigo': '0207', 'itens': ['MODULO ELETRONICO', 'MODULO IGNICAO', 'MODULO INJECAO']},
         }
     },
@@ -580,6 +589,12 @@ grupos = {
     },
 
     #FERRAGENS
+    'arrebites_repuxo': {
+        'codigo': '0114',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['ARREBITE REPUXO']},
+        }
+    },
     'abracadeiras': {
         'codigo': '0061',
         'subgrupos': {
@@ -590,6 +605,12 @@ grupos = {
             'abracadeiras_estabilizadores': {'codigo': '0221', 'itens': ['ABRACADEIRA BARRA ESTABILIZADORA', 'ABRACADEIRA ESTABILIZADORA']},
             'abracadeiras_homocineticas': {'codigo': '0222', 'itens': ['ABRACADEIRA HOMOCINETICA']},
             'abracadeiras_mangueira': {'codigo': '0223', 'itens': ['ABRACADEIRA MANGUEIRA', 'ABRACADEIRA MANGUEIRA COMBUSTIVEL']},
+        }
+    },
+    'alcas': {
+        'codigo': '0090',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['ALCA CABINE']},
         }
     },
     'amortecedores_abertura': {
@@ -660,32 +681,35 @@ grupos = {
     'pinos_dobradicas': {
         'codigo': '0068',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': ['PARAFUSO TAMPA CACAMBA', 'PINO CAPO', 'PINO TAMPAO', 'SUPORTE LIMITADOR PORTA', 'SUPORTE PRESILHA ARTICULACAO']},
+            'default': {'codigo': '0001', 'itens': ['PARAFUSO TAMPA CACAMBA', 'PINO CAPO', 'PINO TAMPAO', 'SUPORTE LIMITADOR PORTA', 'SUPORTE PRESILHA ARTICULACAO', 'DOBRADICA', 'TIRANTE TAMPA CACAMBA']},
             'dobradica_capo': {'codigo': '0229', 'itens': ['BRACO CAPO', 'DOBRADICA CAPO', 'DOBRADICA BRACO CAPO']},
-            'dobradica_porta': {'codigo': '0230', 'itens': ['DOBRADICA PORTA', 'LIMITADOR PORTA']},
+            'dobradica_porta': {'codigo': '0230', 'itens': ['DOBRADICA PORTA', 'LIMITADOR PORTA', 'DOBRADICA MALA']},
             'pino_banco': {'codigo': '0235', 'itens': ['DISPOSITIVO TRAVA BANCO']},
             'pino_porta': {'codigo': '0248', 'itens': ['PINO BATENTE PORTA', 'PINO DOBRADICA PORTA', 'PINO LIMITADOR PORTA', 'PINO MACANETA PORTA', 'PINO PORTA', 'PINO TRAVA PORTA']},
-            'travas': {'codigo': '0254', 'itens': ['TRAVA MACANETA', 'TRAVA TAMPA CACAM', 'TRAVA MANIVELA', 'TRAVA MAQUINA VIDRO', 'TRAVA CILINDRO PORTA', 'ENCOSTO TRINCO QUEBRA VENTO', 'FECHO TRINCO VIDRO', 'FECHO TRINCO QUEBRA VENTO', 'FIXADOR TRINCO QUEBRA VENTO', 'PINO TRINCO VENTAROLA', 'TRINCO BASC', 'TRINCO BASE', 'TRINCO CROMADO', 'TRINCO FIXADOR', 'TRINCO JANELA', 'TRINCO QUEBRA VENTO', 'TRINCO VIDRO']},
+            'travas': {'codigo': '0254', 'itens': ['TRAVA MACANETA', 'TRAVA TAMPA CACAM', 'TRAVA MANIVELA', 'TRAVA MAQUINA VIDRO', 'TRAVA CILINDRO PORTA', 'ENCOSTO TRINCO QUEBRA VENTO', 'FECHO TRINCO VIDRO', 'FECHO TRINCO QUEBRA VENTO', 'FIXADOR TRINCO QUEBRA VENTO', 'PINO TRINCO VENTAROLA', 'TRINCO BASC', 'TRINCO BASE', 'TRINCO CROMADO', 'TRINCO FIXADOR', 'TRINCO JANELA', 'TRINCO QUEBRA VENTO', 'TRINCO VIDRO', 'TRAVA INTERNA TAMPA CACAMBA']},
         }
     },
     #PLÁSTICOS
     'acessorios_externos': {
         'codigo': '0087',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': []},
-            'molduras_externas': {'codigo': '0296', 'itens': ['MOLDURA LANTERNA', 'MOLDURA PLACA', 'MOLDURA ACABAMENTO PARALAMA', 'MOLDURA ACABAMENTO FAROLETE', 'MOLDURA CACAMBA', 'MOLDURA CANTONEIRA CACAMBA', 'MOLDURA CAPO', 'MOLDURA ESPELHO', 'MOLDURA EXTENSAO PARACHOQUE', 'MOLDURA EXTERNA PORTA', 'MOLDURA FAROL', 'MOLDURA FAROLETE', 'MOLDURA FECHO PORTA MALA', 'MOLDURA GRADE', 'MOLDURA INFERIOR GRADE', 'MOLDURA SUPERIOR GRADE', 'MOLDURA LANTERNA TRASEIRA', 'MOLDURA LATERAL PORTA', 'MOLDURA LATERAL JANELA', 'MOLDURA LATERAL',' MOLDURA MACANETA', 'MOLDURA MALA', 'MOLDURA PALHETA', 'MOLDURA PARABRISA', 'MOLDURA PARACHOQUE DIANTEIRO', 'MOLDURA PARACHOQUE', 'MOLDURA PARACHOQUE INFERIOR', 'MOLDURA PARACHOQUE TRASEIRO', 'MOLDURA PARALAMA DIANTEIRO', 'MOLDURA PARALAMA', 'MOLDURA PARALAMA TRASEIRO', 'MOLDURA PLACA', 'MOLDURA PLACA PARACHOQUE', 'MOLDURA PORTA', 'MOLDURA PORTA TRASEIRA', 'MOLDURA PROTECAO', 'MOLDURA PUXADOR PORTA', 'MOLDURA SPOILER', 'MOLDURA SUPERIOR TAMPA', 'MOLDURA SUPERIOR GRADE', 'MOLDURA TAMPA TRASEIRA', 'MOLDURA ESPELHO', 'MOLDURA LANTERNA TRAS', 'MOLDURA COBERTURA PLACA']},
+            'default': {'codigo': '0001', 'itens': ['PORCA MOLDURA PARALAMA']},
+            'molduras_externas': {'codigo': '0296', 'itens': ['MOLDURA LANTERNA', 'MOLDURA PLACA', 'MOLDURA ACABAMENTO PARALAMA', 'MOLDURA ACABAMENTO FAROLETE', 'MOLDURA CACAMBA', 'MOLDURA CANTONEIRA CACAMBA', 'MOLDURA CAPO', 'MOLDURA ESPELHO', 'MOLDURA EXTENSAO PARACHOQUE', 'MOLDURA EXTERNA PORTA', 'MOLDURA FAROL', 'MOLDURA FAROLETE', 'MOLDURA FECHO PORTA MALA', 'MOLDURA GRADE', 'MOLDURA INFERIOR GRADE', 'MOLDURA SUPERIOR GRADE', 'MOLDURA LANTERNA TRASEIRA', 'MOLDURA LATERAL PORTA', 'MOLDURA LATERAL JANELA', 'MOLDURA LATERAL',' MOLDURA MACANETA', 'MOLDURA MALA', 'MOLDURA PALHETA', 'MOLDURA PARABRISA', 'MOLDURA PARACHOQUE DIANTEIRO', 'MOLDURA PARACHOQUE', 'MOLDURA PARACHOQUE INFERIOR', 'MOLDURA PARACHOQUE TRASEIRO', 'MOLDURA PARALAMA DIANTEIRO', 'MOLDURA PARALAMA', 'MOLDURA PARALAMA TRASEIRO', 'MOLDURA PLACA', 'MOLDURA PLACA PARACHOQUE', 'MOLDURA PORTA', 'MOLDURA PORTA TRASEIRA', 'MOLDURA PROTECAO', 'MOLDURA PUXADOR PORTA', 'MOLDURA SPOILER', 'MOLDURA SUPERIOR TAMPA', 'MOLDURA SUPERIOR GRADE', 'MOLDURA TAMPA TRASEIRA', 'MOLDURA ESPELHO', 'MOLDURA LANTERNA TRAS', 'MOLDURA COBERTURA PLACA', 'SAIA PARACHOQUE']},
+        
         }
     },
     'acessorios_internos': {
         'codigo': '0076',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': ['PARAFUSO CINTO', 'PARAFUSO CINTO SEGURANÇA', 'PINO TAMPA PORTA LUVAS', 'BORRACHA MOLDURA INTERRUPTOR']},
+            'default': {'codigo': '0001', 'itens': ['PARAFUSO CINTO', 'PARAFUSO CINTO SEGURANÇA', 'PINO TAMPA PORTA LUVAS', 'BORRACHA MOLDURA INTERRUPTOR', 'CALCO PORTA OBJETO']},
             'bolas_cambio': {'codigo': '0298', 'itens': ['BOLA CAMBIO']},
             'botoes_plastico': {'codigo': '0295', 'itens': ['BOTAO DESEMBACADOR', 'BOTAO FALSO', 'BOTAO FIXACAO', 'BOTAO LIMITADOR', 'BOTAO MACACO', 'BOTAO MANOPLA', 'BOTAO MOLDURA RADIO', 'BOTAO PAINEL CINZEIRO', 'BOTAO REGULAGEM', 'BOTAO TAMPAO', 'BOTAO TRAVA BANCO', 'BOTAO/ACABAMENTO']},
+            'difusores': {'codigo': '0302', 'itens': ['DIFUSOR AR', 'DIFUSOR AR PAINEL', 'DIFUSOR CENTRAL', 'DIFUSOR SAIDA AR', 'SAIDA AR PAINEL']},
             'molduras_internas': {'codigo': '0297', 'itens': ['MOLDURA ACABAMENTO CAIXA AR', 'MOLDURA ACABAMENTO BANCO', 'MOLDURA ACABAMENTO', 'MOLDURA ACABAMENTO INTERNO', 'MOLDURA ACABAMENTO TETO', 'MOLDURA BANCO', 'MOLDURA ALAVANCA BANCO', 'MOLDURA AR FORCADO', 'MOLDURA BOTAO', 'MOLDURA BOTAO TRAVA BANCO', 'MOLDURA BOTAO VIDRO', 'MOLDURA BRACO PORTA', 'MOLDURA CARPETE', 'MOLDURA CENTRAL', 'MOLDURA CENTRAL BOTOES', 'MOLDURA CENTRAL PAINEL', 'MOLDURA CINZERO', 'MOLDURA COBERTURA', 'MOLDURA COLUNA', 'MOLDURA COM LENTE PAINEL', 'MOLDURA DESCANSA BRACO', 'MOLDURA DIFUSOR AR', 'MOLDURA INTERRUPTOR VIDRO ELETRICO', 'MOLDURA LATERAL BANCO', 'MOLDURA LATERAL INTERNA PARABRISA', 'MOLDURA MACANETA INTERNA',' MOLDURA PAINEL', 'MOLDURA PUXADOR VIDRO', 'MOLDURA RADIO', 'MOLDURA DVD', 'MOLDURA VIDRO PORTA INTERNO', 'MOLDURA COLUNA INTERNA', 'MOLDURA ESPELHO INTERNO', 'MOLDURA CINTO SEGURANCA', 'MOLDURA DIFUSOR AR PAINEL', 'MOLDURA COIFA ALAVANCA CAMBIO']},
             'quebra_sol': {'codigo': '0277', 'itens': ['QUEBRA SOL']},
             'manivelas_manoplas_plastico': {'codigo': '0299', 'itens': ['MANIVELA VIDRO', 'MANIVELA REGULADORA VIDRO', 'MANOPLA REGULAGEM']},
             'porta_luvas': {'codigo': '0249', 'itens': ['TAMPAO MACANETA PORTA LUVA']},
+            'revestimentos_internos': {'codigo': '0323', 'itens': ['PLASTICO VEDADOR PORTA', 'REVESTIMENTO PAINEL INFERIOR', 'REVESTIMENTO EXTERNO PAINEL', 'REVESTIDO AR PAINEL' ]},
         }
     },
     'calotas_derivados': {
@@ -727,17 +751,17 @@ grupos = {
     'grades_parachoque': {
         'codigo': '0083',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': ['']},
-            'grade_superior_parachoque': {'codigo': '0001', 'itens': ['']},
-            'grade_inferior_parachoque': {'codigo': '0001', 'itens': ['GRADE CENTRAL', 'GRADE CENTRAL INFERIOR', 'GRADE CENTRAL PARACHOQUE']},
-            'grade_farolete': {'codigo': '0001', 'itens': ['']},
+            'default': {'codigo': '0001', 'itens': ['GRADE PARACHOQUE']},
+            'grade_superior_parachoque': {'codigo': '0270', 'itens': ['GRADE SUPERIOR PARACHOQUE']},
+            'grade_inferior_parachoque': {'codigo': '0271', 'itens': ['GRADE CENTRAL', 'GRADE CENTRAL INFERIOR', 'GRADE CENTRAL PARACHOQUE']},
+            'grade_farolete': {'codigo': '0272', 'itens': ['GRADE FAROLETE']},
             
         }
     },
     'guarnicoes': {
         'codigo': '0085',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': ['BORRACHA PARALAMA', 'BORRACHA CAPOTA', 'BORRACHA PROTETOR CACAMBA', 'FRISO', 'FRISO ESTRIBO', 'FRISO MOLDURA PLACA', 'FRISO PROTETOR CACAMBA', 'FRISO LANTERNA']},
+            'default': {'codigo': '0001', 'itens': ['BORRACHA PARALAMA', 'BORRACHA CAPOTA', 'BORRACHA PROTETOR CACAMBA', 'FRISO', 'FRISO ESTRIBO', 'FRISO MOLDURA PLACA', 'FRISO PROTETOR CACAMBA', 'FRISO LANTERNA', 'GALAO PARALAMA TRASEIRO']},
             'borrachas_capo': {'codigo': '0278', 'itens': ['BORRACHA CAPO', 'BORRACHA CAPO DIANT', 'FRISO CAPO']},
             'borrachas_cofre_motor': {'codigo': '0279', 'itens': ['BORRACHA CAPO/MOTOR', 'BORRACHA COFRE MOTOR', 'BORRACHA MOTOR']},
             'borrachas_chassis': {'codigo': '0280', 'itens': ['BORRACHA CHASSIS']},
@@ -774,9 +798,11 @@ grupos = {
         'codigo': '0080',
         'subgrupos': {
             'default': {'codigo': '0001', 'itens': ['PARACHOQUE']},
+            'absorvedores_parachoques': {'codigo': '0307', 'itens': ['ABSORVEDOR DIANT PARACHOQUE']},
+            'guias_parachoques': {'codigo': '0269', 'itens': ['GUIA PARACHOQUE', 'GUIA PARACHOQUE TRAS', 'GUIA PARACHOQUE DIANT', 'SUPORTE GUIA PARACHOQUE', 'SUPORTE GUIA PARACHOQUE DIANT', 'SUPORTE GUIA PARACHOQUE TRAS']},
             'parachoques_dianteiros': {'codigo': '0257', 'itens': ['PARACHOQUE DIAN', 'PARACHOQUE DIANTEIRO', 'PARACHOQUE IMPULSAO']},
             'parachoques_traseiros': {'codigo': '0258', 'itens': ['PARACHOQUE TRAS', 'PARACHOQUE TRASEIRO']},
-            'guias_parachoques': {'codigo': '0269', 'itens': ['GUIA PARACHOQUE', 'GUIA PARACHOQUE TRAS', 'GUIA PARACHOQUE DIANT', 'SUPORTE GUIA PARACHOQUE', 'SUPORTE GUIA PARACHOQUE DIANT', 'SUPORTE GUIA PARACHOQUE TRAS']},
+            'ponteiras_parachoque': {'codigo': '0325', 'itens': ['PONTEIRA PARACHOQUE', 'PONTEIRA PARACHOQUE TRAS']},
         }
     },
     'retrovisores': {
@@ -791,35 +817,305 @@ grupos = {
         }
     },
     #LATARIAS
+    'alojamentos_farol': {
+        'codigo': '0092',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['ALOJAMENTO FAROL', 'ARO ALOJAMENTO FAROL', 'BOJO (ALOJAMENTO) FAROL']},
+
+        }
+    },
+    'almas_parachoque': {
+        'codigo': '0089',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['']},
+            'almas_parachoque': {'codigo': '0308', 'itens': ['ALMA DIANTEIRA PARACHOQUE', "ALMA PARACHOQUE DIANTEIRO", 'ALMA PARACHOQUE TRASEIRO']},
+            'agregados': {'codigo': '0309', 'itens': ['AGREGADO']},
+        }
+    },
+    'assoalhos': {
+        'codigo': '0088',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['BANDEJA ASSOALHO', "BASE(FUNDO) INTERNA PORTA", 'CHAPA ATERRAMENTO GNV']},
+            'assoalhos': {'codigo': '0305', 'itens': ['ASSOALHO', 'ASSOALHO CACAMBA', 'ASSOALHO CENTRAL', 'ASSOALHO COMPLETO', 'ASSOALHO DIANTEIRO', 'ASSOALHO TRASEIRO', 'CHAPA ASSOALHO', 'CHAPA APOIO PES']},
+            'meio_assoalhos': {'codigo': '0306', 'itens': ['MEIO ASSOALHO', 'MEIO ASSOALHO DIANTEIRO', 'MEIO ASSOALHO TRASEIRO']},
+            'longarinas': {'codigo': '0322', 'itens': ['LONGARINA', 'LONGARINA ASSOALHO', 'LONGARINA DIANTEIRA', 'LONGARINA TRASEIRA', 'PONTA LONGARINA', 'PROTETOR LONGARINA']},
+        }
+    },
     'caixas_ar': {
         'codigo': '0074',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': ['PARAFUSO CAIXA AR']},
+            'default': {'codigo': '0001', 'itens': ['PARAFUSO CAIXA AR', 'PONTA DIANTEIRA CAIXA AR']},
+            'caixas_ar': {'codigo': '0304', 'itens': ['CAIXA AR', 'CAIXA DE AR']},
+        }
+    },
+    'capos': {
+        'codigo': '0093',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': []},
+            'bigodes_capo': {'codigo': '0313', 'itens': ['BIGODE CAPO DIANTEIRO']},
+            'capos': {'codigo': '0314', 'itens': ['CAPO', 'CAPO DIANTEIRO', 'CAPO TRASEIRO']},
+        }
+    },
+    'chapas_cabine': {
+        'codigo': '0094',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['CHAPA GUITARRA CABINE', 'PE COLUNA','CHAPA LATERAL ESTRIBO', 'CURVAO TRASEIRO', 'TAMPA BARRA TORCAO']},
+            'cantos_cabine_interno': {'codigo': '0316', 'itens': ['CANTO INTERNO CABINE']},
+            'cantos_cabine_externo': {'codigo': '0317', 'itens': ['CANTO EXTERNO CABINE', 'PONTA LATERAL', 'PONTA LATERAL TRASEIRO', 'REMENDO CANTO EXTERNO', 'REMENDO CANTO LANTERNA', 'REMENDO CANTO VIDRO', 'REMENDO LATERAL', 'REMENDO (CANTO)']},
+            'chapas_porta': {'codigo': '0321', 'itens': ['FUNDO EXTERNO PORTA', 'FUNDO INTERNO PORTA', 'REMENDO PORTA']},
+        }
+    },
+    'paineis_lataria': {
+        'codigo': '0091',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['BIGODE PAINEL DIANTEIRO', 'PAINEL ABERTURA', 'PAINEL CAIXA RODA', 'PAINEL FECHAMENTO', 'PAINEL', 'CHAPEU NAPOLEAO', 'MEIA LATERAL DIANTEIRA']},
+            'paineis_dianteiro': {'codigo': '0310', 'itens': ['PAINEL DIANTEIRO', 'PAINEL SUPERIOR DIANTEIRO', 'PAINEL SUPERIOR FRONTAL', 'QUADRO RADIADOR ']},
+            'paineis_traseiro': {'codigo': '0311', 'itens': ['PAINEL ACABAMENTO TRASEIRO', 'PAINEL INFERIOR TRASEIRO', 'PAINEL TRASEIRO', 'REFORCO PAINEL TRASEIRO']},
+            'paineis_fechamento': {'codigo': '0320', 'itens': ['FECHAMENTO TRAVESSA CENTRAL PAINEL', 'FECHAMENTO TRAVESSA RADIADOR']},
         }
     },
     'paralamas': {
         'codigo': '0077',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': ['PARAFUSO PARALAMA']},
+            'default': {'codigo': '0001', 'itens': ['PARAFUSO PARALAMA', 'EXTENSOR PARALAMA', 'POLAINA PARALAMA']},
+            'paralamas': {'codigo': '0303', 'itens': ['PARALAMA']},
+            'pontas_paralama': {'codigo': '0324', 'itens': ['PONTA PARALAMA']},
+            'pretetores_paralama': {'codigo': '0315', 'itens': ['CAIXA DE RODA']},
+            'defletores_paralama': {'codigo': '0319', 'itens': ['DEFLETOR PARALAMA TRASEIRO', 'DEFLETOR PARALAMA DIANTEIRO']},
         }
     },
-    'suportes_estepe': {
+    'conjuntos_porta': {
+        'codigo': '0096',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': []},
+            'portas': {'codigo': '0329', 'itens': ['PORTA DIANTEIRA', 'PORTA TRASEIRA']},
+            'tampas_cacamba': {'codigo': '0330', 'itens': ['TAMPA TRASEIRA CACAMBA']},
+        }
+    },
+    'suportes_lataria': {
         'codigo': '0075',
         'subgrupos': {
             'default': {'codigo': '0001', 'itens': ['PARAFUSO FIXACAO ESTEPE', 'PARAFUSO FIXACAO BANDEJA ESTEPE']},
+            'suportes_estepe': {'codigo': '0326', 'itens': ['SUPORTE ESTEPE']},
+            'suportes_painel': {'codigo': '0328', 'itens': ['SUPORTE PAINEL', 'SUPORTE PAINEL DIANTEIRO', 'SUPORTE PAINEL SUPERIOR']},
+            'suportes_parachoque': {'codigo': '0327', 'itens': ['SUPORTE LATERAL PARACHOQUE', 'SUPORTE PARACHOQUE']},
+            'bacia_estepe': {'codigo': '0001', 'itens': ['BACIA CAIXA ESTEPE']},
+        }
+    },
+    'travessas': {
+        'codigo': '0097',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['TRAVESSA TRASEIRA', 'TRAVESSA (LONGARINA)']},
+            'travessas_assoalho': {'codigo': '0331', 'itens': ['TRAVESSA ASSOALHO TRASEIRO']},
+            'travessas_chassis': {'codigo': '0332', 'itens': ['TRAVESSA CHASSIS', 'TRAVESSA TANQUE']},
+            'travessas_fechamento': {'codigo': '0333', 'itens': ['TRAVESSA FECHAMENTO', 'TRAVESSA TRASEIRA CACAMBA', 'TRAVESSA TRASEIRA ENTRE TAMPAS', 'TRAVESSA TRASEIRA MALA']},
+            'travessas_painel': {'codigo': '0334', 'itens': ['TRAVESSA CENTRAL PAINEL DIANTEIRO', 'TRAVESSA INFERIOR PAINEL DIANTEIRO', 'TRAVESSA PAINEL DIANTEIRO', 'TRAVESSA PAINEL FRONTAL', 'TRAVESSA PAINEL TRASEIRO', 'TRAVESSA PAINEL SUPERIOR DIANTEIRO']},
+            'travessas_radiador': {'codigo': '0335', 'itens': ['TRAVESSA RADIADOR']},
+            'travessas_suspensao': {'codigo': '0336', 'itens': ['TRAVESSA DIANTEIRA MOLA']},
+            'travessas_transmissao': {'codigo': '0337', 'itens': ['TRAVESSA DIANTEIRA CAMBIO MOTOR']},
         }
     },
     #ACESSORIOS
+    'aerofolios': {
+        'codigo': '0116',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['AEROFOLIO']},
+        }
+    },    
+    'acessorios_carga': {
+        'codigo': '0118',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['KIT FIXACAO SANTO ANTONIO', 'KIT SANTO ANTONIO']},
+            'santo_antonio': {'codigo': '0378', 'itens': ['GRADE VIGIA (SANTO ANTONIO)', 'SANTO ANTONIO CACAMBA', 'SANTO ANTONIO']},
+            'protetores_carga': {'codigo': '0379', 'itens': ['PROTETOR DE CARGA']},
+        }
+    },    
+    'acessorios_reboque': {
+        'codigo': '0122',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['CANCELER PARA REBOQUE', 'CAPA PARA ENGATE REBOQUE', 'COBERTURA GANCHO REBOQUE']},
+            'engates_reboque': {'codigo': '0382', 'itens': ['ENGATE REBOQUE', 'MUNHAO/MUNHECA ENGATE REBOQUE', 'MUNHAO', 'MUNHECA']},
+            'tomadas_reboque': {'codigo': '0383', 'itens': ['TOMADA DE REBOQUE MACHO', 'TOMADA REBOQUE COMPLETA', 'MIOLO TOMADA REBOQUE', 'KIT FIXAR TOMADA REBOQUE']},
+        }
+    },    
+    'bagageiros_racks': {
+        'codigo': '0117',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': []},
+            'bagageiros': {'codigo': '0376', 'itens': ['BAGAGEIRO TETO HILUX PRETO']},
+            'racks': {'codigo': '0377', 'itens': ['RACK ALUMINIO PRETO', 'RACK BARRA TETO', 'RACK BAGAGEIRO TETO', 'RACK CABINE DUPLA', 'RACK C/S/TETO SOLAR', 'RACK', 'RACK TETO', 'RACK TRAVESSA']},
+        }
+    },    
+    'calhas_chuva': {
+        'codigo': '0121',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['CALHA CHUVA']},
+        }
+    },    
     'limpadores': {
         'codigo': '0079',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': ['PARAFUSO FIXACAO ESTEPE', 'PARAFUSO FIXACAO BANDEJA ESTEPE']},
+            'default': {'codigo': '0001', 'itens': ['PARAFUSO FIXACAO ESTEPE', 'PARAFUSO FIXACAO BANDEJA ESTEPE', 'CAPA BRACO LIMPADOR', 'CAPA PARAFUSO BRACO LIMPADOR ESCORT/VERONA/APOLLO/BLAZER', 'KIT BRACO LIMPADOR TOPIC/BESTA KAMCO', 'TAMPA BRACO LIMPADOR']},
             'pivos_limpadores': {'codigo': '0001', 'itens': ['PIVO LIMPADOR']},
             'barras_limpadores': {'codigo': '0255', 'itens': ['BARRA LIMPADOR']},
+            'bracos_limpadores': {'codigo': '0373', 'itens': ['BRACO LIMPADOR']},
+            'palhetas': {'codigo': '0374', 'itens': ['PALHETA']},
         }
     },    
-}
+    'lonas_maritimas': {
+        'codigo': '0115',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['BUCHA APERTO CABO ACO LONA', 'PAR SUPORTE TRASEIRO LONA']},
+            'lonas_maritmas': {'codigo': '0375', 'itens': ['LONA MARITIMA', 'LONA MARITMA']},
+        }
+    },    
+    'protetores_motor': {
+        'codigo': '0095',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['CHAPA PROTETORA MOTOR']},
+            'protetores_carter': {'codigo': '0318', 'itens': ['PROTETOR CARTER']}, 
+        }
+    },
+    'spoilers': {
+        'codigo': '0119',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': []},
+            'spoilers': {'codigo': '0381', 'itens': ['SPOILER', 'SPOILER DIANT']}, 
+            'saias_laterais': {'codigo': '0380', 'itens': ['SPOILER (SAIA) LATERAL', 'SPOILER LATERAL']}, 
+        }
+    },
+    'tapetes': {
+        'codigo': '0120',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['TAPETE', 'JOGO TAPETE UNIVERSAL DIANT', 'JOGO TAPETE UNIVERSAL TRAS', 'TAPETE DIANT', 'TAPETE TRAS', 'TAPETE BANDEJA BESTA 2 PCS', 'TAPETE CARPETE ECOSPORT 13/', 'TAPETE PORTA MALA PRATICBAG MULTIUSO SERIE 2']},
+        }
+    },
+    #LUBRIFICANTES
+    'oleos_hidraulicos': {
+        'codigo': '0098',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['OLEO HIDRAULICO MAXLIFE ATF', 'OLEO HIDRAULICO ATF PETRONAS TUTELA DEXRON III GI/E 1L', 'OLEO PETRONAS HIDRAULICO TUTELA TASA 1L']},
+        }
+    },    
+    'oleos_diesel': {
+        'codigo': '0099',
+        'subgrupos': {
+            'oleos_diesel_sintetico': {'codigo': '0338', 'itens': ['OLEO SINTETICO DIESEL 5W30 GULF FORMULA CX API-SN', 'OLEO SINTETICO DIESEL 5W30 GULF FORMULA GVX API-SN 1L (AMAROK)', 'OLEO SINTETICO DIESEL 5W30 LUBEL API-SN 1L']},
+            'oleos_diesel_minerais': {'codigo': '0339', 'itens': ['OLEO MINERAL DIESEL 15W40 GULF SUPER DUTY LE PLUS API CI-4', 'OLEO MINERAL DIESEL 15W40 GULF SUPERFLEET SUPREME API CI-4 1L', 'OLEO MINERAL DIESEL 15W40 LUBEL CI-4 1L', 'OLEO MINERAL DIESEL 15W40 MOTORCRAFT HD API CI-4 1L', 'OLEO MINERAL DIESEL 15W40 NCA TURBO DIESEL API CI-4 1L']},
+        }
+    },    
+    'oleos_industrial': {
+        'codigo': '0100',
+        'subgrupos': {
+            'oleos_engrenagens_transmissao': {'codigo': '0340', 'itens': ['OLEO 75W90 SINTETICO ENGRENAGENS EXTRA GEAR BLOCANTE', 'OLEO MINERAL 75W80 ENGRENAGENS GL5 EXTRA GEAR', 'OLEO SEMISSINTETICO 75W80 DXLUB VECTOR SAE API GL5 1L (ENGRENAGENS E CAMBIO MANUAL)', 'OLEO SEMISSINTETICO 75W90 (TRANSMISSAO MANUAL) PETRONAS TUTELA ZC 75 SYNTH API GL5 1L', 'OLEO EP 90 MINERAL ENGRENAGENS GL5 BRUTUS']},
+            'oleos_compressores': {'codigo': '0341', 'itens': ['OLEO PARA COMPRESSORES AW150 1L']},
+        }
+    },    
+    'oleos_linha_leve': {
+        'codigo': '0101',
+        'subgrupos': {
+            'oleo_0W20': {'codigo': '0342', 'itens': ['OLEO MOTOR 0W20 SN SINTEK K 1L', 'OLEO SINTETICO 0W20 GULF ULTRASY. GDI API SP 1L', 'OLEO SINTETICO 0W20 LUBEL API SP 1L', 'OLEO SINTETICO 0W20 NCA ECOTEC API SN 1L', 'OLEO SYNTIUM 7000 AM 0W20 SP', 'OLEO SYNTIUM 7000 XS 0W20 SP']},
+            'oleo_0W30': {'codigo': '0343', 'itens': ['OLEO SINTETICO 0W30 GULF FORMULA GVX API SN 1L (VW 50700/50400)', 'OLEO SINTETICO 0W30 GULF ULTRASYNTH GDI API SP 1L']},
+            'oleo_5W20': {'codigo': '0344', 'itens': ['OLEO SINTETICO 5W20 GULF ULTRASYNTH GDI API SP 1L', 'OLEO SINTETICO 5W20 PETRONAS SYNTIUM 5000 FR API SN 1L']},
+            'oleo_5W30': {'codigo': '0345', 'itens': ['OLEO SINTETICO 5W30 GULF ULTRASYNTH GDI API-SP 1L', 'OLEO SINTETICO 5W30 SELENIA PERFORM API-SP 1L (ZETEC/ECONOMY/PUNTO)', 'OLEO SINTETICO 5W30 SINTEK K']},
+            'oleo_5W40': {'codigo': '0346', 'itens': ['OLEO SINTETICO 5W40 (MOTO) GULF SYNTRAC 4T SAE API SL 1L', 'OLEO SINTETICO 5W40 GULF FORMULA G API SN 1L (VW 50200/50500)', 'OLEO SINTETICO 5W40 GULF ULTRASYNTH GDI API SP/API SN PLUS 1L', 'OLEO SINTETICO 5W40 SN SINTEK K', 'OLEO SINTETICO 5W40 VW SHELL MAXI PERFORMANCE API SN 1L (ORIGINAL VW 50200/50500)', 'OLEO SINTETICO 5W40 VW SHELL MAXI PERFORMANCE API SN 1L (ORIGINAL VW 50888/50999)']},
+            'oleo_10w30': {'codigo': '0347', 'itens': ['OLEO SEMI-SINTETICO 10W30 (PARA MOTOS) NCA 4T API SL 1L', 'OLEO SEMI-SINTETICO 10W30 (PARA MOTOS) VRLUB MULTIMOTO SUPER 4T API SL 1L (CICLO OTTO)', 'OLEO SEMI-SINTETICO 10W30 GULF TEC API SL 1L', 'OLEO MINERAL 10W30 SN MAX HT']},
+            'oleo_10w40': {'codigo': '0348', 'itens': ['OLEO SEMI-SINTETICO 10W40 SP LUBEL 1L']},
+            'oleo_15w40': {'codigo': '0349', 'itens': ['OLEO SEMI-SINTETICO 15W40 GULF TEC API SL 1L', 'OLEO SEMI-SINTETICO 15W40 LUBEL API SL 1L', 'OLEO SEMI-SINTETICO 15W40 PETRONAS SELENIA K API SP 1L', 'OLEO SEMI-SINTETICO 15W40 PETRONAS SYNTIUM 800 SE API SP 1L', 'OLEO SEMI-SINTETICO 15W40 SUPER K SL']},
+            'oleo_20w50': {'codigo': '0350', 'itens': ['OLEO MINERAL 20W50 (PARA MOTOS) GULF PRIDE 4T PLUS API SL 1L', 'OLEO MINERAL 20W50 LUBEL API-SL 1L', 'OLEO MINERAL 20W50 PETRONAS SYNTIUM 300 API SL 1L', 'OLEO MINERAL 20W50 SUPER K SL']},
+            'oleo_80W': {'codigo': '0355', 'itens': ['OLEO DE CAMBIO MINERAL 80W GULF GEAR EP API GL4 1L']},
+            'oleo_90W': {'codigo': '0356', 'itens': ['OLEO DE CAMBIO MINERAL 90W GULF GEAR EP API GL4 1L']},
+            'oleo_140W': {'codigo': '0357', 'itens': ['OLEO DE CAMBIO MINERAL 140W GULF GEAR EP 140 API GL4 1L ']},
+            'oleo_ATF': {'codigo': '0354', 'itens': ['OLEO SEMISSINTETICO ATF MOBIL LT71141 GSP 1L']},
+        }
+    },    
+    'oleos_linha_pesada': {
+        'codigo': '0102',
+        'subgrupos': {
+            'oleos_transmissao__pesada': {'codigo': '0351', 'itens': ['OLEO MINERAL DE CAMBIO MINERAL 140W GULF GEAR EP 140 API GL4 1L', 'OLEO MINERAL DE CAMBIO/CAIXA 80W90 GULF GEAR MP API GL5 1L', 'OLEO MINERAL DE CAMBIO/CAIXA 80W90 MOTUL SAE80W90 1L', 'OLEO MINERAL DE CAMBIO/CAIXA 80W90 PETRONAS TUTELA CAREPYX API GL4 1L', 'OLEO MINERAL DE CAMBIO/CAIXA 85W140 PETRONAS TUTELA TRD API GL5 1L', 'OLEO SEMISSINTETICO 75W90 (TRANSMISSAO MANUAL) PETRONAS TUTELA ZC 75 SYNTH API GL5 1L']},
+        }
+    },    
+    'oleos_diversos': {
+        'codigo': '0103',
+        'subgrupos': {
+            'oleos_maquinas_equipamentos': {'codigo': '0352', 'itens': ['OLEO PARA MAQUINA 100ML', 'OLEO PROTETIVO PARA CHASSIS 1L (ANTI RUST)', 'OLEO MINERAL (MOTORES NAUTICOS 2T) GULF MARINE OUTBOARD NMMA TCW3 500ML (2 TEMPO)']},
+            'oleos_diversos': {'codigo': '0353', 'itens': ['OLEO VR ECTRON 68 1L']},
+        }
+    },    
+    #QUIMICOS
+    'aditivos': {
+        'codigo': '0104',
+        'subgrupos': {
+            'aditivos_combustivel': {'codigo': '0359', 'itens': ['ADITIVO COMBUSTIVEL DIESEL FUEL TREATMENT 200ML', 'ADITIVO COMBUSTIVEL FLEX TREATMENT 236ML', 'ADITIVO COMBUSTIVEL FUEL INJECTOR CLEANER 200ML', 'ADITIVO COMBUSTIVEL GAS TREATMENT 236ML', 'ADITIVO COMBUSTIVEL INTAKE CLEANER 236ML', 'ADITIVO COMBUSTIVEL NEW DIESEL INJECTOR CLEANING 200ML', 'ADITIVO COMBUSTIVEL NEW FUEL INJECTOR CLEANING 200ML', 'ADITIVO COMBUSTIVEL NEW GAS TREATMENT 200ML', 'ADITIVO COMBUSTIVEL NEW OCTANE BOOSTER 200ML', 'ADITIVO COMBUSTIVEL OCTANE BOOSTER 200ML']},
+            'aditivos_limpeza': {'codigo': '0360', 'itens': ['ADITIVO DESCONTAMINANTE RESET 1L', 'ADITIVO LIMPEZA ULTRA 5 EM 1 375ML', 'ADITIVO LIMPA PARABRISA 100ML', 'ADITIVO LIMPA PARABRISA 100ML MAXXI VISAO', 'ADITIVO GASOLINA LIMPEZA BICOS ORBI LBG 500ML', 'ADITIVO GASOLINA/ALCOOL ORBI 200ML']},
+            'aditivos_oleo': {'codigo': '0361', 'itens': ['ADITIVO OLEO MOTOR (BREAK SMOKE) 500ML', 'ADITIVO OLEO MOTOR BREAK SMOKE', 'ADITIVO OLEO OIL TREATMENT 450ML', 'ADITIVO OLEO SMOKE TREATMENT 450ML']},
+            'aditivos_radiador': {'codigo': '0362', 'itens': ['ADITIVO RADIADOR 1L', 'ADITIVO RADIADOR ANTIRUST CONCENTRADO VERDE 1L', 'ADITIVO RADIADOR ANTIRUST ORGANICO CONCENTRADO ROSA 1L', 'ADITIVO RADIADOR ANTIRUST ORGANICO PRONTO PARA USO VERDE 1L', 'ADITIVO RADIADOR CELSIUS CONCENTRADO ROSA 1L', 'ADITIVO RADIADOR CELSIUS TRP CONCENTRADO VERDE 1L', 'ADITIVO RADIADOR CONCENT.HIBRIDO PARAFLU VERDE', 'ADITIVO RADIADOR CONCENT.ORGANICO PARAFLU ROSA', 'ADITIVO RADIADOR CONCENTRADO ALLUMINATO ROSA SINTETICO 1L', 'ADITIVO RADIADOR CONCENTRADO ALLUMINATO VERDE SINTETICO 1L', 'ADITIVO RADIADOR CONCENTRADO AZUL 1L', 'ADITIVO RADIADOR CONCENTRADO ORGANICO ROSA', 'ADITIVO RADIADOR CONCENTRADO VERDE 1L', 'ADITIVO RADIADOR PARAFLU PRONTO PARA USO VERDE 1L', 'ADITIVO RADIADOR PRONTO PARA USO ROSA 5L', 'ADITIVO RADIADOR PRONTO USO ORGANICO PARAFLU ROSA', 'ADITIVO RADIADOR SUPER PREMIUM VERDE 1L', 'ADITIVO REMOV MASTER ALLUMINATO 1L', 'ADITIVO SUPER RAD ORGANICO AMARELO 1L']},
+        }
+    },
+    'aguas_quimicas': {
+        'codigo': '0105',
+        'subgrupos': {
+            'aguas_desmineralizadas': {'codigo': '0363', 'itens': ['AGUA DESMINERALIZADA 1L']},
+        }
+    },
+    'fluidos': {
+        'codigo': '0106',
+        'subgrupos': {
+            'fluidos_freio': {'codigo': '0364', 'itens': ['FLUIDO (LIQUIDO) FREIO DOT 3 200ML', 'FLUIDO (LIQUIDO) FREIO DOT 3 500ML', 'FLUIDO (LIQUIDO) FREIO DOT 4 200ML', 'FLUIDO (LIQUIDO) FREIO DOT 4 500ML']},
+        }
+    },
+    'gases': {
+        'codigo': '0112',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['GAS ARGONIO + CO² 7M³ (MISTURA ATAL PARA SOLDA MIG/TIG)', 'GAS FREON R134A 1KG', 'GAS OXIGENIO 1 METRO CUBICO', 'GAS OXIGENIO 7 METROS CUBICO']},
+        }
+    },    
+    'lubrificantes_quimicos': {
+        'codigo': '0107',
+        'subgrupos': {
+            'desengripantes': {'codigo': '0365', 'itens': ['DESENGRIPANTE SPRAY TECBRIL 300ML', 'LUBRIFICANTE DESENGRIPANTE', 'LUBRIFICANTE DESENGRIPANTE 300ML', 'LUBRIFICANTE DESENGRIPANTE CARLUB 300ML', 'LUBRIFICANTE PARA CORRENTES SPRAY 250ML', 'LUBRIFICANTE SPRAY VLUB PARA BARRA DESCONTAMINANTE 500ML']},
+            'lubrificantes_diversos': {'codigo': '0366', 'itens': ['MILITEC-1 ADITIVO OLEO MOTOR/CONDICIN.METAIS 200ML', 'MILITEC1 FRASCO 40ML', 'BARDAHL GA LUBRIFICANTE CAIXA E DIFERENCIAL']},
+        }
+    },
+    'desengraxantes': {
+        'codigo': '0108',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['GAVEA G400 DESENGRAXANTE 5L', 'DESCARBONIZANTE CAR 80', 'ORANGE GEL DESENGRAXANTE GAVEA 3,5KG', 'PASTA DESENGRAXANTE GEL 500G', 'SOLUCAO DESENGRAXANTE 900ML']},
+        }
+    },
+    'graxas': {
+        'codigo': '0109',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['GRAFITE SPRAY 300ML', 'GRAXA 500G', 'GRAXA AZUL ROLAMENTO 500G', 'GRAXA BISNAGA BRANCA 80GR', 'GRAXA BRANCA NAUTICA/AUTOMOTIVA 500G / 500ML', 'GRAXA BRANCA SPRAY 250ML', 'GRAXA BRANCA SPRAY 300ML', 'GRAXA CHASSIS 500G', 'GRAXA GRAFITADA P/HOMOCINETICA BISNAGA']},
+        }
+    },
+    'limpeza_automotiva': {
+        'codigo': '0110',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['REVITALIZADOR PARA PNEUS SHINY 1,5L', 'TUFF STUFF SPRAY/ESPUMA LIMPEZA AUTOM/ESTOF 300ML', 'JIMO CUPIM', 'LAVA AUTOS ARMORALL 500ML', 'DETECAR A SC', 'SOLUCAR AG', 'LIMPA AR CONDICIONADO AUTO AIR CLEANER 250ML', 'CONDICIONADOR DE PLASTICO', 'LIMPA FREIO BRAKE PARTS CLEAN 300ML', 'LIMPA FREIOS SPRAY']},
+        }
+    },
+    'quimicos_diversos': {
+        'codigo': '0111',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': ['PASTA PARA ESMERILHAR VALVULAS']},
+            'quimicos_reparo': {'codigo': '0367', 'itens': ['SELANTE INFLADOR REPARADOR PNEU QUICK FIX 340G', 'SILENCIADOR DE FREIOS ANTI-CHIO', 'CIMENTO EM PO RADIADORES STOP LEAK ABRO', 'STOP PLUS FRASCO 250ML', ]},
+            'solucoes_baterias': {'codigo': '0368', 'itens': ['SOLUCAO ACIDA PARA BATERIA 1L']},
+            'resinas': {'codigo': '0369', 'itens': ['CIMENTO EM PO RADIADORES STOP LEAK ABRO', 'RESINA POLIESTER AD. REFORCADO P/ LAMINACAO COM CATALISADOR']},
+            'soldas': {'codigo': '0370', 'itens': ['CARBURETO CALCIO KG', 'PASTA PARA SOLDA ESTANHO', 'PASTA SOLDAR ESTANHO']},
+            'solventes': {'codigo': '0371', 'itens': ['SOLVENTE AGUARRAS 5L', 'SOLVENTE AGUARRAS 900ML']},
+            'vaselinas': {'codigo': '0372', 'itens': ['VASELINA LIQUIDA MERCOOIL 1L', 'VASELINA SOLIDA 900G', 'VASELINA VONDER 100G', 'VASELINA VONDER 450G']},
+        }
+    },
 
+    #FERRAMENTAS
+    '': {
+        'codigo': '',
+        'subgrupos': {
+            'default': {'codigo': '0001', 'itens': []},
+        }
+    },
+}
 
 
 
@@ -914,7 +1210,7 @@ while option != "2":
                 #     pyautogui.doubleClick(x=1124, y=622)
                 #     time.sleep(0.2)
 
-                # filtro_operacao(["BOLA CAMBIO"])
+                # filtro_operacao([''])#
 
                 if grupoescolhido:
                     pyautogui.typewrite(grupoescolhido)
@@ -937,6 +1233,7 @@ while option != "2":
                 time.sleep(0.1)
             else:
                 exit()
+        exit()
     elif option == "2": # Se a opção for 4, sai do programa
         print("Saindo do programa...")
         exit()
