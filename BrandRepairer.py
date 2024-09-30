@@ -8,7 +8,18 @@ pytesseract.tesseract_cmd = caminho_tesseract # Define o caminho para o pytesser
 tempo_de_execucao = 40000
 tempo_inicial = time.time() # Regra para definir o período de tempo
 time.sleep(3.5)
-
+print("Iniciando operação de classificação de itens em 5 segundos...") 
+time.sleep(1) #
+print("4 segundos...")
+time.sleep(1)
+print("3 segundos...")
+time.sleep(1)
+print("2 segundos...")
+time.sleep(1)
+print("1 segundo...")
+time.sleep(1)
+print("Iniciando operação...") 
+        
 def screenshot():
     screenshotdesc = pyautogui.screenshot(region=(220, 86, 59, 17)) # Captura a descrição do item
     screenshotdesc = screenshotdesc.convert("L")
@@ -27,10 +38,11 @@ while(time.time() - tempo_inicial) < tempo_de_execucao and Breaker.verificar_int
     else:
         exit()
     time.sleep(1.4)
-    pyautogui.tripleClick(248, 94)
+    pyautogui.tripleClick(249, 91)
     time.sleep(1)
     pyautogui.typewrite('INDET')
     time.sleep(0.5)
     pyautogui.click(248, 75)
     time.sleep(0.5)
     pyautogui.click(248, 75)
+    time.sleep(0.5)
