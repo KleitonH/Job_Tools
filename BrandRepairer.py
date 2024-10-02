@@ -7,6 +7,7 @@ caminho_tesseract = "C:\\Program Files\\Tesseract-OCR\\tesseract.exe" # Caminho 
 pytesseract.tesseract_cmd = caminho_tesseract # Define o caminho para o pytesseract
 tempo_de_execucao = 40000
 tempo_inicial = time.time() # Regra para definir o período de tempo
+contador_verificados = -1
 time.sleep(3.5)
 print("Iniciando operação de classificação de itens em 5 segundos...") 
 time.sleep(1) #
@@ -31,9 +32,11 @@ def screenshot():
 
 monitor_thread = Breaker.iniciar_monitoramento()
 while(time.time() - tempo_inicial) < tempo_de_execucao and Breaker.verificar_interrupcao():
+    contador_verificados += 1
+    print(f"Itens corrigidos: {contador_verificados}")
     textdesc = screenshot()
     print(textdesc)
-    if '' in textdesc or "---" in textdesc:
+    if '' == textdesc or "---" == textdesc:
         pass
     else:
         exit()
