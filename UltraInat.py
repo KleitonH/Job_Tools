@@ -74,18 +74,19 @@ while option != "2":
                 textcod = pytesseract.image_to_string(screenshotcod) # Converte para texto
                 clean_textcod = re.sub(r'[@,!#.]', '', textcod) #Limpa qualquer algarismo indesejado interpretado pelo Tesseract
                 time.sleep(2) # Intervalo
-                pyautogui.click(443, 742) # Clica na posição do ícone da barra de tarefas do sistema
+                pyautogui.click(1159, 1048) # Clica na posição do ícone da barra de tarefas do sistema
                 time.sleep(0.9) 
-                pyautogui.click(329, 703) # Clica na outra aba de sistema aberta
+                pyautogui.click(1039, 937) # Clica na outra aba de sistema aberta
                 time.sleep(1)
 
-                screenshotwatcher2 = pyautogui.screenshot(region=(77, 630, 280, 25)) # Segundo método de verificação, segue a mesma lógica do primeiro, buscando outras palavras. Garante que esteja na tela correta de operação
+                screenshotwatcher2 = pyautogui.screenshot(region=(69, 926, 298, 26)) # Segundo método de verificação, segue a mesma lógica do primeiro, buscando outras palavras. Garante que esteja na tela correta de operação
                 screenshotwatcher2 = screenshotwatcher2.convert("L") # Converte para escala de cinza
                 screenshotwatcher2.save('./screenshots/screenshotwatcher2.png') # Salva a imagem
                 from PIL import Image # Interpretação de imagem
                 screenshotwatcher2 = Image.open('./screenshots/screenshotwatcher2.png') # Recebimento da imagem
                 textwatcher2 = pytesseract.image_to_string(screenshotwatcher2) # Converte para texto
-                watch3 = "sistnias" # Palavra-chave
+                print(textwatcher2)
+                watch3 = "iascm" # Palavra-chave
                 time.sleep(0.5) # Intervalo de segurança
                 # print (textwatcher2)
 
@@ -118,9 +119,9 @@ while option != "2":
                     else: # Se não houver erro
                         if not Breaker.verificar_interrupcao():
                             exit()
-                        time.sleep(1) # Intervalo de segurança
+                        time.sleep(0.2) # Intervalo de segurança
                         pyautogui.press("enter") # Clica no item encontrado
-                        time.sleep(0.2)
+                        time.sleep(1.4)
                         pyautogui.press("enter") # Clica no item na lista de similares, caso haja
                         time.sleep(0.8) # Intervalo de segurança
                         pyautogui.click(310, 101) # Clica na aba de Histórico de Movimentações

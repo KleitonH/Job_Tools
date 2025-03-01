@@ -1,11 +1,11 @@
 
 from email.mime import text 
 import pyautogui # Importação da biblioteca Pyautogui para controle do mouse e teclado 
+from PIL import Image
 import time # Importação da biblioteca time para intervalos de tempo 
 import re # Importação da biblioteca re para modificação de strings
 import pickle # Importação da biblioteca pickle para salvar arquivos
 import Breaker
-from pyscreeze import screenshot # Importação da biblioteca pyscreeze para captura de tela
 from pytesseract import pytesseract # Importação da biblioteca pytesseract para conversão de imagens em strings
 caminho_tesseract = "C:\\Program Files\\Tesseract-OCR\\tesseract.exe" # Caminho para o executável do pytesseract
 pytesseract.tesseract_cmd = caminho_tesseract # Define o caminho para o pytesseract
@@ -99,7 +99,6 @@ while option != "4":
             screenshotwatcher = pyautogui.screenshot(region=(38, 22, 150, 45)) # Primeira variável de segurança, captura a tela no tamanho e posição definidos (x, y, largura e altura)
             screenshotwatcher = screenshotwatcher.convert("L") # Converte a captura para escala monocromática, permitindo uma melhor conversão de dados
             screenshotwatcher.save('./screenshots/screenshotwatcher.png') # Salva a captura com o nome do arquivo .png dado
-            from PIL import Image # Importa a biblioteca PIL para interpretação de imagens
             screenshotwatcher = Image.open('./screenshots/screenshotwatcher.png') # A variável recebe o arquivo de imagem dado
             textwatcher = pytesseract.image_to_string(screenshotwatcher) # Cria uma variável que recebe dados strings transformados pelo pytesseract, o qual interpreta a imagem e localiza textos.
             watch = 'Livre' # Define uma palavra-chave que deve ser encontrada no conjunto de textos convertidos
@@ -108,27 +107,26 @@ while option != "4":
 
             if watch in textwatcher or watch2 in textwatcher: # Se a palavra-chave 1 ou 2 estiverem no texto
                 time.sleep(0.3) # Intervalo de segurança
-                screenshotcod = pyautogui.screenshot(region=(37, 743.5, 59, 15)) # Variável para receber código da célula do item da tabela
+                screenshotcod = pyautogui.screenshot(region=(37, 743, 59, 15)) # Variável para receber código da célula do item da tabela
                 screenshotcod = screenshotcod.convert("L")  # Converte para escala de cinza
                 screenshotcod.save('./screenshots/screenshotcod.png') # Salva a imagem
 
-                from PIL import Image # Interpretação de imagem
                 screenshootcod = Image.open('./screenshots/screenshotcod.png') # Recebimento da imagem
                 textcod = pytesseract.image_to_string(screenshotcod) # Converte para texto
                 time.sleep(2) # Intervalo
-                pyautogui.click(559, 873) # Clica na posição do ícone da barra de tarefas do sistema
+                pyautogui.click(1159, 1048) # Clica na posição do ícone da barra de tarefas do sistema
                 time.sleep(0.9) 
-                pyautogui.click(470, 809) # Clica na outra aba de sistema aberta
+                pyautogui.click(1039, 937) # Clica na outra aba de sistema aberta
                 time.sleep(1)
 
-                screenshotwatcher2 = pyautogui.screenshot(region=(77, 769, 280, 25)) # Segundo método de verificação, segue a mesma lógica do primeiro, buscando outras palavras. Garante que esteja na tela correta de operação
+                screenshotwatcher2 = pyautogui.screenshot(region=(69, 926, 298, 26)) # Segundo método de verificação, segue a mesma lógica do primeiro, buscando outras palavras. Garante que esteja na tela correta de operação
                 screenshotwatcher2 = screenshotwatcher2.convert("L") # Converte para escala de cinza
                 screenshotwatcher2.save('./screenshots/screenshotwatcher2.png') # Salva a imagem
-                from PIL import Image # Interpretação de imagem
                 screenshotwatcher2 = Image.open('./screenshots/screenshotwatcher2.png') # Recebimento da imagem
-                textwatcher2 = pytesseract.image_to_string(screenshotwatcher2) # Converte para texto
+                textwatcher2 = pytesseract.image_to_string(screenshotwatcher2, lang='por') # Converte para texto
                 watch3 = "sistan" # Palavra-chave
                 time.sleep(0.5) # Intervalo de segurança
+                print(screenshotwatcher2)
 
                 if watch3 in textwatcher2: # Se a palavra-chave estiver no texto
                     time.sleep(0.5) # Intervalo de segurança
@@ -140,7 +138,6 @@ while option != "4":
                     screenshoterror = pyautogui.screenshot(region=(680, 402, 235, 60)) # Observa se houve um erro de identificação de registro
                     screenshoterror = screenshoterror.convert("L") # Converte para escala de cinza
                     screenshoterror.save('./screenshots/screenshoterror.png') # Salva a imagem
-                    from PIL import Image # Interpretação de imagem 
                     screenshooterror = Image.open('./screenshots/screenshoterror.png') # Recebimento da imagem
                     texterror = pytesseract.image_to_string(screenshoterror) # Converte para texto
                     errorname = 'registro' # Palavra-chave de erro
@@ -162,13 +159,11 @@ while option != "4":
                         screenshotdate = pyautogui.screenshot(region=(118, 419, 56, 17)) # Captura a data do total de modificações de entrada do item no último ano
                         screenshotdate = screenshotdate.convert("L")  # Converte para escala de cinza
                         screenshotdate.save('./screenshots/screenshotdate.png') # Salva a imagem
-                        from PIL import Image # Interpretação de imagem
                         screenshootdate = Image.open('./screenshots/screenshotdate.png') # Recebimento da imagem
                         textdate = pytesseract.image_to_string(screenshotdate) # Converte para texto
                         screenshotdate2 = pyautogui.screenshot(region=(238, 419, 56, 17)) # Captura a data do total de modificações de entrada de devoluções do item no último ano
                         screenshotdate2 = screenshotdate2.convert("L")  # Converte para escala de cinza
                         screenshotdate2.save('./screenshots/screenshotdate2.png') # Salva a imagem
-                        from PIL import Image # Interpretação de imagem
                         screenshootdate2 = Image.open('./screenshots/screenshotdate2.png') # Recebimento da imagem
                         textdate2 = pytesseract.image_to_string(screenshotdate2) # Converte para texto
                         padrao_numerico = r'\b\d+\.\d+|\b[0-9]+\b' # Define um padrão de busca de números, neste caso, para converter a string da imagem em um número na próxima etapa
@@ -201,7 +196,6 @@ while option != "4":
                             screenshoterror2 = pyautogui.screenshot(region=(450, 371, 692, 141)) # Captura a mensagem de erro de inativação, neste caso, se o item já estiver inativo ou se há duplicação de código de barra, o que bloqueia inativação
                             screenshoterror2 = screenshoterror2.convert("L")  # Converte para escala de cinza
                             screenshoterror2.save('./screenshots/screenshoterror2.png') # Salva a imagem
-                            from PIL import Image # Interpretação de imagem
                             screenshoterror2 = Image.open('./screenshots/screenshoterror2.png') # Recebimento da imagem
                             texterror2 = pytesseract.image_to_string(screenshoterror2) # Converte para texto
                             errorname2 = "inativar" # Palavra-chave de erro caso esteja inativo
@@ -253,7 +247,6 @@ while option != "4":
                 screenshotdesc = pyautogui.screenshot(region=(276, 743.5, 458, 15)) # Captura a descrição do item
                 screenshotdesc = screenshotdesc.convert("L")  # Converte para escala de cinza
                 screenshotdesc.save('./screenshots/screenshotdesc.png') # Salva a imagem
-                from PIL import Image
                 screenshotdesc = Image.open('./screenshots/screenshotdesc.png') # Recebimento da imagem
                 textdesc = pytesseract.image_to_string(screenshotdesc) # Converte para texto
 

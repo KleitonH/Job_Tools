@@ -5,7 +5,7 @@ from pyscreeze import screenshot # Importação da biblioteca pyscreeze para cap
 from pytesseract import pytesseract # Importação da biblioteca pytesseract para conversão de imagens em strings
 caminho_tesseract = "C:\\Program Files\\Tesseract-OCR\\tesseract.exe" # Caminho para o executável do pytesseract
 pytesseract.tesseract_cmd = caminho_tesseract # Define o caminho para o pytesseract
-keywords = ['BOMBA COMB', 'BOIA COMB', 'BOMBA INJECAO COMB']
+keywords = []
 tempo_de_execucao = 40000
 
 print("---------------------------------------------------------------------------------------")
@@ -36,7 +36,7 @@ while option != "4":
             contadorverificados += 1 # Adiciona uma verificação para o ciclo, aumentado o contador de itens verificados
             print(f"_______________________________")
             print(f"Número de verificações: {contadorverificados}") # Exibe a quantidade de verificações feitas
-            screenshotwatcher = pyautogui.screenshot(region=(0, 20, 150, 15)) # Primeira variável de segurança, captura a tela no tamanho e posição definidos (x, y, largura e altura)
+            screenshotwatcher = pyautogui.screenshot(region=(5, 23, 98, 17)) # Primeira variável de segurança, captura a tela no tamanho e posição definidos (x, y, largura e altura)
             screenshotwatcher = screenshotwatcher.convert("L") # Converte a captura para escala monocromática, permitindo uma melhor conversão de dados
             screenshotwatcher.save('./screenshots/screenshotwatcher.png') # Salva a captura com o nome do arquivo .png dado
             from PIL import Image # Importa a biblioteca PIL para interpretação de imagens
@@ -56,9 +56,9 @@ while option != "4":
                 textdesc = pytesseract.image_to_string(screenshotdesc) # Converte para texto
                 print(textdesc)
                 
-                for item in keywords:
-                    if item in textdesc:
-                        pyautogui.typewrite("5058")
+                # for item in keywords:
+                #     if item in textdesc:
+                pyautogui.typewrite("5049")
                 time.sleep(0.2) # Intervalo de segurança
                 pyautogui.press("down")
                 time.sleep(0.1) # Intervalo de segurança

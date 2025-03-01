@@ -127,6 +127,7 @@ grupos = {
         'codigo': '0037',
         'subgrupos': {
             'default': {'codigo': '0001', 'itens': ['CONJUNTO EMBREAGEM COMPRESSOR', 'MAGNETICO COMPRESSOR', 'COMPRESSOR AR CONDICIONADO', 'KIT ACESSORIOS COMPRESSOR AR']},
+            'radiador_ar_condicionado': {'codigo': '0403', 'itens': ['RADIADOR AR COND']},
         }
     },
     'arrefecimento': {
@@ -134,7 +135,7 @@ grupos = {
         'subgrupos': {
             'default': {'codigo': '0001', 'itens': ['BRUCUTU', 'BUCHA BOMBA ESGUICHO', 'KIT CAVALETE DISTR AGUA', 'PRESILHA FIX SUPORTE RADIADOR', 'SUPORTE COXIM RADIADOR']},
             'buchas_arrefecimento': {'codigo': '0113', 'itens': ['BUCHA RADIADOR', 'BUCHA BOMBA ESGUICHO', 'BUCHA RESERVATORIO GAS PARTIDA']},
-            'radiadores': {'codigo': '0008', 'itens': ['INTERCOOLER', 'RADIADOR', 'RADIADOR AGUA']},
+            'radiadores_agua': {'codigo': '0008', 'itens': ['INTERCOOLER', 'RADIADOR', 'RADIADOR AGUA', 'RADIADOR C/ AR COND', 'RADIADOR S/ AR COND', 'RADIADOR AUTOMAT']},
             'bombas_agua': {'codigo': '0009', 'itens': ['BOMBA AGUA', 'BOMBA D.HIDR', 'BOMBA DAGUA']},
         }
     },
@@ -238,6 +239,7 @@ grupos = {
             'tambores_freio': {'codigo': '0033', 'itens': ['TAMBOR FREIO', 'TAMBOR FREIO TRASEIRO', 'TAMBOR ']},
             'flexiveis_freio': {'codigo': '0034', 'itens': ['BIFURCACAO AO FLEXIVEL', 'FLEXIVEL', 'FLEXIVEL FREIO', 'FLEX DIANT', 'FLEXIVEL TRAS', 'FLEXIVEL FREIO DISCO', 'FLEXIVEL TRAS']},
             'pincas_freio': {'codigo': '0035', 'itens': ['PINCA FREIO']},
+            'pinos_freio': {'codigo': '0395', 'itens': ['PINO FREIO']},
             'cilindros_roda_freio': {'codigo': '0036', 'itens': ['CILINDRO RODA']},
             'cilindros_mestre_freio': {'codigo': '0037', 'itens': ['CILINDRO MESTRE', 'CILINDRO MESTRE FREIO']},
             'lonas_freio': {'codigo': '0038', 'itens': ['LONA', 'LONA FREIO', 'LONA FREIO TRAS']},
@@ -278,7 +280,8 @@ grupos = {
             'default': {'codigo': '0001', 'itens': ['ALONGADOR VARETA', 'FLEXIVEL FILTRO OLEO', 'PESCADOR BOMBA OLEO', 'PESCADOR CARTER OLEO', 'RESPIRO OLEO']},
             'bombas_oleo': {'codigo': '0049', 'itens': ['BOMBA OLEO', 'CORPO BOMBA OLEO']},
             'engrenagem': {'codigo': '0129', 'itens': ['ENGRENAGEM BOMBA OLEO']},
-            'reservatorios_oleo': {'codigo': '0050', 'itens': []},
+            'radiadores_oleo': {'codigo': '0405', 'itens': ['RADIADOR OLEO']},
+            'reservatorios_oleo': {'codigo': '0050', 'itens': ['RESERVATORIO OLEO', 'RESERV OLEO']},
             'vareta_oleo': {'codigo': '0155', 'itens': ['VARETA OLEO', 'VARETA NIVEL OLEO', 'VARETA NIVEL TRANSMISSAO']},
         }
     },
@@ -290,7 +293,7 @@ grupos = {
             'mangueiras_aquecimento': {'codigo': '0052', 'itens': ['MANGUEIRA AQUECEDOR', 'MANGUEIRA AQUECIMENTO', 'MANGUEIRA ENTR AQUECEDOR', 'MANGUEIRA ENTRADA AQUEC', 'MANGUEIRA ENTRADA AQUECEDOR', 'MANGUEIRA ENTRADA AQUECIMENTO', 'MANGUEIRA PRE AQUEC', 'MANGUEIRA SAIDA AQUEC', 'MANGUEIRA TUBO AQUEC', 'MANGUEIRA VALV AQUECIMENTO']},
             'mangueiras_carcacas': {'codigo': '0146', 'itens': ['MANGUEIRA ANTI CHAMA', 'MANGUEIRA CARCACA', 'MANGUEIRA CORPO VALV TERMOSTATICA', 'MANGUEIRA ENTRADA AR CHAMA', 'MANGUEIRA COLETOR ANTI CHAMA', 'MANGUEIRA COLETOR CHAMA', 'MANGUEIRA COLETOR VALV TERMOSTATICA', 'MANGUEIRA RESPIRO ANTI CHA', 'MANGUEIRA VALV TERMOST', 'MANGUEIRA VALV REG PRESSAO ANTI CHAMA']},
             'mangueiras_combustivel': {'codigo': '0053', 'itens': ['MANGUEIRA BOCAL COMB', 'MANGUEIRA BOCAL TANQUE', 'MANGUEIRA BOMBA INJ COMB', 'MANGUEIRA BOMBA LIGACAO BICO INJETOR', 'MANGUEIRA COMBUSTIVEL', 'MANGUEIRA DUTO ALIMENTACAO TANQUE', 'MANGUEIRA ELETROVALVULA', 'MANGUEIRA CANISTER', 'MANGUEIRA COLETOR', 'MANGUEIRA FILTRO VAPOR COMBUSTIVEL', 'MANGUEIRA GARGALO', 'MANGUEIRA RETORNO']},
-            'mangueiras_agua': {'codigo': '0054', 'itens': ['MANGUEIRA AGUA AQUECEDOR', 'MANGUEIRA AGUA MOTOR', 'MANGUEIRA AGUA QUENTE', 'MANGUEIRA ALIMENTACAO AGUA', 'MANGUEIRA BOMBA AO FILTRO', 'MANGUEIRA RESERV', 'MANGUEIRA RESERV AGUA', 'MANGUEIRA BOMBA AGUA', 'MANGUEIRA BOMBA DAGUA', 'MANGUEIRA BOMBA HIDR', 'MANGUEIRA DAGUA', 'MANGUEIRA DUTO RIGIDO BOMBA AGUA', 'MANGUEIRA ENTRADA AGUA AQUECIMENTO', 'MANGUEIRA ENTRADA BOMBA AGUA', 'MANGUEIRA ENTRADA AGUA', 'MANGUEIRO ENVIO DAGUA', 'MANGUEIRA FLUXO AGUA', 'MANGUEIRA HIDRAULICO', 'MANGUEIRA LIGACAO BOMBA AGUA', 'MANGUEIRA LIGACAO AGUA', 'MANGUEIRA RETORNO AGUA', 'MANGUEIRA SAIDA AGUA', 'MANGUEIRA ARREFECIMENTO', 'MANGUEIRA BOMBA CABECOTE', 'MANGUEIRA BOMBA TUBO REFRIGERA', 'MANGUEIRA COLETOR AGUA', 'MANGUEIRA COLETOR DUTO', 'MANGUEIRA COLETOR TUBO AGUA', 'MANGUEIRA CURVA SUP RADIADOR', 'MANGUEIRA EXPANSAO RADIADOR', 'MANGUEIRA DESCARGA', 'MANGUEIRA RADIADOR', 'MANGUEIRA TERMOSTATO', 'MANGUEIRA DRENO', 'MANGUEIRA DUTO RADIADOR', 'MANGUEIRA ENTRADA TUBO REFRIGERACAO', 'MANGUEIRA FLANGE AO RADIADOR', 'MANGUEIRA INFERIOR', 'MANGUEIRA INF RADIADOR', 'MANGUEIRA INFERIOR RADIADOR', 'MANGUEIRA SUP RADIADOR', 'MANGUEIRA SUPERIOR', 'MANGUEIRA SUPERIOR RADIADOR', 'MANGUEIRA TORNEIRA', 'MANGUEIRA TUBO BOMBA AGUA', 'MANGUEIRA TUBO CAMARA TERMOST', 'MANGUEIRA TUBO CURVO SUP RADIADOR', 'MANGUEIRA TUBO DAGUA', 'MANGUEIRA TUBO REFRIG', 'MANGUEIRA TUBO RESERVATORIO', 'MANGUEIRA TUBO RESFRIADOR', 'MANGUEIRA TUBO RETORNO AGUA', 'MANGUEIRA TUBO CONEX AGUA', 'MANGUEIRA VALV TERMOST AGUA']},
+            'mangueiras_agua': {'codigo': '0054', 'itens': ['MANGUEIRA AGUA AQUECEDOR', 'MANGUEIRA AGUA MOTOR', 'MANGUEIRA AGUA QUENTE', 'MANGUEIRA ALIMENTACAO AGUA', 'MANGUEIRA BOMBA AO FILTRO', 'MANGUEIRA RESERV', 'MANGUEIRA RESERV AGUA', 'MANGUEIRA BOMBA AGUA', 'MANGUEIRA BOMBA DAGUA', 'MANGUEIRA BOMBA HIDR', 'MANGUEIRA DAGUA', 'MANGUEIRA DUTO RIGIDO BOMBA AGUA', 'MANGUEIRA ENTRADA AGUA AQUECIMENTO', 'MANGUEIRA ENTRADA BOMBA AGUA', 'MANGUEIRA ENTRADA AGUA', 'MANGUEIRO ENVIO DAGUA', 'MANGUEIRA FLUXO AGUA', 'MANGUEIRA HIDRAULICO', 'MANGUEIRA LIGACAO BOMBA AGUA', 'MANGUEIRA LIGACAO AGUA', 'MANGUEIRA RETORNO AGUA', 'MANGUEIRA SAIDA AGUA', 'MANGUEIRA ARREFECIMENTO', 'MANGUEIRA BOMBA CABECOTE', 'MANGUEIRA BOMBA TUBO REFRIGERA', 'MANGUEIRA COLETOR AGUA', 'MANGUEIRA COLETOR DUTO', 'MANGUEIRA COLETOR TUBO AGUA', 'MANGUEIRA CURVA SUP RADIADOR', 'MANGUEIRA EXPANSAO RADIADOR', 'MANGUEIRA DESCARGA', 'MANGUEIRA INTERCOOLER', 'MANGUEIRA RADIADOR', 'MANGUEIRA TERMOSTATO', 'MANGUEIRA DRENO', 'MANGUEIRA DUTO RADIADOR', 'MANGUEIRA ENTRADA TUBO REFRIGERACAO', 'MANGUEIRA FLANGE AO RADIADOR', 'MANGUEIRA INFERIOR', 'MANGUEIRA INF RADIADOR', 'MANGUEIRA INFERIOR RADIADOR', 'MANGUEIRA SUP RADIADOR', 'MANGUEIRA SUPERIOR', 'MANGUEIRA SUPERIOR RADIADOR', 'MANGUEIRA TORNEIRA', 'MANGUEIRA TUBO BOMBA AGUA', 'MANGUEIRA TUBO CAMARA TERMOST', 'MANGUEIRA TUBO CURVO SUP RADIADOR', 'MANGUEIRA TUBO DAGUA', 'MANGUEIRA TUBO REFRIG', 'MANGUEIRA TUBO RESERVATORIO', 'MANGUEIRA TUBO RESFRIADOR', 'MANGUEIRA TUBO RETORNO AGUA', 'MANGUEIRA TUBO CONEX AGUA', 'MANGUEIRA VALV TERMOST AGUA']},
             'mangueiras_ar_motor': {'codigo': '0085', 'itens': ['DUTO FILTRO AR', 'MANGUEIRA FILTRO AR', 'DUTO AR ADMISSAO', 'KIT MANGUEIRA AR QUENTE', 'MANGUEIRA ADAPTACAO VALV', 'MANGUEIRA ADMISSAO', 'MANGUEIRA AR QUENTE', 'MANGUEIRA COLETOR ADM', 'MANGUEIRA COLETOR ADMISSAO', 'MANGUEIRA CONECTOR AQUEC', 'MANGUEIRA FILTRO AR', 'MANGUEIRA DUTO FILTRO', 'MANGUEIRA DUTO RIGIDO COLETOR', 'MANGUEIRA AR QUENTE', 'MANGUEIRA FILTRO COLETOR', 'MANGUEIRA FITRO AR', 'MANGUEIRA LIGACAO COLETOR ADMISSAO', 'MANGUEIRA RESPIRO MOTOR', 'MANGUEIRA LIGACAO VALV COLETOR', 'MANGUEIRA MOTOR AR QUENTE' ,'MANGUEIRA RESPIRO', 'MANGUEIRA RETORNO AR', 'MANGUEIRA RETORNO TURBO', 'MANGUEIRA SAIDA AR', 'MANGUEIRA SISTEMA AR', 'MANGUEIRA SUSPIRO MOTOR', 'MANGUEIRA ADMISSAO BOMBA', 'MANGUEIRA BOMBA VACUO', 'MANGUEIRA CABECOTE CARBURADOR', 'MANGUEIRA CARBURADOR', 'MANGUEIRA COLETOR ADMISSAO OLEO', 'MANGUEIRA COLETOR ADMISSAO', 'MANGUEIRA COLETOR ADMISSAO AGUA', 'MANGUEIRA COLETOR CABECOTE', 'MANGUEIRA COLETOR CONEXAO', 'MANGUEIRA AR COLETOR', 'MANGUEIRA TUBO COLETOR', 'MANGUEIRA COMPENSACAO MARCHA LENT', 'MANGUEIRA CONJUNTO MENOR', 'MANGUEIRA DO INTERCOOLER TURBO', 'MANGUEIRA ENTRADA DISTRIBUICAO', 'MANGUEIRA SERVO FREIO', 'MANGUEIRA RESPIRO MOTOR', 'MANGUEIRA TUBO LIGAC SENSOR PALIO', 'MANGUEIRA TUBO VENTILACAO MOTOR', 'MANGUEIRA TURBINA', 'MANGUEIRA TURBO RESFRIADOR', 'MANGUEIRO FILTRO AO EXAUSTOR', 'MANGUEIRA TUBO DIANTEIRO', 'MANGUEIRA VACUO', 'MANGUEIRA VALVULA AR', 'MANGUEIRA VALVULA VAPOR', 'MANGUEIRA VALV RESPIRO', 'MANGUEIRA VENT', 'MANGUEIRA VENT BLOCO', 'MANGUEIRA VENTILACAO', 'MANGUEIRA VENTILACAO MOTOR', 'MANGUEIRA VENTILADOR']},
             'mangueiras_oleo': {'codigo': '0086', 'itens': ['MANGUEIRA BLOCO OLEO', 'MANGUEIRA RESPIRO OLEO', 'MANGUEIRA LUBRIFICACAO BOMBA DIRECAO', 'MANGUEIRA RETORNO OLEO', 'MANGUEIRA FILTRO OLEO', 'MANGUEIRA ENTRE TUBO E RADIADOR OLEO', 'MANGUEIRA LIGACAO CABECOTE', 'MANGUEIRA RAD OLEO', 'MANGUEIRA RESFRIADOR OLEO', 'MANGUEIRA RESFRIAMENTO COLETOR', 'MANGUEIRA RESFRIAMENTO OLEO', 'MANGUEIRA RESPIRO OLEO', 'MANGUEIRA SUSPIRO OLEO', 'MANGUEIRA TAMP VALV', 'MANGUEIRA TUBO RADIADOR OLEO']},
             'mangueiras_metro': {'codigo': '0145', 'itens': ['MANGUEIRA METRO', 'MANGUEIRA METRO COMBUSTIVEL']},
@@ -301,19 +304,21 @@ grupos = {
         'codigo': '0030',
         'subgrupos': {
             'default': {'codigo': '0001', 'itens': ['BUCHA ARRANQUE', 'ESCORAS BALANCIM', 'BALANCIM', 'DEFLETOR CARTER', 'GARFO PARTIDA', 'GUIA VALVULA', 'KIT MOTOR', 'PULA MACACO', 'PARAFUSO CABECOTE', 'PARAFUSO COLETOR ADMISSAO', 'PARAFUSO COM PORCA MOTOR', 'PARAFUSO MOTOR', 'PARAFUSO TAMPA VALV', 'PASTILHA REGULAGEM', 'PENEIRA CARTER', 'PORCA VOLANTE', 'CHAPA FIXACAO SUPORTE MOTOR', 'SUPORTE MOTOR', 'SUPORTE COXIM MOTOR']},
+            'bombas_vacuo': {'codigo': '0407', 'itens': ['BOMBA DE VACUO', 'BOMBA VACUO', "BOMBA VACUO MOTOR"]},
+            'bronzinas': {'codigo': '0100', 'itens': ['BRONZINA','BRONZINA DE BIEL', 'BRONZINA MANCAL']},
             'cabecotes': {'codigo': '0055', 'itens': ['CABECOTE', 'CABECOTE MOTOR']},
+            'carteres': {'codigo': '0057', 'itens': ['CARTER']},
             'comandos': {'codigo': '0118', 'itens': ['COMANDO', 'EIXO COMANDO', 'GAIOLA COMANDO', 'EIXO COMANDO VALV', 'KIT COMANDO']},
+            'corpo_borboleta': {'codigo': '0123', 'itens': ['CORPO BORBOLETA']},
             'coxins': {'codigo': '0078', 'itens': ['COXIM MOTOR', 'COXIM DIANTEIRO MOTOR', 'COXIM CENTRAL MOTOR', 'KIT COXIM MOTOR', 'COXIM TIRANTE MOTOR']},
             'engrenagem': {'codigo': '0129', 'itens': ['ENGRENAGEM VIRABREQUIM', 'ENGRENAGEM CORPO BORBOLETA']},
-            'virabrequins': {'codigo': '0056', 'itens': []},
-            'kit_corrente': {'codigo': '0144', 'itens': ['KIT CORRENTE/TENSOR/ENGREN', 'KIT DISTRIB']},
-            'carteres': {'codigo': '0057', 'itens': ['CARTER']},
-            'bronzinas': {'codigo': '0100', 'itens': ['BRONZINA','BRONZINA DE BIEL', 'BRONZINA MANCAL']},
-            'tuchos': {'codigo': '0103', 'itens': ['BUCHA POSTERIOR ARVORE', 'CAPA TUCHO', 'KIT TUCHO VELA', 'TUCHO HIDRAULICO', 'TUCHO VALVULA', 'VARETA TUCHO']},
-            'parafuso_cabecote': {'codigo': '0105', 'itens': ['BUCHA PRISIONEIRO CABECOTE', 'JOGO PARAFUSO CABECOTE','PARAFUSO CABECOTE', 'PARAFUSO PRISIONEIRO']},
-            'corpo_borboleta': {'codigo': '0123', 'itens': ['CORPO BORBOLETA']},
             'jogo_pistoes': {'codigo': '0142', 'itens': ['JOGO MOTOR PISTAO CAMISA', 'SUPER KIT MOTOR', 'PISTAO']},
+            'kit_corrente': {'codigo': '0144', 'itens': ['KIT CORRENTE/TENSOR/ENGREN', 'KIT DISTRIB']},
+            'parafuso_cabecote': {'codigo': '0105', 'itens': ['BUCHA PRISIONEIRO CABECOTE', 'JOGO PARAFUSO CABECOTE','PARAFUSO CABECOTE', 'PARAFUSO PRISIONEIRO']},
+            'radiadores_motor': {'codigo': '0404', 'itens': ['RADIADOR AR QUENTE', 'RADIADOR MOTOR']},
+            'tuchos': {'codigo': '0103', 'itens': ['BUCHA POSTERIOR ARVORE', 'CAPA TUCHO', 'KIT TUCHO VELA', 'TUCHO HIDRAULICO', 'TUCHO VALVULA', 'VARETA TUCHO']},
             'valvulas_motor': {'codigo': '0153', 'itens': ['VALVULA ADMISSAO', 'VALVULA ESCAPAMENTO', 'VALVULA ESCAPE', 'VALVULA FILTRO AR', 'VALVULA MAXIMA CARB', 'VALVULA MOTOR ESCAP', 'VALVULA RESPIRO MOTOR', 'VALVULA RESPIRO TANQUE', 'VALVULA TERMOSTATICA', 'VALVULA ADMISSAO']},
+            'virabrequins': {'codigo': '0056', 'itens': []},
         }
     },
     'reparos': {
@@ -765,15 +770,16 @@ grupos = {
             'farois': {'codigo': '0259', 'itens': ['FAROL']},
             'faroletes': {'codigo': '0260', 'itens': ['FAROL AUXILIAR', 'FAROLETE']},
             'lentes_farois': {'codigo': '0268', 'itens': ['LENTE FAROL', 'LENTE FAROL AUXILIAR', 'LENTE FAROLETE', 'VIDRO FAROL']},
+            'suportes_farois': {'codigo': '0394', 'itens': ['SUPORTE FAROL', 'SUPORTE FAROLETE']},
             
         }
     },
     'grades_parachoque': {
         'codigo': '0083',
         'subgrupos': {
-            'default': {'codigo': '0001', 'itens': ['GRADE PARACHOQUE']},
+            'default': {'codigo': '0001', 'itens': []},
             'grade_superior_parachoque': {'codigo': '0270', 'itens': ['GRADE SUPERIOR PARACHOQUE']},
-            'grade_inferior_parachoque': {'codigo': '0271', 'itens': ['GRADE CENTRAL', 'GRADE CENTRAL INFERIOR', 'GRADE CENTRAL PARACHOQUE']},
+            'grade_inferior_parachoque': {'codigo': '0271', 'itens': ['GRADE PARACHOQUE', 'GRADE PARACHOQUE COM FAROLETE', 'GRADE PARACHOQUE SEM FAROLETE', 'GRADE CENTRAL', 'GRADE CENTRAL INFERIOR', 'GRADE CENTRAL PARACHOQUE']},
             'grade_farolete': {'codigo': '0272', 'itens': ['GRADE FAROLETE']},
             
         }
@@ -823,6 +829,7 @@ grupos = {
             'parachoques_dianteiros': {'codigo': '0257', 'itens': ['PARACHOQUE DIAN', 'PARACHOQUE DIANTEIRO', 'PARACHOQUE IMPULSAO']},
             'parachoques_traseiros': {'codigo': '0258', 'itens': ['PARACHOQUE TRAS', 'PARACHOQUE TRASEIRO']},
             'ponteiras_parachoque': {'codigo': '0325', 'itens': ['PONTEIRA PARACHOQUE', 'PONTEIRA PARACHOQUE TRAS']},
+            'suportes_parachoque': {'codigo': '0327', 'itens': ['SUPORTE LATERAL PARACHOQUE', 'SUPORTE PARACHOQUE']},
         }
     },
     'retrovisores': {
@@ -917,7 +924,6 @@ grupos = {
             'default': {'codigo': '0001', 'itens': ['PARAFUSO FIXACAO ESTEPE', 'PARAFUSO FIXACAO BANDEJA ESTEPE']},
             'suportes_estepe': {'codigo': '0326', 'itens': ['SUPORTE ESTEPE']},
             'suportes_painel': {'codigo': '0328', 'itens': ['SUPORTE PAINEL', 'SUPORTE PAINEL DIANTEIRO', 'SUPORTE PAINEL SUPERIOR']},
-            'suportes_parachoque': {'codigo': '0327', 'itens': ['SUPORTE LATERAL PARACHOQUE', 'SUPORTE PARACHOQUE']},
             'bacia_estepe': {'codigo': '0001', 'itens': ['BACIA CAIXA ESTEPE']},
         }
     },
@@ -1173,6 +1179,14 @@ def filtro_operacao(Filtro):
             Breaker.monitorar_interrupcao(True)
             exit()
 
+def print_structure(grupos, nivel=0):
+    for grupo, dados in grupos.items():
+        # Imprime o grupo com seu código
+        print('    ' * nivel + f"{grupo.capitalize()} ({dados['codigo']})")
+        # Se houver subgrupos, chama a função recursivamente para imprimir
+        if 'subgrupos' in dados:
+            print_structure(dados['subgrupos'], nivel + 1)
+
 print("---------------------------------------------------------------------------------------")
 print("Bem-vindo ao SectionDescripted, o programa que classifica grupos e subgrupos com base nas descrições de itens.") # Mensagem de boas vindas
 option = "" # Variável que receberá a opção selecionada
@@ -1201,7 +1215,7 @@ while option != "2":
             contadorverificados += 1
             print(f"_______________________________")
             print(f"Número de verificações: {contadorverificados}") 
-            screenshotwatcher = pyautogui.screenshot(region=(0, 24, 150, 20)) # Primeira variável de segurança, captura a tela no tamanho e posição definidos (x, y, largura e altura)
+            screenshotwatcher = pyautogui.screenshot(region=(23, 23, 69, 18)) # Primeira variável de segurança, captura a tela no tamanho e posição definidos (x, y, largura e altura)
             screenshotwatcher = screenshotwatcher.convert("L") # Converte a captura para escala monocromática, permitindo uma melhor conversão de dados
             screenshotwatcher.save('./screenshots/screenshotwatcher.png') 
             from PIL import Image # Importa a biblioteca PIL para interpretação de imagens
@@ -1214,7 +1228,7 @@ while option != "2":
 
             if watch in textwatcher or watch2 in textwatcher: 
                 time.sleep(0.2)              
-                screenshotdesc = pyautogui.screenshot(region=(276, 614, 458, 15)) # Captura a descrição do item
+                screenshotdesc = pyautogui.screenshot(region=(277, 902, 736, 16)) # Captura a descrição do item
                 screenshotdesc = screenshotdesc.convert("L")
                 screenshotdesc.save('./screenshots/screenshotdesc.png')
                 from PIL import Image
@@ -1229,7 +1243,7 @@ while option != "2":
                 #     pyautogui.doubleClick(x=1124, y=622)
                 #     time.sleep(0.2)
 
-                # filtro_operacao([''])#
+                # filtro_operacao([])
 
                 if grupoescolhido:
                     pyautogui.typewrite(grupoescolhido)
